@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TAGE MAGE — Réflexes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#08090B; --surface:#121419; --surface-2:#191C22; --line:#242830;
+  --text:#ECEEF2; --muted:#7C8492; --dim:#4A505C;
+  --accent:#5B8DEF; --ok:#3FB68B; --ko:#E5484D;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;
+  display:flex;justify-content:center;padding:20px 16px 60px;
+  -webkit-font-smoothing:antialiased;
+}
+.app{width:100%;max-width:680px}
+.mono{font-family:"JetBrains Mono",monospace}
+
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px}
+.brand{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.brand b{color:var(--accent)}
+.hintswitch{
+  background:none;border:1px solid var(--line);color:var(--muted);font-family:inherit;
+  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;
+  border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;
+}
+.hintswitch:hover{border-color:var(--muted);color:var(--text)}
+.hintswitch[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+
+/* nav */
+.subtests{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px;scrollbar-width:none}
+.subtests::-webkit-scrollbar{display:none}
+.st{
+  background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;
+  font-size:12px;font-weight:500;padding:9px 14px;border-radius:10px;cursor:pointer;
+  white-space:nowrap;transition:.15s;
+}
+.st:hover{color:var(--text)}
+.st[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#06070A;font-weight:700}
+.packs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
+.pk{
+  background:none;border:1px solid var(--line);color:var(--dim);font-family:inherit;
+  font-size:11.5px;padding:7px 12px;border-radius:999px;cursor:pointer;transition:.15s;
+}
+.pk:hover{color:var(--text);border-color:#333844}
+.pk[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(91,141,239,.08)}
+
+/* card */
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:18px;
+  padding:30px 24px 26px;text-align:center;position:relative;overflow:hidden;
+}
+.card::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+}
+.card.ok::after{background:var(--ok);transform:scaleX(1)}
+.card.ko::after{background:var(--ko);transform:scaleX(1)}
+.tag{
+  display:inline-block;background:var(--surface-2);color:var(--muted);font-size:9.5px;
+  font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;
+  border-radius:999px;margin-bottom:22px;
+}
+.q{font-size:clamp(19px,4.4vw,27px);font-weight:700;line-height:1.3}
+.q.small{font-size:clamp(16px,3.4vw,20px);font-weight:500;line-height:1.45}
+.memo{
+  margin-top:22px;text-align:left;background:var(--surface-2);border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:12px 15px;font-size:13px;line-height:1.55;color:#B6BDC9;
+}
+.memo b{color:var(--text);font-weight:500}
+.memo[hidden]{display:none}
+.verdict{margin-top:18px;min-height:20px;font-size:13px;font-weight:500;font-family:"JetBrains Mono",monospace;line-height:1.5}
+.verdict.ok{color:var(--ok)} .verdict.ko{color:var(--ko)}
+
+/* options */
+.opts{display:grid;gap:8px;margin-top:20px;text-align:left}
+.opt{
+  background:var(--surface-2);border:1px solid var(--line);color:var(--text);
+  font-family:inherit;font-size:14.5px;line-height:1.4;padding:13px 16px;border-radius:11px;
+  cursor:pointer;transition:.12s;display:flex;gap:11px;align-items:flex-start;text-align:left;
+}
+.opt:hover:not(:disabled){background:#22262E;border-color:#333844}
+.opt .lt{
+  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--dim);
+  flex-shrink:0;padding-top:1px;
+}
+.opt.good{border-color:var(--ok);background:rgba(63,182,139,.1)}
+.opt.good .lt{color:var(--ok)}
+.opt.bad{border-color:var(--ko);background:rgba(229,72,77,.1)}
+.opt.bad .lt{color:var(--ko)}
+.opt:disabled{cursor:default}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:18px 0;border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.stat{padding:12px 6px;text-align:center;border-right:1px solid var(--line)}
+.stat:last-child{border-right:none}
+.stat .k{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.stat .v{font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:700;margin-top:4px}
+
+/* input */
+.row{display:flex;gap:8px;margin-bottom:8px}
+#answer{
+  flex:1;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;
+  padding:14px 17px;color:var(--text);font-family:"JetBrains Mono",monospace;
+  font-size:19px;font-weight:500;outline:none;transition:.15s;min-width:0;
+}
+#answer:focus{border-color:var(--accent)}
+#answer::placeholder{color:#3E4450}
+.btn{
+  background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:inherit;
+  font-size:14px;font-weight:500;padding:14px 22px;border-radius:12px;cursor:pointer;
+  transition:.15s;white-space:nowrap;
+}
+.btn:hover{background:#22262E}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#06070A;font-weight:700}
+.btn.primary:hover{background:#6E9BF2}
+.btn.wide{width:100%;color:var(--muted);font-size:13px}
+.btn.wide:hover{color:var(--text)}
+#inputZone[hidden],#optsZone[hidden]{display:none}
+
+.review{margin-top:24px}
+.review h2{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{
+  background:rgba(229,72,77,.09);border:1px solid rgba(229,72,77,.26);color:#F09296;
+  font-size:12px;padding:5px 10px;border-radius:8px;max-width:100%;
+}
+.chip span{color:#8A5C5F;margin-left:5px}
+.empty{color:var(--dim);font-size:13px}
+.foot{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--dim);font-size:11px}
+.foot button{background:none;border:none;color:var(--dim);font-family:inherit;font-size:11px;cursor:pointer;text-decoration:underline;padding:0}
+.foot button:hover{color:var(--muted)}
+@media (max-width:420px){ .btn{padding:14px 15px} .opt{font-size:13.5px;padding:12px 13px} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <header>
+    <div class="brand">TAGE MAGE · <b>Réflexes</b></div>
+    <button class="hintswitch" id="hintBtn" aria-pressed="true">Indices</button>
+  </header>
+
+  <div class="subtests" id="subtests"></div>
+  <div class="packs" id="packs"></div>
+
+  <div class="card" id="card">
+    <div class="tag" id="tag">—</div>
+    <div class="q" id="question">—</div>
+    <div class="opts" id="optsZone"></div>
+    <div class="memo" id="memo" hidden></div>
+    <div class="verdict" id="verdict"></div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Score</div><div class="v" id="sScore">0/0</div></div>
+    <div class="stat"><div class="k">Série</div><div class="v" id="sStreak">0</div></div>
+    <div class="stat"><div class="k">Temps moy.</div><div class="v" id="sTime">—</div></div>
+  </div>
+
+  <div id="inputZone">
+    <div class="row">
+      <input id="answer" autocomplete="off" spellcheck="false" placeholder="Réponse">
+      <button class="btn primary" id="check">Vérifier</button>
+    </div>
+    <button class="btn wide" id="reveal">Voir la réponse</button>
+  </div>
+
+  <div class="review">
+    <h2>À revoir</h2>
+    <div class="chips" id="chips"><span class="empty">Rien pour l'instant. Les erreurs reviendront plus souvent.</span></div>
+  </div>
+
+  <div class="foot">
+    <span>Entrée valide et enchaîne · 1-4 pour les QCM</span>
+    <button id="reset">Remettre à zéro</button>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+
+/* ============================ HELPERS ============================ */
+var LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+var ANCH={5:"E",10:"J",15:"O",20:"T",25:"Y"};
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function near(n,l){var b=l[0];for(var i=0;i<l.length;i++){if(Math.abs(l[i]-n)<Math.abs(b-n))b=l[i];}return b;}
+function sg(d){return d>=0?"+ "+d:"− "+Math.abs(d);}
+
+/* ============================ CONTENU ============================ */
+
+/* --- PROVERBES : sens --- */
+var PROVERBES=[
+["Il ne faut pas vendre la peau de l'ours avant de l'avoir tué","Ne pas se réjouir d'un résultat qui n'est pas encore acquis"],
+["Qui trop embrasse mal étreint","Vouloir tout mener de front conduit à tout rater"],
+["Chat échaudé craint l'eau froide","Une mauvaise expérience rend excessivement méfiant"],
+["Il n'y a pas de fumée sans feu","Une rumeur repose souvent sur un fond de vérité"],
+["L'habit ne fait pas le moine","L'apparence ne garantit pas la réalité"],
+["Qui vole un œuf vole un bœuf","Une petite malhonnêteté en annonce de plus grandes"],
+["Charbonnier est maître chez soi","Chacun est libre de décider dans son propre domaine"],
+["À bon chat, bon rat","À un adversaire habile en répond un de force égale"],
+["La caque sent toujours le hareng","On garde toujours la marque de ses origines"],
+["Les cordonniers sont les plus mal chaussés","On néglige pour soi ce qu'on maîtrise pour les autres"],
+["Nul n'est prophète en son pays","On est moins reconnu par ses proches que par les étrangers"],
+["Un tiens vaut mieux que deux tu l'auras","Mieux vaut peu mais certain que beaucoup mais hypothétique"],
+["Qui sème le vent récolte la tempête","Les actes néfastes reviennent amplifiés"],
+["Il faut battre le fer pendant qu'il est chaud","Agir sans tarder quand le moment est favorable"],
+["Bien mal acquis ne profite jamais","Ce qui est obtenu malhonnêtement finit par se perdre"],
+["Le mieux est l'ennemi du bien","Vouloir perfectionner peut gâcher ce qui fonctionnait"],
+["Pierre qui roule n'amasse pas mousse","À force de changer sans cesse, on ne construit rien"],
+["On ne fait pas d'omelette sans casser des œufs","Aucun résultat ne s'obtient sans sacrifice"],
+["Tel est pris qui croyait prendre","Celui qui tendait le piège y tombe lui-même"],
+["Rien ne sert de courir, il faut partir à point","La régularité l'emporte sur la précipitation"],
+["Les chiens ne font pas des chats","On hérite forcément des traits de ses parents"],
+["Faute de grives, on mange des merles","À défaut de mieux, on se contente de ce qu'on a"],
+["C'est l'hôpital qui se moque de la charité","Reprocher à autrui un défaut que l'on a soi-même"],
+["Il n'est pire sourd que celui qui ne veut pas entendre","Le refus de comprendre est volontaire et incurable"],
+["Qui ne dit mot consent","Le silence équivaut à une acceptation"],
+["Une hirondelle ne fait pas le printemps","Un indice isolé ne suffit pas à conclure"],
+["Chassez le naturel, il revient au galop","Le tempérament profond finit toujours par ressurgir"],
+["Quand le chat n'est pas là, les souris dansent","En l'absence d'autorité, chacun prend des libertés"],
+["Aide-toi, le ciel t'aidera","Il faut agir soi-même avant d'espérer un secours"],
+["À l'œuvre on connaît l'artisan","On juge quelqu'un à ses réalisations, non à ses discours"],
+["Il faut tourner sept fois sa langue dans sa bouche avant de parler","Réfléchir longuement avant de s'exprimer"],
+["Ventre affamé n'a point d'oreilles","Un besoin urgent rend insensible à tout argument"],
+["Un homme averti en vaut deux","Être prévenu du danger, c'est être mieux armé"],
+["La nuit porte conseil","Le temps de la réflexion améliore la décision"],
+["Petit à petit, l'oiseau fait son nid","Les efforts répétés finissent par produire un résultat"],
+["Après la pluie, le beau temps","Les difficultés finissent toujours par passer"],
+["Mieux vaut prévenir que guérir","L'anticipation coûte moins cher que la réparation"],
+["L'exception confirme la règle","L'existence d'un cas particulier suppose une règle générale"],
+["Qui se ressemble s'assemble","Les personnes semblables se regroupent naturellement"],
+["Tant va la cruche à l'eau qu'à la fin elle se casse","À force de s'exposer au risque, on finit par en subir les conséquences"]
+];
+
+/* --- EXPRESSIONS IMAGÉES --- */
+var EXPRESSIONS=[
+["Jeter l'éponge","Abandonner, renoncer à poursuivre"],
+["Prendre la mouche","Se vexer brusquement pour peu de chose"],
+["Tomber de Charybde en Scylla","Échapper à un mal pour tomber dans un pire"],
+["Un travail de Romain","Une tâche longue, difficile et considérable"],
+["Une victoire à la Pyrrhus","Une victoire si coûteuse qu'elle équivaut à une défaite"],
+["Le talon d'Achille","Le point faible unique d'un ensemble solide"],
+["Un cheval de Troie","Une ruse permettant de s'introduire dans la place"],
+["Une épée de Damoclès","Une menace permanente suspendue au-dessus de quelqu'un"],
+["Le fil d'Ariane","Ce qui guide et permet de ne pas se perdre"],
+["Un travail de Sisyphe","Une tâche sans fin, toujours à recommencer"],
+["Se faire l'avocat du diable","Défendre la thèse adverse pour éprouver un raisonnement"],
+["Mettre la charrue avant les bœufs","Faire les choses dans le désordre, commencer par la fin"],
+["Faire amende honorable","Reconnaître publiquement ses torts"],
+["Prêcher le faux pour savoir le vrai","Avancer une erreur volontaire pour provoquer un aveu"],
+["Noyer le poisson","Embrouiller volontairement pour éviter de répondre"],
+["Une réponse de Normand","Une réponse volontairement évasive, ni oui ni non"],
+["Un vœu pieux","Un souhait généreux mais sans effet concret"],
+["Passer sous les fourches caudines","Subir des conditions humiliantes imposées par le vainqueur"],
+["Une tempête dans un verre d'eau","Une grande agitation pour un motif dérisoire"],
+["Le nerf de la guerre","Les moyens financiers, l'argent"],
+["Un pis-aller","Une solution de dernier recours faute de mieux"],
+["Avoir maille à partir avec quelqu'un","Avoir un différend, un démêlé avec quelqu'un"],
+["Tenir le haut du pavé","Occuper une position dominante et enviée"],
+["Battre sa coulpe","Reconnaître ses fautes en s'en accusant"],
+["Un pensum","Un travail long et fastidieux imposé"],
+["Une lapalissade","Une évidence énoncée comme une découverte"],
+["Un tonneau des Danaïdes","Un gouffre qu'on ne peut jamais remplir"],
+["La boîte de Pandore","La source de tous les maux qu'on libère par imprudence"],
+["Un satisfecit","Un témoignage de satisfaction officiel"],
+["Renvoyer aux calendes grecques","Reporter à une date qui n'arrivera jamais"]
+];
+
+/* --- PARONYMES : définition -> mot --- */
+var PARONYMES=[
+["Hypothèse formulée sans preuve","Une conjecture"],
+["Ensemble des circonstances d'une situation","Une conjoncture"],
+["Qui se distingue par un mérite remarquable","Éminent"],
+["Qui va se produire d'un instant à l'autre","Imminent"],
+["Le sens particulier que prend un mot","Une acception"],
+["Le fait d'accepter quelque chose","Une acceptation"],
+["Choc entre deux corps qui se rencontrent","Une collision"],
+["Entente secrète au détriment d'un tiers","Une collusion"],
+["L'angle d'une surface par rapport à l'horizontale","Une inclinaison"],
+["Un penchant, une tendance naturelle","Une inclination"],
+["Le fait de forcer un obstacle pour entrer","Une effraction"],
+["La violation d'une loi ou d'un règlement","Une infraction"],
+["Récupérer une somme qui était due","Recouvrer"],
+["Couvrir de nouveau, dissimuler","Recouvrir"],
+["L'agent chargé de collecter l'impôt","Un percepteur"],
+["Celui qui est chargé d'éduquer un enfant","Un précepteur"],
+["Qui contient un poison, en parlant d'une plante","Vénéneux"],
+["Qui inocule du venin, en parlant d'un animal","Venimeux"],
+["Qui mérite d'être signalé, important","Notable"],
+["Qui est connu de tous, souvent en mal","Notoire"],
+["Contaminer par un germe pathogène","Infecter"],
+["Envahir en grand nombre, en parlant de nuisibles","Infester"],
+["Qui suit le sens strict du texte, mot à mot","Littéral"],
+["Qui présente un caractère de nouveauté, singulier","Original"],
+["Qui remonte à l'origine, à la source","Originel"],
+["Une progression par degrés successifs","Une gradation"],
+["La division d'une échelle en degrés","Une graduation"],
+["Une somme versée à titre d'aide","Une allocation"],
+["Un discours bref adressé à un auditoire","Une allocution"],
+["Causer une gêne, une oppression physique ou morale","Oppresser"],
+["Soumettre par la violence et la contrainte","Opprimer"],
+["Attribuer un prix, une distinction","Décerner"],
+["Percevoir une différence, distinguer nettement","Discerner"],
+["Rappeler à l'esprit, faire allusion à","Évoquer"],
+["Faire appel à une autorité pour se justifier","Invoquer"],
+["Le caractère de ce qui est vain, futile","L'inanité"],
+["L'épuisement causé par le manque de nourriture","L'inanition"],
+["Un choix entre deux possibilités exclusives","Une alternative"],
+["La succession régulière de deux états","Une alternance"],
+["D'une richesse fastueuse","Somptueux"],
+["Relatif à la limitation des dépenses de luxe","Somptuaire"],
+["Se dit d'une personne qui dépense sans compter","Prodigue"],
+["Un fait extraordinaire, un miracle","Un prodige"]
+];
+
+/* --- VOCABULAIRE SOUTENU --- */
+var VOCAB=[
+["Laconique","Qui s'exprime en très peu de mots"],
+["Prolixe","Qui parle ou écrit avec une abondance excessive"],
+["Obséquieux","D'une politesse excessive et servile"],
+["Velléitaire","Qui forme des intentions sans jamais les réaliser"],
+["Pusillanime","Qui manque de courage devant le risque"],
+["Circonspect","Qui agit avec une prudence attentive"],
+["Sagace","Doué d'une pénétration d'esprit remarquable"],
+["Fallacieux","Qui vise à tromper sous une apparence honnête"],
+["Spécieux","Qui a l'apparence de la vérité mais est faux"],
+["Péremptoire","Qui n'admet aucune contradiction"],
+["Dilatoire","Qui ne vise qu'à gagner du temps"],
+["Pérenne","Qui dure de manière durable et continue"],
+["Idoine","Parfaitement approprié à sa destination"],
+["Prégnant","Qui s'impose fortement à l'esprit"],
+["Exhaustif","Qui épuise entièrement un sujet"],
+["Lapidaire","D'une concision brève et frappante"],
+["Emphatique","D'une solennité exagérée et pompeuse"],
+["Truculent","Haut en couleur, savoureusement excessif"],
+["Insidieux","Qui progresse sournoisement sans être vu"],
+["Délétère","Qui nuit gravement à la santé ou à l'esprit"],
+["Contingent","Qui pourrait ne pas être, qui dépend des circonstances"],
+["Immanent","Qui est contenu dans la nature même de l'objet"],
+["Transcendant","Qui dépasse et se situe au-delà de l'ordre donné"],
+["Empirique","Qui repose uniquement sur l'expérience observée"],
+["Heuristique","Qui sert à la découverte et à l'invention"],
+["Une aporie","Une difficulté logique jugée insoluble"],
+["Un palliatif","Ce qui atténue les effets sans traiter la cause"],
+["Endémique","Qui sévit en permanence dans une région donnée"],
+["Iconoclaste","Qui s'attaque délibérément aux traditions établies"],
+["Manichéen","Qui divise le monde en bien et en mal absolus"],
+["Dogmatique","Qui affirme sans admettre l'examen critique"],
+["Un paradigme","Un modèle de référence structurant une discipline"],
+["Une dichotomie","Une division nette en deux parties opposées"],
+["Ambivalent","Qui présente simultanément deux valeurs contraires"],
+["Équivoque","Qui peut recevoir plusieurs interprétations"],
+["Univoque","Qui n'a qu'un seul sens possible"],
+["Réfuter","Démontrer la fausseté d'une thèse"],
+["Corroborer","Apporter une confirmation à une thèse existante"],
+["Étayer","Soutenir une affirmation par des preuves"],
+["Éluder","Éviter adroitement une difficulté"],
+["Occulter","Cacher, tenir volontairement dans l'ombre"],
+["Exacerber","Porter un phénomène à son point le plus aigu"],
+["Un atermoiement","Un report continuel, une tergiversation"],
+["Inéluctable","Qu'on ne peut éviter par aucun moyen"],
+["Subsidiaire","Qui vient en second, à titre accessoire"],
+["Intrinsèque","Qui appartient à l'objet lui-même, indépendamment du reste"],
+["Extrinsèque","Qui vient de l'extérieur de l'objet"],
+["Nonobstant","Sans être empêché par, malgré"],
+["Prosaïque","D'une banalité terre à terre"],
+["Un corollaire","Une conséquence directe et immédiate"],
+["Une prémisse","La proposition de départ d'un raisonnement"],
+["Un postulat","Ce qui est admis sans démonstration au départ"],
+["Séminal","Qui contient les germes de développements ultérieurs"],
+["Un tropisme","Une tendance irrésistible et automatique"],
+["Consubstantiel","Uni de manière indissociable à quelque chose"],
+["Protéiforme","Qui prend un très grand nombre de formes"],
+["Sibyllin","Dont le sens est obscur et énigmatique"],
+["Éclectique","Qui puise à des sources très variées"],
+["Séditieux","Qui pousse à la révolte contre l'autorité"],
+["Vindicatif","Animé par un désir de vengeance"]
+];
+
+/* --- SOPHISMES --- */
+var SOPHISMES=[
+["On déforme la thèse de l'adversaire pour la réfuter plus facilement","L'homme de paille"],
+["On réduit le débat à deux options alors qu'il en existe d'autres","Le faux dilemme"],
+["On prétend qu'une première étape entraînera fatalement une série de dérives","La pente glissante"],
+["On attaque la personne plutôt que son argument","L'argument ad hominem"],
+["On justifie une thèse par le fait que la majorité y adhère","L'appel à la popularité"],
+["On tient une thèse pour vraie parce qu'un expert l'affirme","L'appel à l'autorité"],
+["On déduit une causalité de la simple succession de deux événements","La confusion corrélation-causalité"],
+["On tire une règle générale d'un ou deux cas isolés","La généralisation hâtive"],
+["On utilise dans les prémisses ce qu'il fallait démontrer","La pétition de principe"],
+["On tient une thèse pour vraie faute de preuve du contraire","L'appel à l'ignorance"],
+["On justifie une pratique par le fait qu'elle a toujours existé","L'appel à la tradition"],
+["On substitue l'émotion suscitée à la démonstration","L'appel à l'émotion"],
+["On détourne l'attention vers un sujet connexe pour esquiver","Le faux-fuyant"],
+["On rapproche deux situations qui ne sont pas comparables","L'analogie abusive"],
+["On ne considère que les cas ayant réussi en ignorant les échecs","Le biais du survivant"],
+["On rejette un argument à cause de son origine ou de son auteur","Le sophisme génétique"],
+["On conclut du tout aux parties ou des parties au tout","Le sophisme de composition"],
+["On modifie le sens d'un terme en cours de raisonnement","L'équivoque"]
+];
+
+/* --- TYPES DE RAISONNEMENT --- */
+var RAISONNEMENTS=[
+["Du général au particulier, la conclusion est certaine si les prémisses le sont","La déduction"],
+["Du particulier au général, à partir de cas observés","L'induction"],
+["Remonter à l'hypothèse la plus plausible expliquant un fait","L'abduction"],
+["Transposer une relation d'un domaine connu vers un domaine inconnu","L'analogie"],
+["Si c'est vrai dans le cas le moins favorable, ça l'est a fortiori dans l'autre","Le raisonnement a fortiori"],
+["Déduire du cas opposé la conclusion inverse","Le raisonnement a contrario"],
+["Supposer la thèse fausse et aboutir à une contradiction","Le raisonnement par l'absurde"],
+["Deux prémisses dont on tire mécaniquement une conclusion","Le syllogisme"],
+["Montrer que les deux branches possibles mènent au même résultat","Le dilemme"],
+["Établir la vérité pour un rang, puis le passage d'un rang au suivant","La récurrence"]
+];
+
+/* --- CONNECTEURS LOGIQUES --- */
+var CONNECTEURS=[
+["Or","Introduit un élément nouveau qui fait pivoter le raisonnement"],
+["Donc","Introduit une conséquence logique"],
+["Car","Introduit une cause déjà admise, une justification"],
+["En effet","Introduit une explication qui appuie ce qui précède"],
+["Cependant","Introduit une opposition atténuée"],
+["Néanmoins","Introduit une concession suivie d'une restriction"],
+["Bien que","Introduit une concession, suivie du subjonctif"],
+["Puisque","Introduit une cause présentée comme connue de tous"],
+["Étant donné que","Introduit une cause posée comme un fait établi"],
+["De sorte que","Introduit une conséquence effective"],
+["Afin que","Introduit un but visé, suivi du subjonctif"],
+["À moins que","Introduit une condition restrictive, une seule échappatoire"],
+["Dans la mesure où","Introduit une cause proportionnelle, sous condition"],
+["En revanche","Introduit une opposition symétrique et équilibrée"],
+["Au demeurant","Introduit une remarque annexe qui complète"],
+["Partant","Introduit une conséquence, en registre soutenu"],
+["Certes","Introduit une concession que l'on va aussitôt limiter"],
+["Quoique","Introduit une concession, suivi du subjonctif"],
+["Si bien que","Introduit une conséquence constatée"],
+["Non seulement... mais encore","Introduit une gradation par addition"]
+];
+
+/* --- FIGURES DE STYLE --- */
+var FIGURES=[
+["Rapprocher deux termes sans outil de comparaison","Une métaphore"],
+["Rapprocher deux termes avec un outil de comparaison","Une comparaison"],
+["Désigner une chose par un terme qui lui est associé","Une métonymie"],
+["Désigner le tout par la partie ou l'inverse","Une synecdoque"],
+["Dire moins pour suggérer davantage","Une litote"],
+["Atténuer une réalité brutale par une formule adoucie","Un euphémisme"],
+["Exagérer volontairement pour frapper l'esprit","Une hyperbole"],
+["Réunir deux termes contradictoires dans une même expression","Un oxymore"],
+["Opposer deux idées dans une construction parallèle","Une antithèse"],
+["Répéter un même mot en début de phrases successives","Une anaphore"],
+["Répéter un même son consonantique","Une allitération"],
+["Répéter un même son vocalique","Une assonance"],
+["Croiser symétriquement deux structures parallèles","Un chiasme"],
+["Prêter des traits humains à une chose ou un animal","Une personnification"],
+["Remplacer un mot par une expression qui le décrit","Une périphrase"],
+["Annoncer qu'on ne dira pas ce qu'on est en train de dire","Une prétérition"],
+["Coordonner deux termes de nature ou de sens incompatibles","Un zeugma"],
+["Progresser par intensité croissante ou décroissante","Une gradation"],
+["Supprimer des mots sans nuire à la compréhension","Une ellipse"],
+["Attribuer à un mot ce qui convient à un autre de la phrase","Une hypallage"]
+];
+
+/* --- PLÉONASMES --- */
+var PLEONASMES=[
+["Au jour d'aujourd'hui","Aujourd'hui"],["Monter en haut","Monter"],["Descendre en bas","Descendre"],
+["Prévoir à l'avance","Prévoir"],["Voire même","Voire"],["S'entraider mutuellement","S'entraider"],
+["Reculer en arrière","Reculer"],["Une panacée universelle","Une panacée"],["Le principal protagoniste","Le protagoniste"],
+["Achever complètement","Achever"],["Reporter à plus tard","Reporter"],["Car en effet","Car"],
+["Puis ensuite","Puis"],["Une opposition contraire","Une opposition"],["Une dune de sable","Une dune"],
+["Une unanimité totale","L'unanimité"],["Un faux prétexte","Un prétexte"],["Moi personnellement","Moi"],
+["Applaudir des deux mains","Applaudir"],["Un tri sélectif","Un tri"],["Une hémorragie de sang","Une hémorragie"],
+["Se réunir ensemble","Se réunir"],["Le but final","Le but"],["Comparer entre eux","Comparer"]
+];
+
+/* --- FAUTES : quelle phrase est correcte --- */
+var FAUTES=[
+{q:"Quelle phrase est correcte ?",a:"Bien qu'il soit en retard, il sera reçu.",
+ o:["Malgré qu'il soit en retard, il sera reçu.","Bien qu'il est en retard, il sera reçu.","Quoiqu'il est en retard, il sera reçu."],
+ h:"<b>Malgré que</b> est toujours fautif. <b>Bien que</b> et <b>quoique</b> commandent le subjonctif."},
+{q:"Quelle phrase est correcte ?",a:"Il faut pallier ce manque de moyens.",
+ o:["Il faut pallier à ce manque de moyens.","Il faut pallier au manque de moyens.","Il faut palier ce manque de moyens."],
+ h:"<b>Pallier</b> est transitif direct : on pallie quelque chose, jamais « à » quelque chose."},
+{q:"Quelle phrase est correcte ?",a:"Je me rappelle cette réunion.",
+ o:["Je me rappelle de cette réunion.","Je m'en rappelle parfaitement.","Je me rappelle de son nom."],
+ h:"Se rappeler <b>quelque chose</b> (direct) — se souvenir <b>de</b> quelque chose (indirect)."},
+{q:"Quelle phrase est correcte ?",a:"Après qu'il est arrivé, la séance a commencé.",
+ o:["Après qu'il soit arrivé, la séance a commencé.","Après qu'il fût arrivé, la séance a commencé.","Après qu'il serait arrivé, la séance a commencé."],
+ h:"<b>Après que</b> exige l'indicatif : le fait est accompli. Seul <b>avant que</b> demande le subjonctif."},
+{q:"Quelle phrase est correcte ?",a:"Quelles que soient vos raisons, la règle s'applique.",
+ o:["Quelque soient vos raisons, la règle s'applique.","Quelques soient vos raisons, la règle s'applique.","Quel que soient vos raisons, la règle s'applique."],
+ h:"<b>Quel que</b> s'écrit en deux mots et s'accorde avec le sujet du verbe être."},
+{q:"Quelle phrase est correcte ?",a:"C'est de ce projet que je voulais parler.",
+ o:["C'est de ce projet dont je voulais parler.","C'est ce projet dont je voulais parler de.","C'est de ce projet duquel je voulais parler."],
+ h:"<b>Dont</b> contient déjà « de » : le cumuler avec « de » est une faute classique."},
+{q:"Quelle phrase est correcte ?",a:"Ces mesures se sont avérées inefficaces.",
+ o:["Ces mesures se sont avérées vraies.","Ces mesures s'avèrent exactes et vraies.","Ces mesures se sont avérées véridiques."],
+ h:"<b>S'avérer</b> vient de « vrai » : « s'avérer vrai » est un pléonasme, « s'avérer faux » une contradiction tolérée par l'usage."},
+{q:"Quelle phrase est correcte ?",a:"Il s'est rendu chez le médecin.",
+ o:["Il s'est rendu au médecin.","Il est allé au docteur.","Il s'est rendu chez du médecin."],
+ h:"On va <b>chez</b> une personne, <b>à</b> un lieu."},
+{q:"Quelle phrase est correcte ?",a:"Je vous saurais gré de me répondre.",
+ o:["Je vous serais gré de me répondre.","Je vous saurai gré de me répondre.","Je vous serai gré de me répondre."],
+ h:"L'expression est <b>savoir gré</b>, au conditionnel : « je vous saurais gré »."},
+{q:"Quelle phrase est correcte ?",a:"Il a beaucoup de travail, aussi part-il tôt.",
+ o:["Il a beaucoup de travail, aussi il part tôt.","Il a beaucoup de travail, aussi que part-il tôt.","Il a beaucoup de travail, aussi partira il tôt."],
+ h:"<b>Aussi</b> en tête de proposition signifie « c'est pourquoi » et entraîne l'inversion du sujet."},
+{q:"Quelle phrase est correcte ?",a:"La somme s'élève à deux cents euros.",
+ o:["La somme s'élève à deux cent euros.","La somme s'élève à deux cents euro.","La somme s'élève à deux-cent euros."],
+ h:"<b>Cent</b> prend un s quand il est multiplié et non suivi d'un autre nombre."},
+{q:"Quelle phrase est correcte ?",a:"Les efforts qu'il a fournis ont payé.",
+ o:["Les efforts qu'il a fourni ont payé.","Les efforts qu'il a fournit ont payé.","Les efforts qu'il a fournies ont payé."],
+ h:"Avec <b>avoir</b>, le participe s'accorde avec le COD placé avant : « les efforts » (masculin pluriel)."},
+{q:"Quelle phrase est correcte ?",a:"Elle s'est permis de répondre.",
+ o:["Elle s'est permise de répondre.","Elle se s'est permis de répondre.","Elle s'est permises de répondre."],
+ h:"Le COD est « de répondre », placé après : pas d'accord. « Se » est ici COI."},
+{q:"Quelle phrase est correcte ?",a:"Il n'y a que deux candidats qui aient réussi.",
+ o:["Il n'y a que deux candidats qui ont réussis.","Il y a que deux candidats qui ont réussi.","Il n'y a que deux candidats qu'ont réussi."],
+ h:"Après une restriction (« il n'y a que »), le subjonctif est attendu en registre soutenu."},
+{q:"Quelle phrase est correcte ?",a:"Au temps pour moi, je m'étais trompé.",
+ o:["Autant pour moi, je m'étais trompé.","Au tant pour moi, je m'étais trompé.","Autant pour moi que pour vous, je m'étais trompé."],
+ h:"L'orthographe académique est <b>au temps pour moi</b>, issue du vocabulaire militaire."},
+{q:"Quelle phrase est correcte ?",a:"Ils se sont succédé à la direction.",
+ o:["Ils se sont succédés à la direction.","Ils se sont succédées à la direction.","Ils s'ont succédé à la direction."],
+ h:"« Se » est COI (succéder <b>à</b> quelqu'un) : le participe reste invariable."},
+{q:"Quelle phrase est correcte ?",a:"Je préfère partir plutôt que d'attendre.",
+ o:["Je préfère partir plus tôt que d'attendre.","Je préfère partir plutôt d'attendre.","Je préfère de partir plutôt que attendre."],
+ h:"<b>Plutôt</b> marque la préférence ; <b>plus tôt</b> marque le temps."},
+{q:"Quelle phrase est correcte ?",a:"Cette décision, il l'a prise seul.",
+ o:["Cette décision, il l'a pris seul.","Cette décision, il la prise seul.","Cette décision, il l'as prise seul."],
+ h:"COD « l' » (= la décision) placé avant l'auxiliaire avoir : accord au féminin singulier."},
+{q:"Quelle phrase est correcte ?",a:"Il est parti sans qu'on l'ait prévenu.",
+ o:["Il est parti sans qu'on l'a prévenu.","Il est parti sans qu'on l'avait prévenu.","Il est parti sans qu'on le prévient."],
+ h:"<b>Sans que</b> commande toujours le subjonctif."},
+{q:"Quelle phrase est correcte ?",a:"Ci-joint la copie du contrat.",
+ o:["Ci-jointe la copie du contrat.","Ci-joints la copie du contrat.","Ci-joint la copie du contrat ci-jointe."],
+ h:"<b>Ci-joint</b> reste invariable en tête de phrase, avant le nom."}
+];
+
+/* --- FORMULES DE CALCUL --- */
+var FORMULES=[
+["Aire d'un disque de rayon r","π r²"],["Circonférence d'un cercle de rayon r","2 π r"],
+["Aire d'un triangle de base b et hauteur h","b × h / 2"],["Aire d'un trapèze (petite base b, grande base B)","(b + B) × h / 2"],
+["Volume d'un cylindre de rayon r et hauteur h","π r² h"],["Volume d'une sphère de rayon r","4/3 π r³"],
+["Volume d'un cône de rayon r et hauteur h","π r² h / 3"],["Aire d'un parallélogramme","base × hauteur"],
+["Longueur d'un arc de cercle d'angle α (en degrés)","2 π r × α/360"],["Aire d'un secteur circulaire d'angle α","π r² × α/360"],
+["Diagonale d'un carré de côté c","c √2"],["Hauteur d'un triangle équilatéral de côté c","c √3 / 2"],
+["Aire d'un triangle équilatéral de côté c","c² √3 / 4"],["Somme des n premiers entiers","n(n+1)/2"],
+["Développement de (a+b)²","a² + 2ab + b²"],["Développement de (a−b)²","a² − 2ab + b²"],
+["Factorisation de a² − b²","(a+b)(a−b)"],["Développement de (a+b)³","a³ + 3a²b + 3ab² + b³"],
+["Terme de rang n d'une suite arithmétique","a₁ + (n−1) r"],["Terme de rang n d'une suite géométrique","a₁ × q^(n−1)"],
+["Capital après n années à intérêts composés","C × (1 + t)ⁿ"],["Vitesse moyenne sur un trajet","distance totale / temps total"],
+["Relation entre PGCD et PPCM de a et b","PGCD × PPCM = a × b"],["Nombre de combinaisons de k éléments parmi n","n! / (k!(n−k)!)"],
+["Probabilité de A ou B","P(A) + P(B) − P(A et B)"],["Concentration d'un mélange de V1 à C1 et V2 à C2","(V1C1 + V2C2)/(V1+V2)"],
+["Débit conjoint de deux robinets remplissant en a et b heures","1/a + 1/b"],["Coefficient d'une hausse de t %","1 + t/100"],
+["Retrouver le prix initial après une hausse de t %","prix final / (1 + t/100)"],["Théorème de Pythagore","a² + b² = c²"]
+];
+
+/* --- CRITÈRES DE DIVISIBILITÉ --- */
+var DIVISIB=[
+["Un nombre est divisible par 2 si...","son dernier chiffre est pair"],
+["Un nombre est divisible par 3 si...","la somme de ses chiffres est divisible par 3"],
+["Un nombre est divisible par 4 si...","ses deux derniers chiffres forment un multiple de 4"],
+["Un nombre est divisible par 5 si...","il se termine par 0 ou 5"],
+["Un nombre est divisible par 6 si...","il est divisible par 2 et par 3"],
+["Un nombre est divisible par 8 si...","ses trois derniers chiffres forment un multiple de 8"],
+["Un nombre est divisible par 9 si...","la somme de ses chiffres est divisible par 9"],
+["Un nombre est divisible par 10 si...","il se termine par 0"],
+["Un nombre est divisible par 11 si...","la différence alternée de ses chiffres est un multiple de 11"],
+["Un nombre est divisible par 25 si...","ses deux derniers chiffres sont 00, 25, 50 ou 75"]
+];
+
+/* --- CONDITIONS MINIMALES : sens des réponses --- */
+var CM_SENS=[
+["I seule suffit, mais II seule ne suffit pas","Réponse A"],
+["II seule suffit, mais I seule ne suffit pas","Réponse B"],
+["Les deux ensemble suffisent, mais aucune ne suffit seule","Réponse C"],
+["Chacune des deux informations suffit à elle seule","Réponse D"],
+["Les deux ensemble ne suffisent pas","Réponse E"]
+];
+
+/* --- LOGIQUE FORMELLE --- */
+var FORMELLE=[
+["La contraposée de « si A alors B »","Si non-B alors non-A"],
+["La réciproque de « si A alors B »","Si B alors A"],
+["La négation de « tous les A sont B »","Certains A ne sont pas B"],
+["La négation de « aucun A n'est B »","Certains A sont B"],
+["La négation de « certains A sont B »","Aucun A n'est B"],
+["La seule forme toujours équivalente à une implication","La contraposée"],
+["Ce que signifie « certains » en logique formelle","Au moins un"],
+["Ce qu'on ne peut jamais déduire de « tous les A sont B »","Que certains B sont A"],
+["De « tous les A sont B » et « x est A », on déduit","Que x est B"],
+["De « tous les A sont B » et « x est B », on déduit","Rien du tout"]
+];
+
+/* ============================ PACKS ============================ */
+function qcm(list,tag,rev){ // list of [prompt, answer]
+  return {kind:"qcm",tag:tag,items:list.map(function(p,i){
+    return rev ? {key:tag+i,q:p[1],a:p[0]} : {key:tag+i,q:p[0],a:p[1]};
+  })};
+}
+
+var PACKS={
+  /* --------- CALCUL --------- */
+  carres:{name:"Carrés (→25)",tag:"Carrés",kind:"gen",gen:function(){
+    var n=ri(2,25),v=n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20,25]),d=n-a;
+    var h=d===0?"<b>Pivot</b> — "+a+"² = "+(a*a)+", à connaître par cœur."
+      :"<b>Ancre</b> — "+a+"² = "+(a*a)+", puis ("+a+sg(d)+")² = "+(a*a)+" "+(d>0?"+":"−")+" 2×"+a+"×"+Math.abs(d)+" + "+(d*d)+".";
+    return rev?{key:"C"+n,q:'<span class="mono">√'+v+'</span> = ?',a:String(n),lab:"√"+v+"="+n,h:h}
+              :{key:"C"+n,q:'<span class="mono">'+n+'²</span> = ?',a:String(v),lab:n+"²="+v,h:h};
+  }},
+  cubes:{name:"Cubes (→20)",tag:"Cubes",kind:"gen",gen:function(){
+    var n=ri(2,20),v=n*n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20]);
+    var h="<b>Ancres</b> — 5³=125, 10³=1000, 15³=3375, 20³=8000. La plus proche : "+a+"³ = "+(a*a*a)+" ("+sg(n-a)+").";
+    return rev?{key:"K"+n,q:'<span class="mono">∛'+v+'</span> = ?',a:String(n),lab:"∛"+v+"="+n,h:h}
+              :{key:"K"+n,q:'<span class="mono">'+n+'³</span> = ?',a:String(v),lab:n+"³="+v,h:h};
+  }},
+  puiss:{name:"Puissances 2 et 3",tag:"Puissances",kind:"gen",kind2:1,gen:function(){
+    var b=Math.random()<.65?2:3, mx=(b===2?16:8), n=ri(2,mx), v=Math.pow(b,n);
+    var rev=Math.random()<.35;
+    var h=b===2?"<b>Repères</b> — 2¹⁰ = 1024, 2¹⁶ = 65 536. Chaque exposant double le précédent."
+                :"<b>Repères</b> — 3⁴ = 81, 3⁵ = 243, 3⁶ = 729, 3⁷ = 2187.";
+    return rev?{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'^? = '+v+'</span>',a:String(n),lab:b+"^"+n+"="+v,h:h}
+              :{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'<sup>'+n+'</sup></span> = ?',a:String(v),lab:b+"^"+n+"="+v,h:h};
+  }},
+  fractions:{name:"Fractions ↔ %",tag:"Fractions",kind:"gen",gen:function(){
+    var F=[[1,2,50],[1,3,33.33],[1,4,25],[1,5,20],[1,6,16.67],[1,7,14.29],[1,8,12.5],[1,9,11.11],
+           [1,11,9.09],[1,12,8.33],[1,16,6.25],[1,20,5],[1,25,4],[2,3,66.67],[3,4,75],[2,5,40],
+           [3,5,60],[4,5,80],[5,6,83.33],[3,8,37.5],[5,8,62.5],[7,8,87.5],[1,15,6.67],[2,7,28.57]];
+    var f=pick(F);
+    return {key:"F"+f[0]+"_"+f[1],q:'<span class="mono">'+f[0]+'/'+f[1]+'</span> = ? %',a:String(f[2]).replace(".",","),
+      tol:.06,lab:f[0]+"/"+f[1]+"="+f[2]+"%",
+      h:"<b>Repères</b> — 1/8 = 12,5 % ; 1/6 ≈ 16,67 % ; 1/7 ≈ 14,29 % ; 1/3 ≈ 33,33 %. Deux décimales suffisent."};
+  }},
+  tables:{name:"Tables 11-19",tag:"Tables",kind:"gen",gen:function(){
+    var a=ri(11,19),b=ri(3,19),v=a*b;
+    return {key:"T"+a+"x"+b,q:'<span class="mono">'+a+' × '+b+'</span> = ?',a:String(v),lab:a+"×"+b+"="+v,
+      h:"<b>Astuce</b> — "+a+" × "+b+" = "+b+"×10 + "+b+"×"+(a-10)+" = "+(b*10)+" + "+(b*(a-10))+"."};
+  }},
+  racines:{name:"Racines usuelles",tag:"Racines",kind:"gen",gen:function(){
+    var R=[[2,1.414],[3,1.732],[5,2.236],[6,2.449],[7,2.646],[8,2.828],[10,3.162],[11,3.317],[13,3.606]];
+    var r=pick(R);
+    return {key:"R"+r[0],q:'<span class="mono">√'+r[0]+'</span> ≈ ? (3 décimales)',a:String(r[1]).replace(".",","),tol:.006,
+      lab:"√"+r[0]+"≈"+r[1],h:"<b>À retenir</b> — √2 ≈ 1,414 ; √3 ≈ 1,732 ; √5 ≈ 2,236 ; √10 ≈ 3,162."};
+  }},
+  premiers:{name:"Nombres premiers",tag:"Premiers",kind:"gen",qcmGen:true,gen:function(){
+    var P={2:1,3:1,5:1,7:1,11:1,13:1,17:1,19:1,23:1,29:1,31:1,37:1,41:1,43:1,47:1,53:1,59:1,61:1,67:1,71:1,73:1,79:1,83:1,89:1,97:1,101:1,103:1,107:1,109:1,113:1};
+    var n=ri(2,120), isP=!!P[n];
+    return {key:"N"+n,q:'<span class="mono">'+n+'</span> est-il un nombre premier ?',a:isP?"Oui":"Non",
+      opts:["Oui","Non"],lab:n+(isP?" premier":" non premier"),
+      h:"<b>Méthode</b> — tester la divisibilité par 2, 3, 5, 7 puis 11 tant que le carré du diviseur reste sous "+n+"."};
+  }},
+  formules:qcm(FORMULES,"Formules"),
+  divisib:qcm(DIVISIB,"Divisibilité"),
+
+  /* --------- LOGIQUE --------- */
+  rang:{name:"Rang des lettres",tag:"Alphabet",kind:"gen",gen:function(){
+    var n=ri(1,26),L=LETTERS[n-1],rev=Math.random()<.4,a=near(n,[5,10,15,20,25]);
+    var h="<b>EJOTY</b> — E=5, J=10, O=15, T=20, Y=25. Ancre la plus proche : "+ANCH[a]+" = "+a+", puis "+sg(n-a)+".";
+    return rev?{key:"A"+n,q:'Quelle lettre au rang <span class="mono">'+n+'</span> ?',a:L,lab:n+"→"+L,h:h}
+              :{key:"A"+n,q:'Rang de la lettre <span class="mono">« '+L+' »</span> ?',a:String(n),lab:L+"→"+n,h:h};
+  }},
+  rangInv:{name:"Rang inversé (Z=1)",tag:"Alphabet inversé",kind:"gen",gen:function(){
+    var n=ri(1,26),L=LETTERS[26-n];
+    return {key:"AI"+n,q:'Rang de <span class="mono">« '+L+' »</span> en partant de Z ?',a:String(n),lab:L+"↩"+n,
+      h:"<b>Astuce</b> — rang inversé = 27 − rang normal. Ici « "+L+" » vaut "+(27-n)+" à l'endroit."};
+  }},
+  decal:{name:"Décalages alphabétiques",tag:"Décalage",kind:"gen",gen:function(){
+    var i=ri(0,25),d=ri(2,9),sign=Math.random()<.5?1:-1;
+    var j=((i+sign*d)%26+26)%26;
+    return {key:"D"+i+"_"+(sign*d),q:'Quelle lettre à <span class="mono">'+(sign>0?"+":"−")+d+'</span> de <span class="mono">« '+LETTERS[i]+' »</span> ?',
+      a:LETTERS[j],lab:LETTERS[i]+(sign>0?"+":"−")+d+"="+LETTERS[j],
+      h:"<b>Méthode</b> — passe par le rang : "+LETTERS[i]+" = "+(i+1)+", "+(sign>0?"+":"−")+d+" → "+(j+1)+"."};
+  }},
+  series:{name:"Séries express",tag:"Séries",kind:"gen",gen:function(){
+    var t=ri(1,6),s=[],ans,h;
+    if(t===1){var a=ri(2,12),r=ri(2,9);for(var i=0;i<5;i++)s.push(a+i*r);ans=a+5*r;h="<b>Écarts constants</b> — raison "+r+".";}
+    else if(t===2){var a2=ri(2,5),q2=ri(2,3);for(var i2=0;i2<5;i2++)s.push(a2*Math.pow(q2,i2));ans=a2*Math.pow(q2,5);h="<b>Raison multiplicative</b> — ×"+q2+" à chaque terme.";}
+    else if(t===3){var a3=ri(1,6),r3=ri(2,5),d3=ri(1,4),c=a3;s.push(c);for(var i3=0;i3<4;i3++){c+=r3+i3*d3;s.push(c);}ans=c+r3+4*d3;h="<b>Écarts croissants</b> — la différence augmente de "+d3+" à chaque pas.";}
+    else if(t===4){var a4=ri(2,9),x=ri(2,4),y=ri(1,6),c4=a4;s.push(c4);for(var i4=0;i4<5;i4++){c4=(i4%2===0)?c4*x:c4+y;s.push(c4);}ans=(5%2===0)?s[5]*x:s[5]+y;s=s.slice(0,6);h="<b>Alternance</b> — un coup ×"+x+", un coup +"+y+".";}
+    else if(t===5){var st=ri(2,8);for(var i5=0;i5<5;i5++)s.push((st+i5)*(st+i5));ans=(st+5)*(st+5);h="<b>Carrés successifs</b> — reconnais "+st+"², "+(st+1)+"², etc.";}
+    else{var f1=ri(1,5),f2=ri(2,8);s=[f1,f2];for(var i6=0;i6<4;i6++)s.push(s[s.length-1]+s[s.length-2]);ans=s[s.length-1]+s[s.length-2];h="<b>Additive</b> — chaque terme est la somme des deux précédents.";}
+    return {key:"S"+t+"_"+s[0]+"_"+s[1],q:'<span class="mono">'+s.join(" — ")+' — ?</span>',a:String(ans),
+      lab:s.slice(0,3).join(",")+"…",h:h};
+  }},
+  formelle:qcm(FORMELLE,"Logique formelle"),
+
+  /* --------- RAISONNEMENT --------- */
+  sophismes:qcm(SOPHISMES,"Sophismes"),
+  sophismesR:qcm(SOPHISMES,"Sophismes",true),
+  raisonnements:qcm(RAISONNEMENTS,"Raisonnements"),
+
+  /* --------- CONDITIONS MINIMALES --------- */
+  cmSens:qcm(CM_SENS,"Sens des réponses"),
+  cmDrill:{name:"Réflexe A/B/C/D/E",tag:"Conditions minimales",kind:"gen",qcmGen:true,gen:function(){
+    var i=Math.random()<.5,ii=Math.random()<.5,both;
+    var ans,h;
+    if(i&&ii){ans="D";h="Chacune suffit seule → <b>D</b>.";}
+    else if(i&&!ii){ans="A";h="Seule I suffit → <b>A</b>.";}
+    else if(!i&&ii){ans="B";h="Seule II suffit → <b>B</b>.";}
+    else{both=Math.random()<.5;ans=both?"C":"E";h=both?"Aucune seule, mais les deux ensemble → <b>C</b>.":"Même ensemble, insuffisant → <b>E</b>.";}
+    var txt="I seule suffit : <b>"+(i?"oui":"non")+"</b> · II seule suffit : <b>"+(ii?"oui":"non")+"</b>";
+    if(!i&&!ii) txt+=" · les deux ensemble : <b>"+(both?"oui":"non")+"</b>";
+    return {key:"CM"+(i?1:0)+(ii?1:0)+(both?1:0),q:txt+"<br>Quelle réponse ?",a:ans,
+      opts:["A","B","C","D","E"],lab:"CM "+ans,h:h+" Le réflexe : tester I seule, puis II seule, puis les deux."};
+  }},
+
+  /* --------- EXPRESSION --------- */
+  proverbes:qcm(PROVERBES,"Proverbes"),
+  proverbesR:qcm(PROVERBES,"Proverbes",true),
+  expressions:qcm(EXPRESSIONS,"Expressions"),
+  paronymes:qcm(PARONYMES,"Paronymes"),
+  pleonasmes:{kind:"qcm",tag:"Pléonasmes",items:PLEONASMES.map(function(p,i){
+    return {key:"PL"+i,q:'« <b>'+p[0]+'</b> » — quelle est la forme correcte ?',a:p[1],
+      h:"<b>Pléonasme</b> — le second terme répète une idée déjà contenue dans le premier."};
+  })},
+  figures:qcm(FIGURES,"Figures de style"),
+  fautes:{kind:"qcm",tag:"Fautes classiques",items:FAUTES.map(function(f,i){
+    return {key:"FT"+i,q:f.q,a:f.a,opts:[f.a].concat(f.o),h:f.h,small:true};
+  })},
+
+  /* --------- COMPRÉHENSION --------- */
+  vocab:qcm(VOCAB,"Vocabulaire"),
+  vocabR:qcm(VOCAB,"Vocabulaire",true),
+  connecteurs:qcm(CONNECTEURS,"Connecteurs")
+};
+
+var SUBTESTS=[
+  {id:"calcul",name:"Calcul",packs:["carres","cubes","puiss","fractions","tables","racines","premiers","formules","divisib"]},
+  {id:"logique",name:"Logique",packs:["rang","rangInv","decal","series","formelle"]},
+  {id:"raisonnement",name:"Raisonnement",packs:["sophismes","sophismesR","raisonnements","formelle"]},
+  {id:"condmin",name:"Cond. minimales",packs:["cmDrill","cmSens"]},
+  {id:"expression",name:"Expression",packs:["proverbes","proverbesR","expressions","paronymes","fautes","pleonasmes","figures"]},
+  {id:"comprehension",name:"Compréhension",packs:["vocab","vocabR","connecteurs","paronymes"]},
+  {id:"tout",name:"Tout",packs:null}
+];
+var PACKNAMES={
+  carres:"Carrés",cubes:"Cubes",puiss:"Puissances",fractions:"Fractions ↔ %",tables:"Tables 11-19",
+  racines:"Racines",premiers:"Premiers",formules:"Formules",divisib:"Divisibilité",
+  rang:"Rang lettres",rangInv:"Rang inversé",decal:"Décalages",series:"Séries",formelle:"Logique formelle",
+  sophismes:"Sophismes",sophismesR:"Sophismes ↔",raisonnements:"Types de raisonnement",
+  cmDrill:"Réflexe A→E",cmSens:"Sens des réponses",
+  proverbes:"Proverbes",proverbesR:"Proverbes ↔",expressions:"Expressions",paronymes:"Paronymes",
+  fautes:"Fautes classiques",pleonasmes:"Pléonasmes",figures:"Figures de style",
+  vocab:"Vocabulaire",vocabR:"Vocabulaire ↔",connecteurs:"Connecteurs"
+};
+
+/* ============================ ENGINE ============================ */
+var S={sub:"calcul",pack:"__all__",hints:true,right:0,total:0,streak:0,times:[],misses:{},cur:null,answered:false,t0:0};
+var $=function(i){return document.getElementById(i);};
+var card=$("card"),tagEl=$("tag"),qEl=$("question"),memo=$("memo"),verdict=$("verdict"),
+    input=$("answer"),chips=$("chips"),optsZone=$("optsZone"),inputZone=$("inputZone");
+
+var KEY="tm-reflexes-v1";
+function save(){ if(!window.storage)return; try{window.storage.set(KEY,JSON.stringify({m:S.misses}),false);}catch(e){} }
+function load(){
+  if(!window.storage){renderChips();return;}
+  try{ window.storage.get(KEY,false).then(function(r){
+    if(r&&r.value){var d=JSON.parse(r.value);S.misses=d.m||{};}
+    renderChips();
+  }).catch(function(){renderChips();}); }catch(e){renderChips();}
+}
+
+function activePacks(){
+  var st=SUBTESTS.filter(function(x){return x.id===S.sub;})[0];
+  var list = st.packs ? st.packs.slice() : Object.keys(PACKS);
+  if(S.pack!=="__all__" && list.indexOf(S.pack)>-1) list=[S.pack];
+  return list;
+}
+
+function buildOne(){
+  var id=pick(activePacks()), P=PACKS[id];
+  if(P.kind==="gen"){
+    var it=P.gen();
+    it.tag=P.tag; it.packId=id;
+    it.type = it.opts ? "qcm" : "input";
+    if(it.opts){ it.options=shuffle(it.opts.slice()); }
+    return it;
+  }
+  var item=pick(P.items);
+  var opts=item.opts;
+  if(!opts){
+    var pool=P.items.filter(function(x){return x.a!==item.a;});
+    var d=[];shuffle(pool);
+    for(var i=0;i<pool.length&&d.length<3;i++){ if(d.indexOf(pool[i].a)===-1) d.push(pool[i].a); }
+    opts=[item.a].concat(d);
+  }
+  return {key:P.tag+"|"+item.key,q:item.q,a:item.a,options:shuffle(opts.slice()),
+          tag:P.tag,type:"qcm",h:item.h,lab:item.lab||shorten(item.a),small:item.small,packId:id};
+}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function shorten(s){s=String(s).replace(/<[^>]+>/g,"");return s.length>26?s.slice(0,24)+"…":s;}
+
+function next(){
+  var q=buildOne();
+  var missed=Object.keys(S.misses).filter(function(k){return k.indexOf("|lab")===-1;});
+  if(missed.length&&Math.random()<.4){
+    for(var i=0;i<14;i++){var c=buildOne();if(S.misses[c.key]){q=c;break;}}
+  }
+  S.cur=q;S.answered=false;S.t0=Date.now();
+  tagEl.textContent=q.tag;
+  qEl.innerHTML=q.q;
+  qEl.className="q"+(q.small||q.q.length>90?" small":"");
+  memo.innerHTML=q.h||"";
+  memo.hidden=!S.hints||!q.h;
+  verdict.textContent="";verdict.className="verdict";card.className="card";
+
+  if(q.type==="qcm"){
+    inputZone.hidden=true;optsZone.hidden=false;
+    optsZone.innerHTML="";
+    q.options.forEach(function(o,i){
+      var b=document.createElement("button");
+      b.className="opt";b.type="button";
+      b.innerHTML='<span class="lt">'+(i+1)+'</span><span>'+o+'</span>';
+      b.addEventListener("click",function(){grade(o,b);});
+      optsZone.appendChild(b);
+    });
+  }else{
+    optsZone.hidden=true;optsZone.innerHTML="";inputZone.hidden=false;
+    input.value="";input.focus();
+  }
+}
+
+function norm(s){return String(s).trim().toUpperCase().replace(/\s+/g,"").replace(/,/g,".").replace(/%/g,"").replace(/[''`]/g,"'");}
+function same(u,a,tol){
+  var fu=parseFloat(norm(u)),fa=parseFloat(norm(a));
+  if(!isNaN(fu)&&!isNaN(fa)&&/^-?[\d.]+$/.test(norm(u))&&/^-?[\d.]+$/.test(norm(a))){
+    return Math.abs(fu-fa)<=(tol||0.0001);
+  }
+  return norm(u)===norm(a);
+}
+
+function grade(val,btn){
+  if(S.answered||!S.cur)return;
+  var q=S.cur,el=(Date.now()-S.t0)/1000;
+  var ok = val!==null && same(val,q.a,q.tol);
+  S.answered=true;S.total++;
+
+  if(q.type==="qcm"){
+    Array.prototype.forEach.call(optsZone.children,function(b){
+      b.disabled=true;
+      var txt=b.lastChild.textContent;
+      if(txt===String(q.a)) b.classList.add("good");
+      else if(btn===b) b.classList.add("bad");
+    });
+  }
+  if(ok){
+    S.right++;S.streak++;S.times.push(el);
+    if(S.misses[q.key]){S.misses[q.key]--;if(S.misses[q.key]<=0){delete S.misses[q.key];delete S.misses[q.key+"|lab"];}}
+    verdict.textContent="Exact · "+el.toFixed(1)+"s";verdict.className="verdict ok";card.className="card ok";
+  }else{
+    S.streak=0;
+    S.misses[q.key]=(S.misses[q.key]||0)+1;
+    S.misses[q.key+"|lab"]=q.lab||shorten(q.a);
+    verdict.innerHTML=(val===null?"Réponse : ":"Faux — ")+String(q.a).replace(/<[^>]+>/g,"");
+    verdict.className="verdict ko";card.className="card ko";
+    if(!S.hints&&q.h){memo.innerHTML=q.h;memo.hidden=false;}
+  }
+  render();save();
+  setTimeout(next, ok?700:(q.type==="qcm"?2200:1700));
+}
+
+function render(){
+  $("sScore").textContent=S.right+"/"+S.total;
+  $("sStreak").textContent=S.streak+(S.streak>=5?" 🔥":"");
+  if(S.times.length){var s=0;for(var i=0;i<S.times.length;i++)s+=S.times[i];$("sTime").textContent=(s/S.times.length).toFixed(1)+"s";}
+  else $("sTime").textContent="—";
+  renderChips();
+}
+function renderChips(){
+  var k=Object.keys(S.misses).filter(function(x){return x.indexOf("|lab")===-1;});
+  k.sort(function(a,b){return S.misses[b]-S.misses[a];});
+  if(!k.length){chips.innerHTML='<span class="empty">Rien pour l\'instant. Les erreurs reviendront plus souvent.</span>';return;}
+  chips.innerHTML=k.slice(0,22).map(function(x){
+    var l=S.misses[x+"|lab"]||x,n=S.misses[x];
+    return '<span class="chip">'+l+(n>1?'<span>×'+n+'</span>':'')+'</span>';
+  }).join("");
+}
+
+/* nav */
+function drawNav(){
+  var sw=$("subtests");sw.innerHTML="";
+  SUBTESTS.forEach(function(st){
+    var b=document.createElement("button");
+    b.className="st";b.textContent=st.name;b.dataset.id=st.id;
+    b.setAttribute("aria-pressed",String(st.id===S.sub));
+    b.addEventListener("click",function(){S.sub=st.id;S.pack="__all__";drawNav();next();});
+    sw.appendChild(b);
+  });
+  var pw=$("packs");pw.innerHTML="";
+  var st=SUBTESTS.filter(function(x){return x.id===S.sub;})[0];
+  if(!st.packs){pw.innerHTML="";return;}
+  var all=document.createElement("button");
+  all.className="pk";all.textContent="Mélangé";all.setAttribute("aria-pressed",String(S.pack==="__all__"));
+  all.addEventListener("click",function(){S.pack="__all__";drawNav();next();});
+  pw.appendChild(all);
+  st.packs.forEach(function(p){
+    var b=document.createElement("button");
+    b.className="pk";b.textContent=PACKNAMES[p]||p;
+    b.setAttribute("aria-pressed",String(S.pack===p));
+    b.addEventListener("click",function(){S.pack=p;drawNav();next();});
+    pw.appendChild(b);
+  });
+}
+
+/* events */
+$("check").addEventListener("click",function(){if(!S.answered&&input.value.trim())grade(input.value,null);});
+$("reveal").addEventListener("click",function(){if(!S.answered)grade(null,null);});
+input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();if(!S.answered&&input.value.trim())grade(input.value,null);}});
+document.addEventListener("keydown",function(e){
+  if(S.answered||!S.cur||S.cur.type!=="qcm")return;
+  var n=parseInt(e.key,10);
+  if(n>=1&&n<=S.cur.options.length){var b=optsZone.children[n-1];if(b)b.click();}
+});
+$("hintBtn").addEventListener("click",function(){
+  S.hints=!S.hints;this.setAttribute("aria-pressed",String(S.hints));
+  memo.hidden=!S.hints||!(S.cur&&S.cur.h);
+});
+$("reset").addEventListener("click",function(){
+  S.right=S.total=S.streak=0;S.times=[];S.misses={};save();render();next();
+});
+
+drawNav();load();render();next();
+})();
+</script>
+</body>
+</html>
