@@ -9,135 +9,127 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#08090B; --surface:#121419; --surface-2:#191C22; --line:#242830;
-  --text:#ECEEF2; --muted:#7C8492; --dim:#4A505C;
-  --accent:#5B8DEF; --ok:#3FB68B; --ko:#E5484D;
+  --bg:#08090B;--surface:#121419;--surface-2:#191C22;--line:#242830;
+  --text:#ECEEF2;--muted:#7C8492;--dim:#4A505C;
+  --accent:#5B8DEF;--ok:#3FB68B;--ko:#E5484D;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg);color:var(--text);
-  font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;
-  display:flex;justify-content:center;padding:20px 16px 60px;
-  -webkit-font-smoothing:antialiased;
-}
-.app{width:100%;max-width:680px}
+body{background:var(--bg);color:var(--text);font-family:"Space Grotesk",system-ui,-apple-system,sans-serif;
+  display:flex;justify-content:center;padding:18px 14px 70px;-webkit-font-smoothing:antialiased}
+.app{width:100%;max-width:700px}
 .mono{font-family:"JetBrains Mono",monospace}
 
-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;gap:12px}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;gap:10px}
 .brand{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .brand b{color:var(--accent)}
-.hintswitch{
-  background:none;border:1px solid var(--line);color:var(--muted);font-family:inherit;
-  font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;padding:6px 11px;
-  border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap;
-}
-.hintswitch:hover{border-color:var(--muted);color:var(--text)}
-.hintswitch[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.toggles{display:flex;gap:6px}
+.tg{background:none;border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:10px;
+  letter-spacing:.06em;text-transform:uppercase;padding:6px 10px;border-radius:999px;cursor:pointer;transition:.15s;white-space:nowrap}
+.tg:hover{border-color:var(--muted);color:var(--text)}
+.tg[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(91,141,239,.08)}
 
-/* nav */
+.viewtabs{display:flex;gap:6px;margin-bottom:14px}
+.vt{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;
+  font-size:12.5px;font-weight:500;padding:10px;border-radius:10px;cursor:pointer;transition:.15s}
+.vt[aria-pressed="true"]{background:var(--surface-2);border-color:#333844;color:var(--text);font-weight:700}
+
 .subtests{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:10px;scrollbar-width:none}
 .subtests::-webkit-scrollbar{display:none}
-.st{
-  background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;
-  font-size:12px;font-weight:500;padding:9px 14px;border-radius:10px;cursor:pointer;
-  white-space:nowrap;transition:.15s;
-}
+.st{background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:12px;
+  font-weight:500;padding:9px 14px;border-radius:10px;cursor:pointer;white-space:nowrap;transition:.15s}
 .st:hover{color:var(--text)}
 .st[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#06070A;font-weight:700}
-.packs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px}
-.pk{
-  background:none;border:1px solid var(--line);color:var(--dim);font-family:inherit;
-  font-size:11.5px;padding:7px 12px;border-radius:999px;cursor:pointer;transition:.15s;
-}
+.packs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+.pk{background:none;border:1px solid var(--line);color:var(--dim);font-family:inherit;font-size:11.5px;
+  padding:7px 12px;border-radius:999px;cursor:pointer;transition:.15s}
 .pk:hover{color:var(--text);border-color:#333844}
 .pk[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(91,141,239,.08)}
 
-/* card */
-.card{
-  background:var(--surface);border:1px solid var(--line);border-radius:18px;
-  padding:30px 24px 26px;text-align:center;position:relative;overflow:hidden;
-}
-.card::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);
-  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
-}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:28px 22px 24px;
+  text-align:center;position:relative;overflow:hidden}
+.card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
 .card.ok::after{background:var(--ok);transform:scaleX(1)}
 .card.ko::after{background:var(--ko);transform:scaleX(1)}
-.tag{
-  display:inline-block;background:var(--surface-2);color:var(--muted);font-size:9.5px;
-  font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;
-  border-radius:999px;margin-bottom:22px;
-}
-.q{font-size:clamp(19px,4.4vw,27px);font-weight:700;line-height:1.3}
-.q.small{font-size:clamp(16px,3.4vw,20px);font-weight:500;line-height:1.45}
-.memo{
-  margin-top:22px;text-align:left;background:var(--surface-2);border-left:3px solid var(--accent);
-  border-radius:0 10px 10px 0;padding:12px 15px;font-size:13px;line-height:1.55;color:#B6BDC9;
-}
+.card.rev{border-color:#2E3440;background:#0F1116}
+.tag{display:inline-block;background:var(--surface-2);color:var(--muted);font-size:9.5px;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:20px}
+.tag.revmark{background:rgba(91,141,239,.12);color:var(--accent)}
+.q{font-size:clamp(19px,4.4vw,27px);font-weight:700;line-height:1.32}
+.q.small{font-size:clamp(15.5px,3.3vw,19px);font-weight:500;line-height:1.5}
+.memo{margin-top:20px;text-align:left;background:var(--surface-2);border-left:3px solid var(--accent);
+  border-radius:0 10px 10px 0;padding:12px 15px;font-size:13px;line-height:1.55;color:#B6BDC9}
 .memo b{color:var(--text);font-weight:500}
 .memo[hidden]{display:none}
-.verdict{margin-top:18px;min-height:20px;font-size:13px;font-weight:500;font-family:"JetBrains Mono",monospace;line-height:1.5}
-.verdict.ok{color:var(--ok)} .verdict.ko{color:var(--ko)}
+.verdict{margin-top:16px;min-height:18px;font-size:13px;font-weight:500;font-family:"JetBrains Mono",monospace;line-height:1.5}
+.verdict.ok{color:var(--ok)}.verdict.ko{color:var(--ko)}
 
-/* options */
-.opts{display:grid;gap:8px;margin-top:20px;text-align:left}
-.opt{
-  background:var(--surface-2);border:1px solid var(--line);color:var(--text);
-  font-family:inherit;font-size:14.5px;line-height:1.4;padding:13px 16px;border-radius:11px;
-  cursor:pointer;transition:.12s;display:flex;gap:11px;align-items:flex-start;text-align:left;
-}
+.opts{display:grid;gap:8px;margin-top:18px;text-align:left}
+.opt{background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:inherit;
+  font-size:14.5px;line-height:1.4;padding:13px 16px;border-radius:11px;cursor:pointer;transition:.12s;
+  display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%}
 .opt:hover:not(:disabled){background:#22262E;border-color:#333844}
-.opt .lt{
-  font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--dim);
-  flex-shrink:0;padding-top:1px;
-}
+.opt .lt{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--dim);flex-shrink:0;padding-top:1px}
 .opt.good{border-color:var(--ok);background:rgba(63,182,139,.1)}
 .opt.good .lt{color:var(--ok)}
 .opt.bad{border-color:var(--ko);background:rgba(229,72,77,.1)}
 .opt.bad .lt{color:var(--ko)}
 .opt:disabled{cursor:default}
 
-/* stats */
-.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:18px 0;border:1px solid var(--line);border-radius:13px;overflow:hidden}
+.navbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:12px}
+.nb{background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;font-size:13px;
+  padding:10px 15px;border-radius:11px;cursor:pointer;transition:.15s;min-width:52px}
+.nb:hover:not(:disabled){color:var(--text);border-color:#333844}
+.nb:disabled{opacity:.3;cursor:default}
+.navlabel{font-size:11.5px;color:var(--dim);font-family:"JetBrains Mono",monospace;flex:1;text-align:center}
+.navlabel b{color:var(--accent);font-weight:500}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);margin:14px 0;border:1px solid var(--line);border-radius:13px;overflow:hidden}
 .stat{padding:12px 6px;text-align:center;border-right:1px solid var(--line)}
 .stat:last-child{border-right:none}
 .stat .k{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
 .stat .v{font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:700;margin-top:4px}
 
-/* input */
 .row{display:flex;gap:8px;margin-bottom:8px}
-#answer{
-  flex:1;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;
-  padding:14px 17px;color:var(--text);font-family:"JetBrains Mono",monospace;
-  font-size:19px;font-weight:500;outline:none;transition:.15s;min-width:0;
-}
+#answer{flex:1;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px 17px;
+  color:var(--text);font-family:"JetBrains Mono",monospace;font-size:19px;font-weight:500;outline:none;transition:.15s;min-width:0}
 #answer:focus{border-color:var(--accent)}
 #answer::placeholder{color:#3E4450}
-.btn{
-  background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:inherit;
-  font-size:14px;font-weight:500;padding:14px 22px;border-radius:12px;cursor:pointer;
-  transition:.15s;white-space:nowrap;
-}
+.btn{background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:14px;
+  font-weight:500;padding:14px 22px;border-radius:12px;cursor:pointer;transition:.15s;white-space:nowrap}
 .btn:hover{background:#22262E}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#06070A;font-weight:700}
 .btn.primary:hover{background:#6E9BF2}
 .btn.wide{width:100%;color:var(--muted);font-size:13px}
 .btn.wide:hover{color:var(--text)}
-#inputZone[hidden],#optsZone[hidden]{display:none}
+[hidden]{display:none!important}
 
-.review{margin-top:24px}
+.review{margin-top:22px}
 .review h2{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:10px}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.chip{
-  background:rgba(229,72,77,.09);border:1px solid rgba(229,72,77,.26);color:#F09296;
-  font-size:12px;padding:5px 10px;border-radius:8px;max-width:100%;
-}
+.chip{background:rgba(229,72,77,.09);border:1px solid rgba(229,72,77,.26);color:#F09296;font-size:12px;padding:5px 10px;border-radius:8px}
 .chip span{color:#8A5C5F;margin-left:5px}
 .empty{color:var(--dim);font-size:13px}
-.foot{margin-top:22px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--dim);font-size:11px}
+.foot{margin-top:20px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--dim);font-size:11px}
 .foot button{background:none;border:none;color:var(--dim);font-family:inherit;font-size:11px;cursor:pointer;text-decoration:underline;padding:0}
 .foot button:hover{color:var(--muted)}
-@media (max-width:420px){ .btn{padding:14px 15px} .opt{font-size:13.5px;padding:12px 13px} }
+
+/* mémos */
+.memosec{border:1px solid var(--line);border-radius:14px;margin-bottom:9px;overflow:hidden;background:var(--surface)}
+.memohd{width:100%;background:none;border:none;color:var(--text);font-family:inherit;font-size:14px;font-weight:700;
+  text-align:left;padding:15px 18px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.memohd:hover{background:var(--surface-2)}
+.memohd .arw{color:var(--dim);font-size:12px;transition:transform .18s}
+.memosec.open .memohd .arw{transform:rotate(90deg);color:var(--accent)}
+.memobd{padding:0 18px 16px;display:none}
+.memosec.open .memobd{display:block}
+.ml{display:flex;gap:10px;padding:7px 0;border-top:1px solid #1B1E24;font-size:13.5px;line-height:1.5}
+.ml:first-child{border-top:none}
+.ml .t{color:var(--accent);font-weight:500;flex-shrink:0;min-width:34%;font-family:"JetBrains Mono",monospace;font-size:12.5px}
+.ml .d{color:#B6BDC9}
+.ml.plain{color:#B6BDC9;display:block}
+@media (max-width:520px){ .ml{flex-direction:column;gap:2px} .ml .t{min-width:0} }
+@media (max-width:420px){ .btn{padding:14px 14px} .opt{font-size:13.5px;padding:12px 13px} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -146,60 +138,102 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 
   <header>
     <div class="brand">TAGE MAGE · <b>Réflexes</b></div>
-    <button class="hintswitch" id="hintBtn" aria-pressed="true">Indices</button>
+    <div class="toggles">
+      <button class="tg" id="hintBtn" aria-pressed="true">Indices</button>
+      <button class="tg" id="autoBtn" aria-pressed="true">Auto</button>
+    </div>
   </header>
 
+  <div class="viewtabs">
+    <button class="vt" id="vTrain" aria-pressed="true">Entraînement</button>
+    <button class="vt" id="vMemo" aria-pressed="false">Mémos</button>
+  </div>
+
   <div class="subtests" id="subtests"></div>
-  <div class="packs" id="packs"></div>
 
-  <div class="card" id="card">
-    <div class="tag" id="tag">—</div>
-    <div class="q" id="question">—</div>
-    <div class="opts" id="optsZone"></div>
-    <div class="memo" id="memo" hidden></div>
-    <div class="verdict" id="verdict"></div>
-  </div>
+  <!-- ENTRAÎNEMENT -->
+  <div id="trainView">
+    <div class="packs" id="packs"></div>
 
-  <div class="stats">
-    <div class="stat"><div class="k">Score</div><div class="v" id="sScore">0/0</div></div>
-    <div class="stat"><div class="k">Série</div><div class="v" id="sStreak">0</div></div>
-    <div class="stat"><div class="k">Temps moy.</div><div class="v" id="sTime">—</div></div>
-  </div>
-
-  <div id="inputZone">
-    <div class="row">
-      <input id="answer" autocomplete="off" spellcheck="false" placeholder="Réponse">
-      <button class="btn primary" id="check">Vérifier</button>
+    <div class="card" id="card">
+      <div class="tag" id="tag">—</div>
+      <div class="q" id="question">—</div>
+      <div class="opts" id="optsZone"></div>
+      <div class="memo" id="memo" hidden></div>
+      <div class="verdict" id="verdict"></div>
     </div>
-    <button class="btn wide" id="reveal">Voir la réponse</button>
+
+    <div class="navbar">
+      <button class="nb" id="prev" title="Correction précédente">←</button>
+      <div class="navlabel" id="navlabel"></div>
+      <button class="nb" id="nextBtn" title="Suivant">→</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="k">Score</div><div class="v" id="sScore">0/0</div></div>
+      <div class="stat"><div class="k">Série</div><div class="v" id="sStreak">0</div></div>
+      <div class="stat"><div class="k">Temps moy.</div><div class="v" id="sTime">—</div></div>
+    </div>
+
+    <div id="inputZone">
+      <div class="row">
+        <input id="answer" autocomplete="off" spellcheck="false" placeholder="Réponse">
+        <button class="btn primary" id="check">Vérifier</button>
+      </div>
+      <button class="btn wide" id="reveal">Voir la réponse</button>
+    </div>
+
+    <div class="review">
+      <h2>À revoir</h2>
+      <div class="chips" id="chips"><span class="empty">Rien pour l'instant. Les erreurs reviennent plus souvent.</span></div>
+    </div>
+
+    <div class="foot">
+      <span>Entrée valide · 1-5 pour les QCM · ← → pour revoir</span>
+      <button id="reset">Remettre à zéro</button>
+    </div>
   </div>
 
-  <div class="review">
-    <h2>À revoir</h2>
-    <div class="chips" id="chips"><span class="empty">Rien pour l'instant. Les erreurs reviendront plus souvent.</span></div>
+  <!-- MÉMOS -->
+  <div id="memoView" hidden>
+    <div id="memoBody"></div>
   </div>
 
-  <div class="foot">
-    <span>Entrée valide et enchaîne · 1-4 pour les QCM</span>
-    <button id="reset">Remettre à zéro</button>
-  </div>
 </div>
 
 <script>
 (function(){
 "use strict";
 
-/* ============================ HELPERS ============================ */
+/* ======================= UTILS ======================= */
 var LETTERS="ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 var ANCH={5:"E",10:"J",15:"O",20:"T",25:"Y"};
 function ri(a,b){return a+Math.floor(Math.random()*(b-a+1));}
 function pick(a){return a[Math.floor(Math.random()*a.length)];}
-function near(n,l){var b=l[0];for(var i=0;i<l.length;i++){if(Math.abs(l[i]-n)<Math.abs(b-n))b=l[i];}return b;}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function near(n,l){var b=l[0];for(var i=0;i<l.length;i++)if(Math.abs(l[i]-n)<Math.abs(b-n))b=l[i];return b;}
 function sg(d){return d>=0?"+ "+d:"− "+Math.abs(d);}
+function strip(s){return String(s).replace(/<[^>]+>/g,"");}
+function shorten(s){s=strip(s);return s.length>26?s.slice(0,24)+"…":s;}
 
-/* ============================ CONTENU ============================ */
+/* ======================= STORAGE ======================= */
+var KEY="tm-reflexes-v2";
+var store=(function(){
+  try{
+    var t="__t";localStorage.setItem(t,"1");localStorage.removeItem(t);
+    return {get:function(cb){try{cb(JSON.parse(localStorage.getItem(KEY)||"null"));}catch(e){cb(null);}},
+            set:function(v){try{localStorage.setItem(KEY,JSON.stringify(v));}catch(e){}}};
+  }catch(e){}
+  if(window.storage){
+    return {get:function(cb){try{window.storage.get(KEY,false).then(function(r){
+        try{cb(r&&r.value?JSON.parse(r.value):null);}catch(e2){cb(null);}}).catch(function(){cb(null);});}catch(e3){cb(null);}},
+      set:function(v){try{window.storage.set(KEY,JSON.stringify(v),false);}catch(e){}}};
+  }
+  return {get:function(cb){cb(null);},set:function(){}};
+})();
 
-/* --- PROVERBES : sens --- */
+/* ======================= CONTENU ======================= */
+
 var PROVERBES=[
 ["Il ne faut pas vendre la peau de l'ours avant de l'avoir tué","Ne pas se réjouir d'un résultat qui n'est pas encore acquis"],
 ["Qui trop embrasse mal étreint","Vouloir tout mener de front conduit à tout rater"],
@@ -240,10 +274,17 @@ var PROVERBES=[
 ["Mieux vaut prévenir que guérir","L'anticipation coûte moins cher que la réparation"],
 ["L'exception confirme la règle","L'existence d'un cas particulier suppose une règle générale"],
 ["Qui se ressemble s'assemble","Les personnes semblables se regroupent naturellement"],
-["Tant va la cruche à l'eau qu'à la fin elle se casse","À force de s'exposer au risque, on finit par en subir les conséquences"]
+["Tant va la cruche à l'eau qu'à la fin elle se casse","À force de s'exposer au risque, on finit par en subir les conséquences"],
+["À chaque jour suffit sa peine","Il ne sert à rien d'anticiper les soucis à venir"],
+["La fortune sourit aux audacieux","Le risque assumé est souvent récompensé"],
+["Le jeu n'en vaut pas la chandelle","Le résultat espéré ne justifie pas l'effort engagé"],
+["Qui paie ses dettes s'enrichit","S'acquitter de ses obligations est un investissement"],
+["On ne prête qu'aux riches","On attribue volontiers davantage à ceux qui ont déjà"],
+["Trop de cuisiniers gâtent la sauce","La multiplication des intervenants nuit au résultat"],
+["Nécessité fait loi","L'urgence autorise ce qui serait autrement interdit"],
+["Un mauvais arrangement vaut mieux qu'un bon procès","Mieux vaut transiger que s'engager dans un conflit"]
 ];
 
-/* --- EXPRESSIONS IMAGÉES --- */
 var EXPRESSIONS=[
 ["Jeter l'éponge","Abandonner, renoncer à poursuivre"],
 ["Prendre la mouche","Se vexer brusquement pour peu de chose"],
@@ -273,11 +314,20 @@ var EXPRESSIONS=[
 ["Une lapalissade","Une évidence énoncée comme une découverte"],
 ["Un tonneau des Danaïdes","Un gouffre qu'on ne peut jamais remplir"],
 ["La boîte de Pandore","La source de tous les maux qu'on libère par imprudence"],
-["Un satisfecit","Un témoignage de satisfaction officiel"],
-["Renvoyer aux calendes grecques","Reporter à une date qui n'arrivera jamais"]
+["Renvoyer aux calendes grecques","Reporter à une date qui n'arrivera jamais"],
+["Un lit de Procuste","Un cadre rigide auquel on force la réalité à se plier"],
+["Le rocher de Sisyphe","L'effort condamné à être éternellement recommencé"],
+["Un nœud gordien","Un problème inextricable qu'on tranche au lieu de dénouer"],
+["Une pomme de discorde","Le motif d'un conflit entre plusieurs parties"],
+["Se perdre en conjectures","Multiplier les hypothèses sans parvenir à conclure"],
+["Une clause de style","Une formule sans portée réelle, purement rituelle"],
+["Un chant du cygne","La dernière manifestation brillante avant la fin"],
+["Faire litière de quelque chose","Traiter une chose avec mépris, la négliger totalement"],
+["Prendre ses désirs pour des réalités","Confondre ce qu'on souhaite avec ce qui est"],
+["Un pavé dans la mare","Une intervention qui bouscule brutalement l'ordre établi"],
+["Trancher le nœud","Résoudre par la force ce qui résiste à la finesse"]
 ];
 
-/* --- PARONYMES : définition -> mot --- */
 var PARONYMES=[
 ["Hypothèse formulée sans preuve","Une conjecture"],
 ["Ensemble des circonstances d'une situation","Une conjoncture"],
@@ -320,11 +370,21 @@ var PARONYMES=[
 ["La succession régulière de deux états","Une alternance"],
 ["D'une richesse fastueuse","Somptueux"],
 ["Relatif à la limitation des dépenses de luxe","Somptuaire"],
-["Se dit d'une personne qui dépense sans compter","Prodigue"],
-["Un fait extraordinaire, un miracle","Un prodige"]
+["Qui dépense sans compter","Prodigue"],
+["Un fait extraordinaire, un miracle","Un prodige"],
+["Rendre plus grave, aggraver","Aggraver"],
+["Alléger une charge, une peine","Alléger"],
+["Qui porte atteinte à la réputation","Diffamatoire"],
+["Qui vise à instruire","Didactique"],
+["Le fait de céder un droit à un tiers","Une cession"],
+["Le fait d'arrêter, d'interrompre","Une cessation"],
+["Une émanation de mauvaise odeur","Une effluve"],
+["Un flot de personnes qui arrivent","Une affluence"],
+["Le pouvoir d'agir sur quelqu'un","Une influence"],
+["Qui peut être justifié","Justifiable"],
+["Qui relève de la justice","Justiciable"]
 ];
 
-/* --- VOCABULAIRE SOUTENU --- */
 var VOCAB=[
 ["Laconique","Qui s'exprime en très peu de mots"],
 ["Prolixe","Qui parle ou écrit avec une abondance excessive"],
@@ -371,7 +431,7 @@ var VOCAB=[
 ["Un atermoiement","Un report continuel, une tergiversation"],
 ["Inéluctable","Qu'on ne peut éviter par aucun moyen"],
 ["Subsidiaire","Qui vient en second, à titre accessoire"],
-["Intrinsèque","Qui appartient à l'objet lui-même, indépendamment du reste"],
+["Intrinsèque","Qui appartient à l'objet lui-même"],
 ["Extrinsèque","Qui vient de l'extérieur de l'objet"],
 ["Nonobstant","Sans être empêché par, malgré"],
 ["Prosaïque","D'une banalité terre à terre"],
@@ -385,10 +445,29 @@ var VOCAB=[
 ["Sibyllin","Dont le sens est obscur et énigmatique"],
 ["Éclectique","Qui puise à des sources très variées"],
 ["Séditieux","Qui pousse à la révolte contre l'autorité"],
-["Vindicatif","Animé par un désir de vengeance"]
+["Vindicatif","Animé par un désir de vengeance"],
+["Une antinomie","Une contradiction entre deux principes également fondés"],
+["Une acrimonie","Une aigreur hargneuse dans le propos"],
+["Un truisme","Une vérité si évidente qu'elle est inutile à dire"],
+["Une exégèse","Une interprétation détaillée d'un texte"],
+["Une propension","Une inclination naturelle à faire quelque chose"],
+["Une prévarication","Un manquement grave d'un agent public à ses devoirs"],
+["Contrit","Qui manifeste un regret sincère de sa faute"],
+["Inique","Contraire à la justice la plus élémentaire"],
+["Suranné","Qui n'est plus en usage, démodé"],
+["Sempiternel","Qui se répète sans fin, jusqu'à lasser"],
+["Fortuit","Qui arrive par hasard, sans intention"],
+["Adventice","Qui s'ajoute de l'extérieur, accessoire"],
+["Une acception","Le sens dans lequel un mot est pris"],
+["Une conjecture","Une supposition fondée sur des indices"],
+["Une réticence","Une hésitation à dire ou à faire"],
+["Une déférence","Un respect marqué envers un supérieur"],
+["Une mansuétude","Une indulgence bienveillante envers la faute"],
+["Une pusillanimité","Un manque de courage devant le risque"],
+["Un ostracisme","Une mise à l'écart décidée par le groupe"],
+["Une palinodie","Un revirement complet d'opinion"]
 ];
 
-/* --- SOPHISMES --- */
 var SOPHISMES=[
 ["On déforme la thèse de l'adversaire pour la réfuter plus facilement","L'homme de paille"],
 ["On réduit le débat à deux options alors qu'il en existe d'autres","Le faux dilemme"],
@@ -407,24 +486,47 @@ var SOPHISMES=[
 ["On ne considère que les cas ayant réussi en ignorant les échecs","Le biais du survivant"],
 ["On rejette un argument à cause de son origine ou de son auteur","Le sophisme génétique"],
 ["On conclut du tout aux parties ou des parties au tout","Le sophisme de composition"],
-["On modifie le sens d'un terme en cours de raisonnement","L'équivoque"]
+["On modifie le sens d'un terme en cours de raisonnement","L'équivoque"],
+["On reproche à l'adversaire de faire lui-même ce qu'il dénonce","Le tu quoque"],
+["On affirme qu'une chose est bonne parce qu'elle est naturelle","L'appel à la nature"],
+["On déplace la charge de la preuve sur celui qui doute","L'inversion de la charge de la preuve"],
+["On redéfinit les termes pour sauver une thèse mise en défaut","Le vrai Écossais"]
 ];
 
-/* --- TYPES DE RAISONNEMENT --- */
 var RAISONNEMENTS=[
 ["Du général au particulier, la conclusion est certaine si les prémisses le sont","La déduction"],
 ["Du particulier au général, à partir de cas observés","L'induction"],
 ["Remonter à l'hypothèse la plus plausible expliquant un fait","L'abduction"],
 ["Transposer une relation d'un domaine connu vers un domaine inconnu","L'analogie"],
-["Si c'est vrai dans le cas le moins favorable, ça l'est a fortiori dans l'autre","Le raisonnement a fortiori"],
+["Si c'est vrai dans le cas le moins favorable, ça l'est encore davantage dans l'autre","Le raisonnement a fortiori"],
 ["Déduire du cas opposé la conclusion inverse","Le raisonnement a contrario"],
 ["Supposer la thèse fausse et aboutir à une contradiction","Le raisonnement par l'absurde"],
 ["Deux prémisses dont on tire mécaniquement une conclusion","Le syllogisme"],
 ["Montrer que les deux branches possibles mènent au même résultat","Le dilemme"],
-["Établir la vérité pour un rang, puis le passage d'un rang au suivant","La récurrence"]
+["Établir la vérité pour un rang, puis le passage d'un rang au suivant","La récurrence"],
+["Écarter successivement toutes les hypothèses sauf une","Le raisonnement par élimination"],
+["Partir de l'effet observé pour remonter à sa cause probable","Le raisonnement causal"]
 ];
 
-/* --- CONNECTEURS LOGIQUES --- */
+var ARGUMENTS=[
+["Pour affaiblir un lien de causalité A → B","Montrer qu'une troisième cause explique B"],
+["Pour affaiblir une conclusion tirée d'un sondage","Montrer que l'échantillon n'est pas représentatif"],
+["Pour affaiblir une analogie","Montrer une différence pertinente entre les deux cas"],
+["Pour affaiblir une généralisation","Produire un contre-exemple dans les mêmes conditions"],
+["Pour renforcer un lien de causalité","Écarter les explications alternatives"],
+["Pour renforcer une prévision","Montrer que les conditions passées restent réunies"],
+["Ce qu'est un présupposé","Ce que l'argument tient pour acquis sans le dire"],
+["Ce qu'est la conclusion d'un argument","La thèse que tout le reste sert à soutenir"],
+["Ce qu'est une prémisse implicite","Le maillon nécessaire mais non formulé du raisonnement"],
+["L'erreur la plus fréquente en argumentation","Confondre corrélation et causalité"],
+["Ce qui invalide un raisonnement par analogie","La non-comparabilité des deux situations"],
+["Ce qui rend une conclusion trop forte","Elle affirme plus que ne permettent les prémisses"],
+["Le rôle d'un contre-exemple","Détruire une affirmation universelle"],
+["Ce qu'un cas isolé ne peut jamais faire","Établir une règle générale"],
+["Pour attaquer une étude statistique","Interroger la taille et la sélection de l'échantillon"],
+["Ce qui distingue expliquer et justifier","Expliquer décrit une cause, justifier défend une valeur"]
+];
+
 var CONNECTEURS=[
 ["Or","Introduit un élément nouveau qui fait pivoter le raisonnement"],
 ["Donc","Introduit une conséquence logique"],
@@ -445,10 +547,15 @@ var CONNECTEURS=[
 ["Certes","Introduit une concession que l'on va aussitôt limiter"],
 ["Quoique","Introduit une concession, suivi du subjonctif"],
 ["Si bien que","Introduit une conséquence constatée"],
-["Non seulement... mais encore","Introduit une gradation par addition"]
+["Non seulement... mais encore","Introduit une gradation par addition"],
+["Aussi (en tête de phrase)","Introduit une conséquence et impose l'inversion du sujet"],
+["Du reste","Introduit un argument supplémentaire, secondaire"],
+["Toutefois","Introduit une restriction modérée"],
+["En outre","Introduit un ajout dans le même sens"],
+["Force est de constater que","Introduit un constat qu'on ne peut éviter"],
+["A fortiori","Introduit une conclusion renforcée par un cas plus net"]
 ];
 
-/* --- FIGURES DE STYLE --- */
 var FIGURES=[
 ["Rapprocher deux termes sans outil de comparaison","Une métaphore"],
 ["Rapprocher deux termes avec un outil de comparaison","Une comparaison"],
@@ -469,10 +576,15 @@ var FIGURES=[
 ["Coordonner deux termes de nature ou de sens incompatibles","Un zeugma"],
 ["Progresser par intensité croissante ou décroissante","Une gradation"],
 ["Supprimer des mots sans nuire à la compréhension","Une ellipse"],
-["Attribuer à un mot ce qui convient à un autre de la phrase","Une hypallage"]
+["Attribuer à un mot ce qui convient à un autre de la phrase","Une hypallage"],
+["Dire le contraire de ce qu'on pense pour railler","Une ironie"],
+["Employer une expression détournée pour éviter un mot","Une antiphrase"],
+["Reprendre en début de phrase le mot qui terminait la précédente","Une anadiplose"],
+["Accumuler des termes de même nature","Une énumération"],
+["Interpeller directement un absent ou une abstraction","Une apostrophe"],
+["Poser une question sans attendre de réponse","Une question rhétorique"]
 ];
 
-/* --- PLÉONASMES --- */
 var PLEONASMES=[
 ["Au jour d'aujourd'hui","Aujourd'hui"],["Monter en haut","Monter"],["Descendre en bas","Descendre"],
 ["Prévoir à l'avance","Prévoir"],["Voire même","Voire"],["S'entraider mutuellement","S'entraider"],
@@ -481,10 +593,13 @@ var PLEONASMES=[
 ["Puis ensuite","Puis"],["Une opposition contraire","Une opposition"],["Une dune de sable","Une dune"],
 ["Une unanimité totale","L'unanimité"],["Un faux prétexte","Un prétexte"],["Moi personnellement","Moi"],
 ["Applaudir des deux mains","Applaudir"],["Un tri sélectif","Un tri"],["Une hémorragie de sang","Une hémorragie"],
-["Se réunir ensemble","Se réunir"],["Le but final","Le but"],["Comparer entre eux","Comparer"]
+["Se réunir ensemble","Se réunir"],["Le but final","Le but"],["Comparer entre eux","Comparer"],
+["Une première prémices","Des prémices"],["Un projet d'avenir","Un projet"],["Collaborer ensemble","Collaborer"],
+["Une alternative entre deux choix","Une alternative"],["Un bref résumé","Un résumé"],["Suffisamment assez","Suffisamment"],
+["Au maximum le plus possible","Au maximum"],["Une secousse sismique","Un séisme"],["S'avérer vrai","S'avérer"],
+["Une marche à pied","Une marche"],["Répéter à nouveau","Répéter"],["Une opinion personnelle","Une opinion"]
 ];
 
-/* --- FAUTES : quelle phrase est correcte --- */
 var FAUTES=[
 {q:"Quelle phrase est correcte ?",a:"Bien qu'il soit en retard, il sera reçu.",
  o:["Malgré qu'il soit en retard, il sera reçu.","Bien qu'il est en retard, il sera reçu.","Quoiqu'il est en retard, il sera reçu."],
@@ -506,7 +621,7 @@ var FAUTES=[
  h:"<b>Dont</b> contient déjà « de » : le cumuler avec « de » est une faute classique."},
 {q:"Quelle phrase est correcte ?",a:"Ces mesures se sont avérées inefficaces.",
  o:["Ces mesures se sont avérées vraies.","Ces mesures s'avèrent exactes et vraies.","Ces mesures se sont avérées véridiques."],
- h:"<b>S'avérer</b> vient de « vrai » : « s'avérer vrai » est un pléonasme, « s'avérer faux » une contradiction tolérée par l'usage."},
+ h:"<b>S'avérer</b> vient de « vrai » : « s'avérer vrai » est un pléonasme."},
 {q:"Quelle phrase est correcte ?",a:"Il s'est rendu chez le médecin.",
  o:["Il s'est rendu au médecin.","Il est allé au docteur.","Il s'est rendu chez du médecin."],
  h:"On va <b>chez</b> une personne, <b>à</b> un lieu."},
@@ -521,76 +636,205 @@ var FAUTES=[
  h:"<b>Cent</b> prend un s quand il est multiplié et non suivi d'un autre nombre."},
 {q:"Quelle phrase est correcte ?",a:"Les efforts qu'il a fournis ont payé.",
  o:["Les efforts qu'il a fourni ont payé.","Les efforts qu'il a fournit ont payé.","Les efforts qu'il a fournies ont payé."],
- h:"Avec <b>avoir</b>, le participe s'accorde avec le COD placé avant : « les efforts » (masculin pluriel)."},
+ h:"Avec <b>avoir</b>, le participe s'accorde avec le COD placé avant."},
 {q:"Quelle phrase est correcte ?",a:"Elle s'est permis de répondre.",
  o:["Elle s'est permise de répondre.","Elle se s'est permis de répondre.","Elle s'est permises de répondre."],
  h:"Le COD est « de répondre », placé après : pas d'accord. « Se » est ici COI."},
 {q:"Quelle phrase est correcte ?",a:"Il n'y a que deux candidats qui aient réussi.",
  o:["Il n'y a que deux candidats qui ont réussis.","Il y a que deux candidats qui ont réussi.","Il n'y a que deux candidats qu'ont réussi."],
- h:"Après une restriction (« il n'y a que »), le subjonctif est attendu en registre soutenu."},
+ h:"Après une restriction, le subjonctif est attendu en registre soutenu."},
 {q:"Quelle phrase est correcte ?",a:"Au temps pour moi, je m'étais trompé.",
  o:["Autant pour moi, je m'étais trompé.","Au tant pour moi, je m'étais trompé.","Autant pour moi que pour vous, je m'étais trompé."],
- h:"L'orthographe académique est <b>au temps pour moi</b>, issue du vocabulaire militaire."},
+ h:"L'orthographe académique est <b>au temps pour moi</b>."},
 {q:"Quelle phrase est correcte ?",a:"Ils se sont succédé à la direction.",
  o:["Ils se sont succédés à la direction.","Ils se sont succédées à la direction.","Ils s'ont succédé à la direction."],
- h:"« Se » est COI (succéder <b>à</b> quelqu'un) : le participe reste invariable."},
+ h:"« Se » est COI (succéder <b>à</b>) : le participe reste invariable."},
 {q:"Quelle phrase est correcte ?",a:"Je préfère partir plutôt que d'attendre.",
  o:["Je préfère partir plus tôt que d'attendre.","Je préfère partir plutôt d'attendre.","Je préfère de partir plutôt que attendre."],
  h:"<b>Plutôt</b> marque la préférence ; <b>plus tôt</b> marque le temps."},
 {q:"Quelle phrase est correcte ?",a:"Cette décision, il l'a prise seul.",
  o:["Cette décision, il l'a pris seul.","Cette décision, il la prise seul.","Cette décision, il l'as prise seul."],
- h:"COD « l' » (= la décision) placé avant l'auxiliaire avoir : accord au féminin singulier."},
+ h:"COD « l' » placé avant l'auxiliaire avoir : accord au féminin singulier."},
 {q:"Quelle phrase est correcte ?",a:"Il est parti sans qu'on l'ait prévenu.",
  o:["Il est parti sans qu'on l'a prévenu.","Il est parti sans qu'on l'avait prévenu.","Il est parti sans qu'on le prévient."],
  h:"<b>Sans que</b> commande toujours le subjonctif."},
 {q:"Quelle phrase est correcte ?",a:"Ci-joint la copie du contrat.",
- o:["Ci-jointe la copie du contrat.","Ci-joints la copie du contrat.","Ci-joint la copie du contrat ci-jointe."],
- h:"<b>Ci-joint</b> reste invariable en tête de phrase, avant le nom."}
+ o:["Ci-jointe la copie du contrat.","Ci-joints la copie du contrat.","Ci-joint la copies du contrat."],
+ h:"<b>Ci-joint</b> reste invariable en tête de phrase, avant le nom."},
+{q:"Quelle phrase est correcte ?",a:"Il s'agit d'une question à laquelle je répondrai.",
+ o:["Il s'agit d'une question dont je répondrai.","Il s'agit d'une question que je répondrai.","Il s'agit d'une question où je répondrai."],
+ h:"Répondre <b>à</b> quelque chose → le relatif est « à laquelle »."},
+{q:"Quelle phrase est correcte ?",a:"Vingt euros, c'est tout ce dont je dispose.",
+ o:["Vingt euros, c'est tout ce que je dispose.","Vingt euros, c'est tout dont je dispose de.","Vingt euros, c'est tout ce à quoi je dispose."],
+ h:"Disposer <b>de</b> quelque chose → « ce dont »."},
+{q:"Quelle phrase est correcte ?",a:"Si j'avais su, je serais venu.",
+ o:["Si j'aurais su, je serais venu.","Si j'avais su, je serai venu.","Si j'aurais su, je venais."],
+ h:"Jamais de conditionnel après <b>si</b> : plus-que-parfait + conditionnel passé."},
+{q:"Quelle phrase est correcte ?",a:"Ils se sont lavé les mains.",
+ o:["Ils se sont lavés les mains.","Ils se sont lavées les mains.","Ils s'ont lavé les mains."],
+ h:"Le COD « les mains » est placé après : pas d'accord du participe."},
+{q:"Quelle phrase est correcte ?",a:"La plupart des candidats sont admis.",
+ o:["La plupart des candidats est admis.","La plupart des candidats est admise.","La plupart des candidats sont admise."],
+ h:"Après <b>la plupart</b>, l'accord se fait avec le complément, au pluriel."},
+{q:"Quelle phrase est correcte ?",a:"Quoi qu'il arrive, nous maintiendrons la date.",
+ o:["Quoiqu'il arrive, nous maintiendrons la date.","Quoi qu'il arrivera, nous maintiendrons la date.","Quoiqu'il arrivera, nous maintiendrons la date."],
+ h:"<b>Quoi que</b> en deux mots = « quelle que soit la chose qui ». <b>Quoique</b> = « bien que »."},
+{q:"Quelle phrase est correcte ?",a:"Il vaut mieux qu'il vienne demain.",
+ o:["Il vaut mieux qu'il vient demain.","Il vaut mieux qu'il viendra demain.","Il vaut mieux qu'il viendrait demain."],
+ h:"<b>Il vaut mieux que</b> commande le subjonctif."},
+{q:"Quelle phrase est correcte ?",a:"Elle a l'air satisfaite du résultat.",
+ o:["Elle a l'air satisfait du résultat, en parlant d'elle-même.","Elle a l'air satisfaits du résultat.","Elle a l'air de satisfaite du résultat."],
+ h:"Avec une personne, <b>avoir l'air</b> s'accorde avec le sujet."},
+{q:"Quelle phrase est correcte ?",a:"Je m'en souviens parfaitement.",
+ o:["Je me le souviens parfaitement.","Je me souviens le parfaitement.","Je m'y souviens parfaitement."],
+ h:"Se souvenir <b>de</b> → le pronom est « en »."},
+{q:"Quelle phrase est correcte ?",a:"Les vingt premières minutes ont été décisives.",
+ o:["Les premières vingt minutes ont été décisives.","Les vingts premières minutes ont été décisives.","Les vingt premier minutes ont été décisives."],
+ h:"L'ordinal suit le cardinal en français, et <b>vingt</b> ne prend pas d's ici."}
 ];
 
-/* --- FORMULES DE CALCUL --- */
 var FORMULES=[
 ["Aire d'un disque de rayon r","π r²"],["Circonférence d'un cercle de rayon r","2 π r"],
-["Aire d'un triangle de base b et hauteur h","b × h / 2"],["Aire d'un trapèze (petite base b, grande base B)","(b + B) × h / 2"],
-["Volume d'un cylindre de rayon r et hauteur h","π r² h"],["Volume d'une sphère de rayon r","4/3 π r³"],
-["Volume d'un cône de rayon r et hauteur h","π r² h / 3"],["Aire d'un parallélogramme","base × hauteur"],
-["Longueur d'un arc de cercle d'angle α (en degrés)","2 π r × α/360"],["Aire d'un secteur circulaire d'angle α","π r² × α/360"],
+["Aire d'un triangle de base b et hauteur h","b × h / 2"],["Aire d'un trapèze","(b + B) × h / 2"],
+["Volume d'un cylindre","π r² h"],["Volume d'une sphère","4/3 π r³"],
+["Volume d'un cône","π r² h / 3"],["Aire d'un parallélogramme","base × hauteur"],
+["Longueur d'un arc d'angle α en degrés","2 π r × α/360"],["Aire d'un secteur d'angle α","π r² × α/360"],
 ["Diagonale d'un carré de côté c","c √2"],["Hauteur d'un triangle équilatéral de côté c","c √3 / 2"],
 ["Aire d'un triangle équilatéral de côté c","c² √3 / 4"],["Somme des n premiers entiers","n(n+1)/2"],
 ["Développement de (a+b)²","a² + 2ab + b²"],["Développement de (a−b)²","a² − 2ab + b²"],
 ["Factorisation de a² − b²","(a+b)(a−b)"],["Développement de (a+b)³","a³ + 3a²b + 3ab² + b³"],
 ["Terme de rang n d'une suite arithmétique","a₁ + (n−1) r"],["Terme de rang n d'une suite géométrique","a₁ × q^(n−1)"],
 ["Capital après n années à intérêts composés","C × (1 + t)ⁿ"],["Vitesse moyenne sur un trajet","distance totale / temps total"],
-["Relation entre PGCD et PPCM de a et b","PGCD × PPCM = a × b"],["Nombre de combinaisons de k éléments parmi n","n! / (k!(n−k)!)"],
-["Probabilité de A ou B","P(A) + P(B) − P(A et B)"],["Concentration d'un mélange de V1 à C1 et V2 à C2","(V1C1 + V2C2)/(V1+V2)"],
-["Débit conjoint de deux robinets remplissant en a et b heures","1/a + 1/b"],["Coefficient d'une hausse de t %","1 + t/100"],
-["Retrouver le prix initial après une hausse de t %","prix final / (1 + t/100)"],["Théorème de Pythagore","a² + b² = c²"]
+["Relation entre PGCD et PPCM","PGCD × PPCM = a × b"],["Combinaisons de k parmi n","n! / (k!(n−k)!)"],
+["Probabilité de A ou B","P(A) + P(B) − P(A et B)"],["Concentration d'un mélange","(V₁C₁ + V₂C₂)/(V₁+V₂)"],
+["Débit conjoint de deux robinets a et b heures","1/a + 1/b"],["Coefficient d'une hausse de t %","1 + t/100"],
+["Prix initial après une hausse de t %","prix final / (1 + t/100)"],["Théorème de Pythagore","a² + b² = c²"],
+["Volume d'une pyramide","aire de base × h / 3"],["Aire latérale d'un cylindre","2 π r h"],
+["Aire d'une sphère","4 π r²"],["Somme des angles d'un triangle","180°"],
+["Somme des angles d'un polygone à n côtés","(n − 2) × 180°"],["Nombre de diagonales d'un polygone à n côtés","n(n − 3)/2"],
+["Arrangements de k parmi n","n! / (n−k)!"],["Moyenne pondérée","Σ(valeur × poids) / Σ poids"],
+["Discriminant d'un trinôme","b² − 4ac"],["Racines d'un trinôme","(−b ± √Δ) / 2a"]
 ];
 
-/* --- CRITÈRES DE DIVISIBILITÉ --- */
 var DIVISIB=[
-["Un nombre est divisible par 2 si...","son dernier chiffre est pair"],
-["Un nombre est divisible par 3 si...","la somme de ses chiffres est divisible par 3"],
-["Un nombre est divisible par 4 si...","ses deux derniers chiffres forment un multiple de 4"],
-["Un nombre est divisible par 5 si...","il se termine par 0 ou 5"],
-["Un nombre est divisible par 6 si...","il est divisible par 2 et par 3"],
-["Un nombre est divisible par 8 si...","ses trois derniers chiffres forment un multiple de 8"],
-["Un nombre est divisible par 9 si...","la somme de ses chiffres est divisible par 9"],
-["Un nombre est divisible par 10 si...","il se termine par 0"],
-["Un nombre est divisible par 11 si...","la différence alternée de ses chiffres est un multiple de 11"],
-["Un nombre est divisible par 25 si...","ses deux derniers chiffres sont 00, 25, 50 ou 75"]
+["Divisible par 2 si...","le dernier chiffre est pair"],
+["Divisible par 3 si...","la somme des chiffres est divisible par 3"],
+["Divisible par 4 si...","les deux derniers chiffres forment un multiple de 4"],
+["Divisible par 5 si...","il se termine par 0 ou 5"],
+["Divisible par 6 si...","il est divisible par 2 et par 3"],
+["Divisible par 8 si...","les trois derniers chiffres forment un multiple de 8"],
+["Divisible par 9 si...","la somme des chiffres est divisible par 9"],
+["Divisible par 10 si...","il se termine par 0"],
+["Divisible par 11 si...","la différence alternée des chiffres est un multiple de 11"],
+["Divisible par 25 si...","les deux derniers chiffres sont 00, 25, 50 ou 75"],
+["Divisible par 12 si...","il est divisible par 3 et par 4"],
+["Divisible par 15 si...","il est divisible par 3 et par 5"]
 ];
 
-/* --- CONDITIONS MINIMALES : sens des réponses --- */
+var UNITES=[
+["1 m²","10 000 cm²"],["1 km²","1 000 000 m²"],["1 hectare","10 000 m²"],["1 are","100 m²"],
+["1 m³","1 000 litres"],["1 litre","1 dm³"],["1 cm³","1 millilitre"],["1 dm³","1 000 cm³"],
+["1 m/s","3,6 km/h"],["1 km/h","environ 0,28 m/s"],["1 heure","3 600 secondes"],
+["15 minutes en heures","0,25 h"],["20 minutes en heures","1/3 h"],["40 minutes en heures","2/3 h"],
+["45 minutes en heures","0,75 h"],["10 minutes en heures","1/6 h"],
+["Une surface s'exprime en","mètres carrés"],["Un volume s'exprime en","mètres cubes"],
+["1 tonne","1 000 kg"],["1 quintal","100 kg"],["1 km","1 000 m"],["1 cm","10 mm"],
+["Doubler chaque côté d'un carré multiplie l'aire par","4"],
+["Doubler chaque arête d'un cube multiplie le volume par","8"],
+["Doubler le rayon d'un disque multiplie l'aire par","4"]
+];
+
+var POURCENT=[
+["Augmenter de 20 %","multiplier par 1,20"],["Diminuer de 20 %","multiplier par 0,80"],
+["+20 % puis −20 %","multiplier par 0,96, soit −4 %"],["Doubler une valeur","+100 %"],
+["Tripler une valeur","+200 %"],["Réduire de moitié","multiplier par 0,5"],
+["Retrouver le prix avant une hausse de 25 %","diviser par 1,25"],
+["Deux hausses successives de 10 %","multiplier par 1,21"],
+["Passer de 40 à 50","+25 %"],["Passer de 50 à 40","−20 %"],
+["Remise de 30 % puis de 20 %","multiplier par 0,56"],
+["Calculer le prix TTC avec une TVA de 20 %","multiplier le HT par 1,2"],
+["Calculer le HT à partir du TTC, TVA 20 %","diviser le TTC par 1,2"],
+["x % de y est toujours égal à","y % de x"],
+["Un indice passant de 100 à 130","+30 %"],
+["Une valeur multipliée par 4","+300 %"],
+["Deux baisses successives de 50 %","multiplier par 0,25"],
+["Le taux moyen de deux hausses successives","la racine du produit des coefficients"],
+["Une hausse de 100 % suivie d'une baisse de 50 %","retour à la valeur initiale"],
+["Une part qui passe de 25 % à 30 % du total","+20 % en valeur relative"]
+];
+
 var CM_SENS=[
 ["I seule suffit, mais II seule ne suffit pas","Réponse A"],
 ["II seule suffit, mais I seule ne suffit pas","Réponse B"],
-["Les deux ensemble suffisent, mais aucune ne suffit seule","Réponse C"],
-["Chacune des deux informations suffit à elle seule","Réponse D"],
+["Les deux ensemble suffisent, mais aucune seule","Réponse C"],
+["Chacune des deux suffit à elle seule","Réponse D"],
 ["Les deux ensemble ne suffisent pas","Réponse E"]
 ];
 
-/* --- LOGIQUE FORMELLE --- */
+var CM_PIEGES=[
+["x² = 9 permet-il de connaître le signe de x ?","Non"],
+["x³ > 0 permet-il de conclure que x est positif ?","Oui"],
+["Le périmètre d'un rectangle suffit-il pour son aire ?","Non"],
+["Périmètre + rapport longueur/largeur suffisent-ils pour l'aire ?","Oui"],
+["L'aire d'un carré suffit-elle pour son périmètre ?","Oui"],
+["La moyenne et l'effectif suffisent-ils pour la somme ?","Oui"],
+["a × b > 0 permet-il de conclure que a > 0 ?","Non"],
+["x > y et y > 0 permettent-ils de conclure x > 0 ?","Oui"],
+["Les trois côtés d'un triangle suffisent-ils pour son aire ?","Oui"],
+["Une seule équation à deux inconnues suffit-elle ?","Non"],
+["Le rayon suffit-il pour l'aire d'un disque ?","Oui"],
+["x pair et y pair permettent-ils de conclure x + y pair ?","Oui"],
+["x² = y² permet-il de conclure x = y ?","Non"],
+["Connaître deux angles d'un triangle donne-t-il le troisième ?","Oui"],
+["Le volume d'un cube suffit-il pour son arête ?","Oui"],
+["Le prix final et le taux de remise donnent-ils le prix initial ?","Oui"],
+["Savoir que n est divisible par 4 implique-t-il divisible par 2 ?","Oui"],
+["Savoir que n est divisible par 2 implique-t-il divisible par 4 ?","Non"],
+["La diagonale d'un carré suffit-elle pour son aire ?","Oui"],
+["Deux côtés d'un triangle quelconque suffisent-ils pour l'aire ?","Non"]
+];
+
+var SUBJONCTIF=[
+["Bien que","Subjonctif"],["Quoique","Subjonctif"],["Après que","Indicatif"],["Avant que","Subjonctif"],
+["À moins que","Subjonctif"],["Parce que","Indicatif"],["Afin que","Subjonctif"],["Pour que","Subjonctif"],
+["Sans que","Subjonctif"],["Jusqu'à ce que","Subjonctif"],["Dès que","Indicatif"],["Pendant que","Indicatif"],
+["Tandis que","Indicatif"],["En attendant que","Subjonctif"],["Pourvu que","Subjonctif"],["Si bien que","Indicatif"],
+["De peur que","Subjonctif"],["Alors que","Indicatif"],["Depuis que","Indicatif"],["Encore que","Subjonctif"],
+["Il est possible que","Subjonctif"],["Il est probable que","Indicatif"],["Je doute que","Subjonctif"],
+["Il me semble que","Indicatif"],["Il semble que","Subjonctif"],["J'espère que","Indicatif"],
+["Je souhaite que","Subjonctif"],["Il faut que","Subjonctif"],["Il paraît que","Indicatif"],
+["Non que","Subjonctif"],["Étant donné que","Indicatif"],["Supposé que","Subjonctif"],
+["Il vaut mieux que","Subjonctif"],["Je suis sûr que","Indicatif"],["Je ne crois pas que","Subjonctif"]
+];
+
+var PREPOS=[
+["Pallier","construction directe, sans préposition"],["Se souvenir","de quelque chose"],
+["Se rappeler","quelque chose, sans préposition"],["Obéir","à quelqu'un"],["Contrevenir","à une règle"],
+["Remédier","à un problème"],["Suppléer","quelque chose, sans préposition"],["Échapper","à un danger"],
+["Aspirer","à quelque chose"],["Se fier","à quelqu'un"],["Nuire","à quelqu'un"],["Ressembler","à quelqu'un"],
+["User","de quelque chose"],["Abuser","de quelque chose"],["Jouir","de quelque chose"],
+["S'apercevoir","de quelque chose"],["Participer","à quelque chose"],["Bénéficier","de quelque chose"],
+["Préférer A","à B, jamais « que »"],["Se souvenir","de, alors que se rappeler est direct"],
+["Renoncer","à quelque chose"],["Se méfier","de quelqu'un"],["Consentir","à quelque chose"],
+["Se heurter","à un obstacle"],["Attenter","à quelque chose"],["Déroger","à une règle"],
+["S'attendre","à quelque chose"],["Se plaindre","de quelque chose"],["Douter","de quelque chose"],
+["Rêver","de quelque chose"],["Prétendre","à un poste"],["Se prévaloir","de quelque chose"]
+];
+
+var PREFIXES=[
+["a-, an-","privation, absence"],["anti-","contre, opposé à"],["hypo-","au-dessous, insuffisant"],
+["hyper-","au-dessus, excessif"],["péri-","autour de"],["trans-","à travers, au-delà"],
+["poly-","plusieurs"],["mono-","un seul"],["homo-","semblable"],["hétéro-","différent"],
+["iso-","égal"],["endo-","à l'intérieur"],["exo-","à l'extérieur"],["méta-","au-delà, changement"],
+["para-","à côté de"],["rétro-","en arrière"],["sub-","sous"],["supra-","au-dessus"],
+["ultra-","au-delà de la limite"],["néo-","nouveau"],["paléo-","ancien"],["auto-","soi-même"],
+["eu-","bien, bon"],["dys-","difficulté, trouble"],["cata-","vers le bas"],["dia-","à travers"],
+["-phile","qui aime"],["-phobe","qui craint ou rejette"],["-cide","qui tue"],["-gène","qui engendre"],
+["-vore","qui se nourrit de"],["-logue","qui étudie"],["-cratie","pouvoir, gouvernement"],
+["-nomie","loi, règle"],["-graphie","écriture, description"],["-pathie","souffrance, sentiment"],
+["-onyme","nom"],["-morphe","forme"],["-archie","commandement"],["-lâtrie","adoration"]
+];
+
 var FORMELLE=[
 ["La contraposée de « si A alors B »","Si non-B alors non-A"],
 ["La réciproque de « si A alors B »","Si B alors A"],
@@ -601,260 +845,632 @@ var FORMELLE=[
 ["Ce que signifie « certains » en logique formelle","Au moins un"],
 ["Ce qu'on ne peut jamais déduire de « tous les A sont B »","Que certains B sont A"],
 ["De « tous les A sont B » et « x est A », on déduit","Que x est B"],
-["De « tous les A sont B » et « x est B », on déduit","Rien du tout"]
+["De « tous les A sont B » et « x est B », on déduit","Rien du tout"],
+["La négation de « si A alors B »","A et non-B"],
+["La négation de « A et B »","non-A ou non-B"],
+["La négation de « A ou B »","non-A et non-B"],
+["« A si et seulement si B » équivaut à","A implique B et B implique A"],
+["De « aucun A n'est B », on peut déduire","Aucun B n'est A"],
+["De « certains A sont B », on peut déduire","Certains B sont A"],
+["Deux prémisses particulières permettent de conclure","Jamais rien"],
+["Une conclusion universelle exige","Deux prémisses universelles"],
+["Une conclusion négative exige","Au moins une prémisse négative"],
+["Le nombre de prémisses négatives autorisé","Une seule au maximum"]
 ];
 
-/* ============================ PACKS ============================ */
-function qcm(list,tag,rev){ // list of [prompt, answer]
+var SERIETYPES=[
+["Les écarts sont constants","Suite arithmétique"],
+["Chaque terme est multiplié par un même nombre","Suite géométrique"],
+["Les écarts augmentent régulièrement","Suite à différences croissantes"],
+["Chaque terme est la somme des deux précédents","Suite additive de Fibonacci"],
+["1, 4, 9, 16, 25","Les carrés successifs"],
+["1, 8, 27, 64","Les cubes successifs"],
+["2, 3, 5, 7, 11","Les nombres premiers"],
+["Un terme sur deux suit une règle différente","Suite alternée ou entrelacée"],
+["Le rang de la lettre suit une progression","Série alphabétique"],
+["Le premier réflexe devant une série numérique","Calculer les écarts successifs"],
+["Le second réflexe si les écarts ne parlent pas","Tester les rapports, donc la division"],
+["Le troisième réflexe","Chercher une alternance ou deux suites entrelacées"]
+];
+
+/* ---------- MÉMOS ---------- */
+var MEMOS={
+calcul:[
+ {t:"Unités et dimensions",l:[
+  "Surface = m² | une surface se mesure toujours en unité au carré",
+  "Volume = m³ | un volume se mesure en unité au cube",
+  "1 m² = 10 000 cm² | on multiplie par 100 au carré",
+  "1 m³ = 1 000 L | et 1 L = 1 dm³ = 1 000 cm³",
+  "1 hectare = 10 000 m² | 1 are = 100 m²",
+  "1 m/s = 3,6 km/h | pour passer de km/h à m/s, diviser par 3,6",
+  "Facteur d'échelle k | longueurs ×k, aires ×k², volumes ×k³"
+ ]},
+ {t:"Pourcentages",l:[
+  "Hausse de t % = ×(1 + t/100)",
+  "Baisse de t % = ×(1 − t/100)",
+  "Variations successives | les coefficients se multiplient, jamais ne s'additionnent",
+  "+20 % puis −20 % = ×0,96 | soit une perte nette de 4 %",
+  "Retrouver l'initial = valeur finale ÷ coefficient",
+  "x % de y = y % de x | inverser quand c'est plus rapide",
+  "Pourcentages pondérés = (%A × poids A) + (%B × poids B)"
+ ]},
+ {t:"Vitesse, débit, robinets",l:[
+  "v = d / t | à savoir dans les trois sens",
+  "Vitesse moyenne = distance totale ÷ temps total",
+  "Jamais la moyenne des vitesses | sauf si les durées sont égales",
+  "Robinet en a heures = 1/a du réservoir par heure",
+  "Deux robinets ensemble = 1/a + 1/b, puis inverser le résultat",
+  "Fuite | on soustrait au lieu d'ajouter"
+ ]},
+ {t:"Moyennes et mélanges",l:[
+  "Moyenne pondérée = Σ(valeur × poids) ÷ Σ poids",
+  "Ajouter une valeur | recalculer la somme totale, jamais la moyenne",
+  "Mélange = (V₁C₁ + V₂C₂) ÷ (V₁ + V₂)",
+  "La quantité de substance pure se conserve toujours"
+ ]},
+ {t:"Géométrie plane",l:[
+  "Disque | aire = πr², circonférence = 2πr",
+  "Triangle | aire = base × hauteur ÷ 2",
+  "Trapèze | aire = (b + B) × h ÷ 2",
+  "Secteur d'angle α | aire = πr² × α/360",
+  "Arc d'angle α | longueur = 2πr × α/360",
+  "Carré de côté c | diagonale = c√2",
+  "Triangle équilatéral de côté c | hauteur = c√3/2, aire = c²√3/4",
+  "Pythagore | a² + b² = c², c étant l'hypoténuse",
+  "Angles d'un polygone à n côtés | somme = (n − 2) × 180°"
+ ]},
+ {t:"Géométrie dans l'espace",l:[
+  "Cube d'arête c | volume = c³, surface = 6c²",
+  "Pavé | volume = L × l × h",
+  "Cylindre | volume = πr²h, aire latérale = 2πrh",
+  "Cône | volume = πr²h ÷ 3",
+  "Sphère | volume = 4/3 πr³, surface = 4πr²",
+  "Pyramide | volume = aire de base × h ÷ 3"
+ ]},
+ {t:"Algèbre",l:[
+  "(a+b)² = a² + 2ab + b²",
+  "(a−b)² = a² − 2ab + b²",
+  "a² − b² = (a+b)(a−b)",
+  "(a+b)³ = a³ + 3a²b + 3ab² + b³",
+  "x + y et xy connus | alors x² + y² = (x+y)² − 2xy",
+  "Discriminant | Δ = b² − 4ac, racines = (−b ± √Δ)/2a",
+  "n inconnues | il faut n équations indépendantes"
+ ]},
+ {t:"Arithmétique",l:[
+  "PGCD × PPCM = a × b",
+  "Divisible par 3 | somme des chiffres divisible par 3",
+  "Divisible par 4 | deux derniers chiffres multiples de 4",
+  "Divisible par 9 | somme des chiffres divisible par 9",
+  "Divisible par 11 | différence alternée des chiffres multiple de 11",
+  "Somme des n premiers entiers = n(n+1)/2",
+  "Premiers sous 30 | 2, 3, 5, 7, 11, 13, 17, 19, 23, 29"
+ ]},
+ {t:"Suites, probas, intérêts",l:[
+  "Arithmétique | terme n = a₁ + (n−1)r",
+  "Géométrique | terme n = a₁ × q^(n−1)",
+  "Intérêts simples | C × (1 + t × n)",
+  "Intérêts composés | C × (1 + t)ⁿ",
+  "P(A ou B) = P(A) + P(B) − P(A et B)",
+  "Indépendants | P(A et B) = P(A) × P(B)",
+  "Sans remise | le dénominateur diminue à chaque tirage",
+  "Combinaisons | C(n,k) = n! ÷ (k!(n−k)!)"
+ ]}
+],
+logique:[
+ {t:"Alphabet",l:[
+  "EJOTY | E=5, J=10, O=15, T=20, Y=25",
+  "Rang inversé = 27 − rang normal",
+  "26 lettres | A=1 et Z=26"
+ ]},
+ {t:"Méthode des séries",l:[
+  "Réflexe 1 | calculer les écarts entre termes consécutifs",
+  "Réflexe 2 | si les écarts ne parlent pas, tester les rapports",
+  "Réflexe 3 | chercher une alternance ou deux suites entrelacées",
+  "Réflexe 4 | tester carrés, cubes, premiers, Fibonacci",
+  "Écarts croissants | calculer les écarts des écarts",
+  "Piège classique | croire à une raison constante après trois termes"
+ ]},
+ {t:"Séries spatiales",l:[
+  "Analyser un seul paramètre à la fois | forme, taille, orientation, nombre, position",
+  "Rotation | repérer le sens et l'angle constant",
+  "Symétrie | axiale ou centrale, souvent alternée",
+  "Ce qui ne change pas est aussi une information"
+ ]}
+],
+raisonnement:[
+ {t:"Implication",l:[
+  "Si A alors B | A suffit pour B, B est nécessaire à A",
+  "Contraposée = si non-B alors non-A | toujours vraie",
+  "Réciproque = si B alors A | jamais garantie",
+  "Inverse = si non-A alors non-B | jamais garantie",
+  "Négation de « si A alors B » = A et non-B",
+  "A observé | on conclut B",
+  "non-B observé | on conclut non-A",
+  "B observé | on ne conclut rien",
+  "non-A observé | on ne conclut rien"
+ ]},
+ {t:"Quantificateurs",l:[
+  "Certains = au moins un | jamais « quelques-uns seulement »",
+  "Négation de « tous les A sont B » = certains A ne sont pas B",
+  "Négation de « aucun A n'est B » = certains A sont B",
+  "Négation de « certains A sont B » = aucun A n'est B",
+  "« Aucun A n'est B » se renverse | aucun B n'est A",
+  "« Certains A sont B » se renverse | certains B sont A",
+  "« Tous les A sont B » ne se renverse jamais"
+ ]},
+ {t:"Syllogismes",l:[
+  "Deux prémisses particulières | aucune conclusion possible",
+  "Deux prémisses négatives | aucune conclusion possible",
+  "Conclusion négative | exige une prémisse négative",
+  "Conclusion universelle | exige deux prémisses universelles",
+  "La conclusion ne peut jamais être plus forte que les prémisses",
+  "Ignorer le réalisme | seules comptent les prémisses données"
+ ]},
+ {t:"Argumentation",l:[
+  "Conclusion | la thèse que tout le reste sert à soutenir",
+  "Prémisse | ce sur quoi la conclusion s'appuie",
+  "Présupposé | ce que l'argument tient pour acquis sans le dire",
+  "Affaiblir une causalité | exhiber une cause tierce",
+  "Renforcer une causalité | écarter les explications alternatives",
+  "Affaiblir un sondage | attaquer la représentativité de l'échantillon",
+  "Affaiblir une analogie | montrer une différence pertinente",
+  "Affaiblir une généralisation | produire un contre-exemple"
+ ]},
+ {t:"Sophismes fréquents",l:[
+  "Homme de paille | déformer la thèse adverse",
+  "Faux dilemme | réduire à deux options",
+  "Pente glissante | prédire une cascade de dérives",
+  "Ad hominem | attaquer la personne",
+  "Ad populum | invoquer la majorité",
+  "Post hoc | confondre succession et causalité",
+  "Généralisation hâtive | conclure d'un cas isolé",
+  "Pétition de principe | supposer ce qu'il fallait prouver"
+ ]}
+],
+condmin:[
+ {t:"Les cinq réponses",l:[
+  "A | I seule suffit, II seule ne suffit pas",
+  "B | II seule suffit, I seule ne suffit pas",
+  "C | les deux ensemble suffisent, aucune seule",
+  "D | chacune suffit à elle seule",
+  "E | même ensemble, elles ne suffisent pas"
+ ]},
+ {t:"Méthode en trois temps",l:[
+  "Étape 1 | I seule suffit-elle ? oui ou non",
+  "Étape 2 | II seule suffit-elle ? oui ou non",
+  "Étape 3 | seulement si les deux réponses sont non, tester l'ensemble",
+  "Ne jamais mélanger I et II avant d'avoir testé chacune",
+  "Suffire = permettre une réponse unique, pas trouver la réponse"
+ ]},
+ {t:"Pièges classiques",l:[
+  "x² = 9 | ne donne pas le signe de x",
+  "x³ > 0 | donne le signe de x",
+  "a × b > 0 | ne donne le signe d'aucun des deux",
+  "Périmètre seul | ne donne pas l'aire d'un rectangle",
+  "Aire d'un carré | donne le périmètre, la figure est contrainte",
+  "Une équation à deux inconnues | ne suffit jamais seule",
+  "Une information redondante | ne fait pas passer de C à D"
+ ]}
+],
+expression:[
+ {t:"Modes après conjonction",l:[
+  "Subjonctif | bien que, quoique, avant que, sans que, à moins que",
+  "Subjonctif | afin que, pour que, jusqu'à ce que, pourvu que, de peur que",
+  "Subjonctif | il faut que, il vaut mieux que, je doute que, il semble que",
+  "Indicatif | après que, dès que, parce que, pendant que, tandis que",
+  "Indicatif | il est probable que, il me semble que, j'espère que",
+  "Jamais de conditionnel après si | si + imparfait, puis conditionnel"
+ ]},
+ {t:"Participe passé",l:[
+  "Avec être | accord avec le sujet",
+  "Avec avoir | accord avec le COD seulement s'il est placé avant",
+  "Verbe pronominal réfléchi | accord si le pronom est COD",
+  "Elle s'est lavé les mains | COD après, donc pas d'accord",
+  "Ils se sont succédé | succéder à, donc COI, invariable",
+  "Fait + infinitif | toujours invariable"
+ ]},
+ {t:"Constructions verbales",l:[
+  "Pallier quelque chose | jamais « pallier à »",
+  "Se rappeler quelque chose | mais se souvenir de quelque chose",
+  "Préférer A à B | jamais « préférer que »",
+  "Obéir à, remédier à, contrevenir à, déroger à",
+  "Bénéficier de, jouir de, s'apercevoir de, se prévaloir de"
+ ]},
+ {t:"Fautes interdites",l:[
+  "Malgré que | toujours fautif, dire bien que",
+  "Au jour d'aujourd'hui | pléonasme",
+  "Voire même | pléonasme",
+  "C'est de cela dont | dont contient déjà de",
+  "Quelque soit | s'écrit quel que soit, en deux mots",
+  "Je vous serais gré | dire je vous saurais gré",
+  "S'avérer vrai | pléonasme, avérer vient de vrai"
+ ]},
+ {t:"Distinctions à ne pas rater",l:[
+  "Quoique = bien que | quoi que = quelle que soit la chose",
+  "Plutôt = préférence | plus tôt = temps",
+  "Davantage = plus | d'avantage = de bénéfice",
+  "Notable = important | notoire = connu de tous",
+  "Éminent = remarquable | imminent = sur le point d'arriver",
+  "Conjecture = hypothèse | conjoncture = situation",
+  "Vénéneux = plante | venimeux = animal"
+ ]}
+],
+comprehension:[
+ {t:"Types de questions",l:[
+  "Idée principale | la thèse que tout le texte sert à établir",
+  "Question de détail | l'information est explicitement dans le texte",
+  "Inférence | ce qui découle du texte sans y être écrit",
+  "Ton de l'auteur | critique, neutre, ironique, laudatif, nuancé",
+  "Ce que l'auteur approuverait | rester dans le prolongement direct du texte"
+ ]},
+ {t:"Pièges de réponse",l:[
+  "Trop général | vrai mais ne répond pas à la question posée",
+  "Trop précis | ne couvre qu'une partie du texte",
+  "Hors texte | vrai dans la réalité, absent du passage",
+  "Inversion | reprend les mots du texte en renversant le sens",
+  "Extrême | contient toujours, jamais, tous, aucun — presque toujours faux"
+ ]},
+ {t:"Connecteurs à repérer",l:[
+  "Or | fait pivoter le raisonnement, souvent décisif",
+  "Certes... mais | concession suivie de la vraie thèse",
+  "En effet | explication de ce qui précède",
+  "Donc, partant, aussi | conséquence",
+  "Cependant, néanmoins, toutefois | opposition atténuée",
+  "En revanche | opposition symétrique"
+ ]},
+ {t:"Méthode",l:[
+  "Lire les questions avant le texte | on sait quoi chercher",
+  "Repérer la structure | thèse, argument, objection, conclusion",
+  "La bonne réponse est une reformulation | jamais une citation littérale",
+  "Ne jamais mobiliser ses connaissances extérieures"
+ ]}
+]
+};
+
+/* ======================= PACKS ======================= */
+function qcm(list,tag,rev){
   return {kind:"qcm",tag:tag,items:list.map(function(p,i){
-    return rev ? {key:tag+i,q:p[1],a:p[0]} : {key:tag+i,q:p[0],a:p[1]};
+    return rev?{key:tag+"r"+i,q:p[1],a:p[0]}:{key:tag+i,q:p[0],a:p[1]};
+  })};
+}
+function yn(list,tag,intro){
+  return {kind:"qcm",tag:tag,items:list.map(function(p,i){
+    return {key:tag+i,q:(intro||"")+p[0],a:p[1],opts:["Oui","Non"],small:true};
   })};
 }
 
+var PAIRS=[["il pleut","le sol est mouillé"],["l'entreprise est rentable","elle embauche"],
+["le candidat est admis","il a réussi l'oral"],["Marc travaille le week-end","il est fatigué le lundi"],
+["le produit est bio","il est cher"],["la loi est votée","le décret paraît"],
+["l'étudiant révise","il progresse"],["le train est à l'heure","la réunion commence"]];
+var SETS=[["managers","stressés"],["avocats","diplômés"],["produits bio","chers"],
+["sportifs de haut niveau","sédentaires"],["startups","financées"],["films primés","regardés"]];
+
 var PACKS={
-  /* --------- CALCUL --------- */
-  carres:{name:"Carrés (→25)",tag:"Carrés",kind:"gen",gen:function(){
-    var n=ri(2,25),v=n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20,25]),d=n-a;
-    var h=d===0?"<b>Pivot</b> — "+a+"² = "+(a*a)+", à connaître par cœur."
-      :"<b>Ancre</b> — "+a+"² = "+(a*a)+", puis ("+a+sg(d)+")² = "+(a*a)+" "+(d>0?"+":"−")+" 2×"+a+"×"+Math.abs(d)+" + "+(d*d)+".";
-    return rev?{key:"C"+n,q:'<span class="mono">√'+v+'</span> = ?',a:String(n),lab:"√"+v+"="+n,h:h}
-              :{key:"C"+n,q:'<span class="mono">'+n+'²</span> = ?',a:String(v),lab:n+"²="+v,h:h};
-  }},
-  cubes:{name:"Cubes (→20)",tag:"Cubes",kind:"gen",gen:function(){
-    var n=ri(2,20),v=n*n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20]);
-    var h="<b>Ancres</b> — 5³=125, 10³=1000, 15³=3375, 20³=8000. La plus proche : "+a+"³ = "+(a*a*a)+" ("+sg(n-a)+").";
-    return rev?{key:"K"+n,q:'<span class="mono">∛'+v+'</span> = ?',a:String(n),lab:"∛"+v+"="+n,h:h}
-              :{key:"K"+n,q:'<span class="mono">'+n+'³</span> = ?',a:String(v),lab:n+"³="+v,h:h};
-  }},
-  puiss:{name:"Puissances 2 et 3",tag:"Puissances",kind:"gen",kind2:1,gen:function(){
-    var b=Math.random()<.65?2:3, mx=(b===2?16:8), n=ri(2,mx), v=Math.pow(b,n);
-    var rev=Math.random()<.35;
-    var h=b===2?"<b>Repères</b> — 2¹⁰ = 1024, 2¹⁶ = 65 536. Chaque exposant double le précédent."
-                :"<b>Repères</b> — 3⁴ = 81, 3⁵ = 243, 3⁶ = 729, 3⁷ = 2187.";
-    return rev?{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'^? = '+v+'</span>',a:String(n),lab:b+"^"+n+"="+v,h:h}
-              :{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'<sup>'+n+'</sup></span> = ?',a:String(v),lab:b+"^"+n+"="+v,h:h};
-  }},
-  fractions:{name:"Fractions ↔ %",tag:"Fractions",kind:"gen",gen:function(){
-    var F=[[1,2,50],[1,3,33.33],[1,4,25],[1,5,20],[1,6,16.67],[1,7,14.29],[1,8,12.5],[1,9,11.11],
-           [1,11,9.09],[1,12,8.33],[1,16,6.25],[1,20,5],[1,25,4],[2,3,66.67],[3,4,75],[2,5,40],
-           [3,5,60],[4,5,80],[5,6,83.33],[3,8,37.5],[5,8,62.5],[7,8,87.5],[1,15,6.67],[2,7,28.57]];
-    var f=pick(F);
-    return {key:"F"+f[0]+"_"+f[1],q:'<span class="mono">'+f[0]+'/'+f[1]+'</span> = ? %',a:String(f[2]).replace(".",","),
-      tol:.06,lab:f[0]+"/"+f[1]+"="+f[2]+"%",
-      h:"<b>Repères</b> — 1/8 = 12,5 % ; 1/6 ≈ 16,67 % ; 1/7 ≈ 14,29 % ; 1/3 ≈ 33,33 %. Deux décimales suffisent."};
-  }},
-  tables:{name:"Tables 11-19",tag:"Tables",kind:"gen",gen:function(){
-    var a=ri(11,19),b=ri(3,19),v=a*b;
-    return {key:"T"+a+"x"+b,q:'<span class="mono">'+a+' × '+b+'</span> = ?',a:String(v),lab:a+"×"+b+"="+v,
-      h:"<b>Astuce</b> — "+a+" × "+b+" = "+b+"×10 + "+b+"×"+(a-10)+" = "+(b*10)+" + "+(b*(a-10))+"."};
-  }},
-  racines:{name:"Racines usuelles",tag:"Racines",kind:"gen",gen:function(){
-    var R=[[2,1.414],[3,1.732],[5,2.236],[6,2.449],[7,2.646],[8,2.828],[10,3.162],[11,3.317],[13,3.606]];
-    var r=pick(R);
-    return {key:"R"+r[0],q:'<span class="mono">√'+r[0]+'</span> ≈ ? (3 décimales)',a:String(r[1]).replace(".",","),tol:.006,
-      lab:"√"+r[0]+"≈"+r[1],h:"<b>À retenir</b> — √2 ≈ 1,414 ; √3 ≈ 1,732 ; √5 ≈ 2,236 ; √10 ≈ 3,162."};
-  }},
-  premiers:{name:"Nombres premiers",tag:"Premiers",kind:"gen",qcmGen:true,gen:function(){
-    var P={2:1,3:1,5:1,7:1,11:1,13:1,17:1,19:1,23:1,29:1,31:1,37:1,41:1,43:1,47:1,53:1,59:1,61:1,67:1,71:1,73:1,79:1,83:1,89:1,97:1,101:1,103:1,107:1,109:1,113:1};
-    var n=ri(2,120), isP=!!P[n];
-    return {key:"N"+n,q:'<span class="mono">'+n+'</span> est-il un nombre premier ?',a:isP?"Oui":"Non",
-      opts:["Oui","Non"],lab:n+(isP?" premier":" non premier"),
-      h:"<b>Méthode</b> — tester la divisibilité par 2, 3, 5, 7 puis 11 tant que le carré du diviseur reste sous "+n+"."};
-  }},
-  formules:qcm(FORMULES,"Formules"),
-  divisib:qcm(DIVISIB,"Divisibilité"),
+/* ---- CALCUL ---- */
+carres:{tag:"Carrés",kind:"gen",gen:function(){
+  var n=ri(2,25),v=n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20,25]),d=n-a;
+  var h=d===0?"<b>Pivot</b> — "+a+"² = "+(a*a)+", à connaître par cœur."
+    :"<b>Ancre</b> — "+a+"² = "+(a*a)+", puis ("+a+" "+sg(d)+")² = "+(a*a)+" "+(d>0?"+":"−")+" 2×"+a+"×"+Math.abs(d)+" + "+(d*d)+".";
+  return rev?{key:"C"+n,q:'<span class="mono">√'+v+'</span> = ?',a:String(n),lab:"√"+v+"="+n,h:h}
+            :{key:"C"+n,q:'<span class="mono">'+n+'²</span> = ?',a:String(v),lab:n+"²="+v,h:h};
+}},
+cubes:{tag:"Cubes",kind:"gen",gen:function(){
+  var n=ri(2,20),v=n*n*n,rev=Math.random()<.4,a=near(n,[5,10,15,20]);
+  var h="<b>Ancres</b> — 5³=125, 10³=1000, 15³=3375, 20³=8000. La plus proche : "+a+"³ = "+(a*a*a)+" ("+sg(n-a)+").";
+  return rev?{key:"K"+n,q:'<span class="mono">∛'+v+'</span> = ?',a:String(n),lab:"∛"+v+"="+n,h:h}
+            :{key:"K"+n,q:'<span class="mono">'+n+'³</span> = ?',a:String(v),lab:n+"³="+v,h:h};
+}},
+puiss:{tag:"Puissances",kind:"gen",gen:function(){
+  var b=Math.random()<.65?2:3,mx=(b===2?16:8),n=ri(2,mx),v=Math.pow(b,n),rev=Math.random()<.35;
+  var h=b===2?"<b>Repères</b> — 2¹⁰ = 1024, 2¹⁶ = 65 536.":"<b>Repères</b> — 3⁴=81, 3⁵=243, 3⁶=729, 3⁷=2187.";
+  return rev?{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'^? = '+v+'</span>',a:String(n),lab:b+"^"+n,h:h}
+            :{key:"P"+b+"_"+n,q:'<span class="mono">'+b+'<sup>'+n+'</sup></span> = ?',a:String(v),lab:b+"^"+n+"="+v,h:h};
+}},
+fractions:{tag:"Fractions",kind:"gen",gen:function(){
+  var F=[[1,2,50],[1,3,33.33],[1,4,25],[1,5,20],[1,6,16.67],[1,7,14.29],[1,8,12.5],[1,9,11.11],
+         [1,11,9.09],[1,12,8.33],[1,16,6.25],[1,20,5],[1,25,4],[2,3,66.67],[3,4,75],[2,5,40],
+         [3,5,60],[4,5,80],[5,6,83.33],[3,8,37.5],[5,8,62.5],[7,8,87.5],[1,15,6.67],[2,7,28.57],
+         [5,12,41.67],[7,20,35],[9,16,56.25],[3,16,18.75]];
+  var f=pick(F);
+  return {key:"F"+f[0]+"_"+f[1],q:'<span class="mono">'+f[0]+'/'+f[1]+'</span> = ? %',a:String(f[2]).replace(".",","),
+    tol:.06,lab:f[0]+"/"+f[1],h:"<b>Repères</b> — 1/8 = 12,5 % ; 1/6 ≈ 16,67 % ; 1/7 ≈ 14,29 % ; 1/3 ≈ 33,33 %."};
+}},
+tables:{tag:"Tables",kind:"gen",gen:function(){
+  var a=ri(11,19),b=ri(3,19),v=a*b;
+  return {key:"T"+a+"x"+b,q:'<span class="mono">'+a+' × '+b+'</span> = ?',a:String(v),lab:a+"×"+b,
+    h:"<b>Astuce</b> — "+a+"×"+b+" = "+b+"×10 + "+b+"×"+(a-10)+" = "+(b*10)+" + "+(b*(a-10))+"."};
+}},
+racines:{tag:"Racines",kind:"gen",gen:function(){
+  var R=[[2,1.414],[3,1.732],[5,2.236],[6,2.449],[7,2.646],[8,2.828],[10,3.162],[11,3.317],[13,3.606]];
+  var r=pick(R);
+  return {key:"R"+r[0],q:'<span class="mono">√'+r[0]+'</span> ≈ ? (3 décimales)',a:String(r[1]).replace(".",","),
+    tol:.006,lab:"√"+r[0],h:"<b>À retenir</b> — √2≈1,414 ; √3≈1,732 ; √5≈2,236 ; √10≈3,162."};
+}},
+premiers:{tag:"Premiers",kind:"gen",gen:function(){
+  var P={2:1,3:1,5:1,7:1,11:1,13:1,17:1,19:1,23:1,29:1,31:1,37:1,41:1,43:1,47:1,53:1,59:1,61:1,67:1,71:1,73:1,79:1,83:1,89:1,97:1,101:1,103:1,107:1,109:1,113:1};
+  var n=ri(2,120),isP=!!P[n];
+  return {key:"N"+n,q:'<span class="mono">'+n+'</span> est-il un nombre premier ?',a:isP?"Oui":"Non",
+    opts:["Oui","Non"],lab:n+(isP?" premier":" non premier"),
+    h:"<b>Méthode</b> — tester 2, 3, 5, 7, 11 tant que le carré du diviseur reste sous "+n+"."};
+}},
+formules:qcm(FORMULES,"Formules"),
+divisib:qcm(DIVISIB,"Divisibilité"),
+unites:qcm(UNITES,"Unités"),
+pourcent:qcm(POURCENT,"Pourcentages"),
 
-  /* --------- LOGIQUE --------- */
-  rang:{name:"Rang des lettres",tag:"Alphabet",kind:"gen",gen:function(){
-    var n=ri(1,26),L=LETTERS[n-1],rev=Math.random()<.4,a=near(n,[5,10,15,20,25]);
-    var h="<b>EJOTY</b> — E=5, J=10, O=15, T=20, Y=25. Ancre la plus proche : "+ANCH[a]+" = "+a+", puis "+sg(n-a)+".";
-    return rev?{key:"A"+n,q:'Quelle lettre au rang <span class="mono">'+n+'</span> ?',a:L,lab:n+"→"+L,h:h}
-              :{key:"A"+n,q:'Rang de la lettre <span class="mono">« '+L+' »</span> ?',a:String(n),lab:L+"→"+n,h:h};
-  }},
-  rangInv:{name:"Rang inversé (Z=1)",tag:"Alphabet inversé",kind:"gen",gen:function(){
-    var n=ri(1,26),L=LETTERS[26-n];
-    return {key:"AI"+n,q:'Rang de <span class="mono">« '+L+' »</span> en partant de Z ?',a:String(n),lab:L+"↩"+n,
-      h:"<b>Astuce</b> — rang inversé = 27 − rang normal. Ici « "+L+" » vaut "+(27-n)+" à l'endroit."};
-  }},
-  decal:{name:"Décalages alphabétiques",tag:"Décalage",kind:"gen",gen:function(){
-    var i=ri(0,25),d=ri(2,9),sign=Math.random()<.5?1:-1;
-    var j=((i+sign*d)%26+26)%26;
-    return {key:"D"+i+"_"+(sign*d),q:'Quelle lettre à <span class="mono">'+(sign>0?"+":"−")+d+'</span> de <span class="mono">« '+LETTERS[i]+' »</span> ?',
-      a:LETTERS[j],lab:LETTERS[i]+(sign>0?"+":"−")+d+"="+LETTERS[j],
-      h:"<b>Méthode</b> — passe par le rang : "+LETTERS[i]+" = "+(i+1)+", "+(sign>0?"+":"−")+d+" → "+(j+1)+"."};
-  }},
-  series:{name:"Séries express",tag:"Séries",kind:"gen",gen:function(){
-    var t=ri(1,6),s=[],ans,h;
-    if(t===1){var a=ri(2,12),r=ri(2,9);for(var i=0;i<5;i++)s.push(a+i*r);ans=a+5*r;h="<b>Écarts constants</b> — raison "+r+".";}
-    else if(t===2){var a2=ri(2,5),q2=ri(2,3);for(var i2=0;i2<5;i2++)s.push(a2*Math.pow(q2,i2));ans=a2*Math.pow(q2,5);h="<b>Raison multiplicative</b> — ×"+q2+" à chaque terme.";}
-    else if(t===3){var a3=ri(1,6),r3=ri(2,5),d3=ri(1,4),c=a3;s.push(c);for(var i3=0;i3<4;i3++){c+=r3+i3*d3;s.push(c);}ans=c+r3+4*d3;h="<b>Écarts croissants</b> — la différence augmente de "+d3+" à chaque pas.";}
-    else if(t===4){var a4=ri(2,9),x=ri(2,4),y=ri(1,6),c4=a4;s.push(c4);for(var i4=0;i4<5;i4++){c4=(i4%2===0)?c4*x:c4+y;s.push(c4);}ans=(5%2===0)?s[5]*x:s[5]+y;s=s.slice(0,6);h="<b>Alternance</b> — un coup ×"+x+", un coup +"+y+".";}
-    else if(t===5){var st=ri(2,8);for(var i5=0;i5<5;i5++)s.push((st+i5)*(st+i5));ans=(st+5)*(st+5);h="<b>Carrés successifs</b> — reconnais "+st+"², "+(st+1)+"², etc.";}
-    else{var f1=ri(1,5),f2=ri(2,8);s=[f1,f2];for(var i6=0;i6<4;i6++)s.push(s[s.length-1]+s[s.length-2]);ans=s[s.length-1]+s[s.length-2];h="<b>Additive</b> — chaque terme est la somme des deux précédents.";}
-    return {key:"S"+t+"_"+s[0]+"_"+s[1],q:'<span class="mono">'+s.join(" — ")+' — ?</span>',a:String(ans),
-      lab:s.slice(0,3).join(",")+"…",h:h};
-  }},
-  formelle:qcm(FORMELLE,"Logique formelle"),
+/* ---- LOGIQUE ---- */
+rang:{tag:"Alphabet",kind:"gen",gen:function(){
+  var n=ri(1,26),L=LETTERS[n-1],rev=Math.random()<.4,a=near(n,[5,10,15,20,25]);
+  var h="<b>EJOTY</b> — E=5, J=10, O=15, T=20, Y=25. Ancre : "+ANCH[a]+" = "+a+", puis "+sg(n-a)+".";
+  return rev?{key:"A"+n,q:'Quelle lettre au rang <span class="mono">'+n+'</span> ?',a:L,lab:n+"→"+L,h:h}
+            :{key:"A"+n,q:'Rang de la lettre <span class="mono">« '+L+' »</span> ?',a:String(n),lab:L+"→"+n,h:h};
+}},
+rangInv:{tag:"Alphabet inversé",kind:"gen",gen:function(){
+  var n=ri(1,26),L=LETTERS[26-n];
+  return {key:"AI"+n,q:'Rang de <span class="mono">« '+L+' »</span> en partant de Z ?',a:String(n),lab:L+"↩"+n,
+    h:"<b>Astuce</b> — rang inversé = 27 − rang normal. « "+L+" » vaut "+(27-n)+" à l'endroit."};
+}},
+decal:{tag:"Décalage",kind:"gen",gen:function(){
+  var i=ri(0,25),d=ri(2,9),s=Math.random()<.5?1:-1,j=((i+s*d)%26+26)%26;
+  return {key:"D"+i+"_"+(s*d),q:'Quelle lettre à <span class="mono">'+(s>0?"+":"−")+d+'</span> de <span class="mono">« '+LETTERS[i]+' »</span> ?',
+    a:LETTERS[j],lab:LETTERS[i]+(s>0?"+":"−")+d,
+    h:"<b>Méthode</b> — passer par le rang : "+LETTERS[i]+" = "+(i+1)+", donc "+(j+1)+"."};
+}},
+series:{tag:"Séries",kind:"gen",gen:function(){
+  var t=ri(1,6),s=[],ans,h,i;
+  if(t===1){var a=ri(2,12),r=ri(2,9);for(i=0;i<5;i++)s.push(a+i*r);ans=a+5*r;h="<b>Écarts constants</b> — raison "+r+".";}
+  else if(t===2){var a2=ri(2,5),q2=ri(2,3);for(i=0;i<5;i++)s.push(a2*Math.pow(q2,i));ans=a2*Math.pow(q2,5);h="<b>Raison multiplicative</b> — ×"+q2+".";}
+  else if(t===3){var a3=ri(1,6),r3=ri(2,5),d3=ri(1,4),c=a3;s.push(c);for(i=0;i<4;i++){c+=r3+i*d3;s.push(c);}ans=c+r3+4*d3;h="<b>Écarts croissants</b> — la différence augmente de "+d3+".";}
+  else if(t===4){var a4=ri(2,9),x=ri(2,4),y=ri(1,6),c4=a4;s.push(c4);for(i=0;i<5;i++){c4=(i%2===0)?c4*x:c4+y;s.push(c4);}s=s.slice(0,6);ans=s[5]*x;h="<b>Alternance</b> — un coup ×"+x+", un coup +"+y+".";}
+  else if(t===5){var st=ri(2,8);for(i=0;i<5;i++)s.push((st+i)*(st+i));ans=(st+5)*(st+5);h="<b>Carrés successifs</b> — "+st+"², "+(st+1)+"², etc.";}
+  else{var f1=ri(1,5),f2=ri(2,8);s=[f1,f2];for(i=0;i<4;i++)s.push(s[s.length-1]+s[s.length-2]);ans=s[s.length-1]+s[s.length-2];h="<b>Additive</b> — chaque terme est la somme des deux précédents.";}
+  return {key:"S"+t+"_"+s[0]+"_"+s[1],q:'<span class="mono">'+s.join(" — ")+' — ?</span>',a:String(ans),lab:s.slice(0,3).join(","),h:h};
+}},
+serietypes:qcm(SERIETYPES,"Types de séries"),
 
-  /* --------- RAISONNEMENT --------- */
-  sophismes:qcm(SOPHISMES,"Sophismes"),
-  sophismesR:qcm(SOPHISMES,"Sophismes",true),
-  raisonnements:qcm(RAISONNEMENTS,"Raisonnements"),
+/* ---- RAISONNEMENT ---- */
+formelle:qcm(FORMELLE,"Logique formelle"),
+implic:{tag:"Implications",kind:"gen",gen:function(){
+  var p=pick(PAIRS),A=p[0],B=p[1],t=ri(1,11),q,a,h;
+  var base='<b>Si '+A+', alors '+B+'.</b><br>';
+  if(t===1){q=base+"Peut-on affirmer : si "+B.replace(/^(il|elle|le|la|l')/,"$1")+" n'est pas le cas, alors non-"+A+" ?";a="Oui";h="C'est la <b>contraposée</b> — toujours vraie.";}
+  else if(t===2){q=base+"Peut-on affirmer : si "+B+", alors "+A+" ?";a="Non";h="C'est la <b>réciproque</b> — jamais garantie.";}
+  else if(t===3){q=base+"Peut-on affirmer : si "+A+" n'a pas lieu, alors "+B+" n'a pas lieu ?";a="Non";h="C'est l'<b>inverse</b> — jamais garantie.";}
+  else if(t===4){q=base+"On observe que "+B+" n'a pas lieu. Peut-on conclure que "+A+" n'a pas lieu ?";a="Oui";h="Application de la <b>contraposée</b>.";}
+  else if(t===5){q=base+"On observe "+B+". Peut-on conclure "+A+" ?";a="Non";h="B peut avoir d'autres causes. On ne remonte jamais une implication.";}
+  else if(t===6){q=base+"On observe "+A+". Peut-on conclure "+B+" ?";a="Oui";h="Application directe du <i>modus ponens</i>.";}
+  else if(t===7){q=base+"On observe que "+A+" n'a pas lieu. Peut-on conclure sur "+B+" ?";a="Non";h="Nier l'antécédent ne permet rien.";}
+  else if(t===8){q=base+"Est-il possible d'avoir "+A+" sans "+B+" ?";a="Non";h="C'est exactement ce que l'implication interdit.";}
+  else if(t===9){q=base+"Est-il possible d'avoir "+B+" sans "+A+" ?";a="Oui";h="B peut être vrai pour d'autres raisons.";}
+  else if(t===10){q=base+"Sa négation est-elle : « "+A+" et pas "+B+" » ?";a="Oui";h="La <b>négation</b> d'une implication est A et non-B.";}
+  else{q=base+A+" est-il une condition <b>nécessaire</b> de "+B+" ?";a="Non";h="A est <b>suffisant</b> pour B ; c'est B qui est nécessaire à A.";}
+  return {key:"IM"+t+"_"+A.slice(0,6),q:q,a:a,opts:["Oui","Non"],small:true,lab:"implication "+t,h:h};
+}},
+quantif:{tag:"Quantificateurs",kind:"gen",gen:function(){
+  var s=pick(SETS),A=s[0],B=s[1],t=ri(1,10),q,a,h;
+  if(t===1){q="<b>Tous les "+A+" sont "+B+".</b><br>Peut-on conclure que tous les "+B+" sont des "+A+" ?";a="Non";h="Une universelle affirmative ne se renverse jamais.";}
+  else if(t===2){q="<b>Tous les "+A+" sont "+B+".</b><br>Peut-on conclure que certains "+B+" sont des "+A+" ?";a="Non";h="Piège : rien ne garantit qu'il existe au moins un "+A+".";}
+  else if(t===3){q="<b>Tous les "+A+" sont "+B+". x est un "+A+".</b><br>x est-il "+B+" ?";a="Oui";h="Application directe de l'universelle.";}
+  else if(t===4){q="<b>Tous les "+A+" sont "+B+". x est "+B+".</b><br>x est-il un "+A+" ?";a="Non";h="On ne remonte jamais une universelle.";}
+  else if(t===5){q="<b>Aucun "+A.replace(/s$/,"")+" n'est "+B+".</b><br>Peut-on conclure qu'aucun "+B+" n'est un "+A.replace(/s$/,"")+" ?";a="Oui";h="L'universelle négative se renverse librement.";}
+  else if(t===6){q="<b>Certains "+A+" sont "+B+".</b><br>Peut-on conclure que certains "+B+" sont des "+A+" ?";a="Oui";h="La particulière affirmative se renverse.";}
+  else if(t===7){q="<b>Certains "+A+" sont "+B+".</b><br>Peut-on conclure que certains "+A+" ne sont pas "+B+" ?";a="Non";h="« Certains » n'exclut pas « tous ».";}
+  else if(t===8){q="La négation de <b>« tous les "+A+" sont "+B+" »</b> est-elle « aucun "+A.replace(/s$/,"")+" n'est "+B+" » ?";a="Non";h="La négation correcte est : certains "+A+" ne sont pas "+B+".";}
+  else if(t===9){q="La négation de <b>« certains "+A+" sont "+B+" »</b> est-elle « aucun "+A.replace(/s$/,"")+" n'est "+B+" » ?";a="Oui";h="Négation d'une particulière affirmative = universelle négative.";}
+  else{q="<b>Certains "+A+" sont "+B+". Certains "+A+" sont riches.</b><br>Peut-on conclure que certains "+B+" sont riches ?";a="Non";h="Deux « certains » ne se croisent jamais : les sous-groupes peuvent être disjoints.";}
+  return {key:"QU"+t+"_"+A.slice(0,6),q:q,a:a,opts:["Oui","Non"],small:true,lab:"quantificateur "+t,h:h};
+}},
+sophismes:qcm(SOPHISMES,"Sophismes"),
+sophismesR:qcm(SOPHISMES,"Sophismes",true),
+raisonnements:qcm(RAISONNEMENTS,"Raisonnements"),
+argum:qcm(ARGUMENTS,"Argumentation"),
 
-  /* --------- CONDITIONS MINIMALES --------- */
-  cmSens:qcm(CM_SENS,"Sens des réponses"),
-  cmDrill:{name:"Réflexe A/B/C/D/E",tag:"Conditions minimales",kind:"gen",qcmGen:true,gen:function(){
-    var i=Math.random()<.5,ii=Math.random()<.5,both;
-    var ans,h;
-    if(i&&ii){ans="D";h="Chacune suffit seule → <b>D</b>.";}
-    else if(i&&!ii){ans="A";h="Seule I suffit → <b>A</b>.";}
-    else if(!i&&ii){ans="B";h="Seule II suffit → <b>B</b>.";}
-    else{both=Math.random()<.5;ans=both?"C":"E";h=both?"Aucune seule, mais les deux ensemble → <b>C</b>.":"Même ensemble, insuffisant → <b>E</b>.";}
-    var txt="I seule suffit : <b>"+(i?"oui":"non")+"</b> · II seule suffit : <b>"+(ii?"oui":"non")+"</b>";
-    if(!i&&!ii) txt+=" · les deux ensemble : <b>"+(both?"oui":"non")+"</b>";
-    return {key:"CM"+(i?1:0)+(ii?1:0)+(both?1:0),q:txt+"<br>Quelle réponse ?",a:ans,
-      opts:["A","B","C","D","E"],lab:"CM "+ans,h:h+" Le réflexe : tester I seule, puis II seule, puis les deux."};
-  }},
+/* ---- CONDITIONS MINIMALES ---- */
+cmDrill:{tag:"Conditions minimales",kind:"gen",gen:function(){
+  var i=Math.random()<.5,ii=Math.random()<.5,both=false,ans,h;
+  if(i&&ii){ans="D";h="Chacune suffit seule → <b>D</b>.";}
+  else if(i&&!ii){ans="A";h="Seule I suffit → <b>A</b>.";}
+  else if(!i&&ii){ans="B";h="Seule II suffit → <b>B</b>.";}
+  else{both=Math.random()<.5;ans=both?"C":"E";h=both?"Aucune seule, les deux ensemble → <b>C</b>.":"Insuffisant même ensemble → <b>E</b>.";}
+  var txt="I seule suffit : <b>"+(i?"oui":"non")+"</b> · II seule suffit : <b>"+(ii?"oui":"non")+"</b>";
+  if(!i&&!ii)txt+=" · les deux ensemble : <b>"+(both?"oui":"non")+"</b>";
+  return {key:"CM"+(i?1:0)+(ii?1:0)+(both?1:0),q:txt+"<br>Quelle réponse ?",a:ans,opts:["A","B","C","D","E"],
+    small:true,lab:"CM "+ans,h:h};
+}},
+cmSens:qcm(CM_SENS,"Sens des réponses"),
+cmPieges:yn(CM_PIEGES,"Pièges CM"),
 
-  /* --------- EXPRESSION --------- */
-  proverbes:qcm(PROVERBES,"Proverbes"),
-  proverbesR:qcm(PROVERBES,"Proverbes",true),
-  expressions:qcm(EXPRESSIONS,"Expressions"),
-  paronymes:qcm(PARONYMES,"Paronymes"),
-  pleonasmes:{kind:"qcm",tag:"Pléonasmes",items:PLEONASMES.map(function(p,i){
-    return {key:"PL"+i,q:'« <b>'+p[0]+'</b> » — quelle est la forme correcte ?',a:p[1],
-      h:"<b>Pléonasme</b> — le second terme répète une idée déjà contenue dans le premier."};
-  })},
-  figures:qcm(FIGURES,"Figures de style"),
-  fautes:{kind:"qcm",tag:"Fautes classiques",items:FAUTES.map(function(f,i){
-    return {key:"FT"+i,q:f.q,a:f.a,opts:[f.a].concat(f.o),h:f.h,small:true};
-  })},
+/* ---- EXPRESSION ---- */
+proverbes:qcm(PROVERBES,"Proverbes"),
+proverbesR:qcm(PROVERBES,"Proverbes",true),
+expressions:qcm(EXPRESSIONS,"Expressions"),
+paronymes:qcm(PARONYMES,"Paronymes"),
+pleonasmes:{kind:"qcm",tag:"Pléonasmes",items:PLEONASMES.map(function(p,i){
+  return {key:"PL"+i,q:'« <b>'+p[0]+'</b> » — quelle est la forme correcte ?',a:p[1],small:true,
+    h:"<b>Pléonasme</b> — le second terme répète une idée déjà contenue dans le premier."};
+})},
+figures:qcm(FIGURES,"Figures de style"),
+fautes:{kind:"qcm",tag:"Fautes classiques",items:FAUTES.map(function(f,i){
+  return {key:"FT"+i,q:f.q,a:f.a,opts:[f.a].concat(f.o),h:f.h,small:true};
+})},
+subjonctif:{kind:"qcm",tag:"Mode",items:SUBJONCTIF.map(function(p,i){
+  return {key:"SJ"+i,q:'« <b>'+p[0]+'</b> » est suivi de quel mode ?',a:p[1],opts:["Indicatif","Subjonctif"],small:true};
+})},
+prepos:{kind:"qcm",tag:"Constructions",items:PREPOS.map(function(p,i){
+  return {key:"PR"+i,q:'<b>'+p[0]+'</b> se construit comment ?',a:p[1],small:true};
+})},
 
-  /* --------- COMPRÉHENSION --------- */
-  vocab:qcm(VOCAB,"Vocabulaire"),
-  vocabR:qcm(VOCAB,"Vocabulaire",true),
-  connecteurs:qcm(CONNECTEURS,"Connecteurs")
+/* ---- COMPRÉHENSION ---- */
+vocab:qcm(VOCAB,"Vocabulaire"),
+vocabR:qcm(VOCAB,"Vocabulaire",true),
+connecteurs:qcm(CONNECTEURS,"Connecteurs"),
+prefixes:qcm(PREFIXES,"Préfixes")
 };
 
 var SUBTESTS=[
-  {id:"calcul",name:"Calcul",packs:["carres","cubes","puiss","fractions","tables","racines","premiers","formules","divisib"]},
-  {id:"logique",name:"Logique",packs:["rang","rangInv","decal","series","formelle"]},
-  {id:"raisonnement",name:"Raisonnement",packs:["sophismes","sophismesR","raisonnements","formelle"]},
-  {id:"condmin",name:"Cond. minimales",packs:["cmDrill","cmSens"]},
-  {id:"expression",name:"Expression",packs:["proverbes","proverbesR","expressions","paronymes","fautes","pleonasmes","figures"]},
-  {id:"comprehension",name:"Compréhension",packs:["vocab","vocabR","connecteurs","paronymes"]},
-  {id:"tout",name:"Tout",packs:null}
+ {id:"calcul",name:"Calcul",packs:["carres","cubes","puiss","fractions","tables","racines","premiers","formules","unites","pourcent","divisib"]},
+ {id:"logique",name:"Logique",packs:["rang","rangInv","decal","series","serietypes"]},
+ {id:"raisonnement",name:"Raisonnement",packs:["implic","quantif","formelle","sophismes","sophismesR","raisonnements","argum"]},
+ {id:"condmin",name:"Cond. minimales",packs:["cmDrill","cmSens","cmPieges"]},
+ {id:"expression",name:"Expression",packs:["proverbes","proverbesR","expressions","paronymes","fautes","subjonctif","prepos","pleonasmes","figures"]},
+ {id:"comprehension",name:"Compréhension",packs:["vocab","vocabR","connecteurs","prefixes","paronymes"]},
+ {id:"tout",name:"Tout",packs:null}
 ];
-var PACKNAMES={
-  carres:"Carrés",cubes:"Cubes",puiss:"Puissances",fractions:"Fractions ↔ %",tables:"Tables 11-19",
-  racines:"Racines",premiers:"Premiers",formules:"Formules",divisib:"Divisibilité",
-  rang:"Rang lettres",rangInv:"Rang inversé",decal:"Décalages",series:"Séries",formelle:"Logique formelle",
-  sophismes:"Sophismes",sophismesR:"Sophismes ↔",raisonnements:"Types de raisonnement",
-  cmDrill:"Réflexe A→E",cmSens:"Sens des réponses",
-  proverbes:"Proverbes",proverbesR:"Proverbes ↔",expressions:"Expressions",paronymes:"Paronymes",
-  fautes:"Fautes classiques",pleonasmes:"Pléonasmes",figures:"Figures de style",
-  vocab:"Vocabulaire",vocabR:"Vocabulaire ↔",connecteurs:"Connecteurs"
-};
+var PN={carres:"Carrés",cubes:"Cubes",puiss:"Puissances",fractions:"Fractions ↔ %",tables:"Tables 11-19",
+racines:"Racines",premiers:"Premiers",formules:"Formules",unites:"Unités",pourcent:"Pourcentages",divisib:"Divisibilité",
+rang:"Rang lettres",rangInv:"Rang inversé",decal:"Décalages",series:"Séries",serietypes:"Types de séries",
+implic:"Implications",quantif:"Quantificateurs",formelle:"Logique formelle",sophismes:"Sophismes",
+sophismesR:"Sophismes ↔",raisonnements:"Types de raisonnement",argum:"Affaiblir / renforcer",
+cmDrill:"Réflexe A→E",cmSens:"Sens des réponses",cmPieges:"Pièges classiques",
+proverbes:"Proverbes",proverbesR:"Proverbes ↔",expressions:"Expressions",paronymes:"Paronymes",
+fautes:"Fautes classiques",subjonctif:"Indicatif / subjonctif",prepos:"Constructions verbales",
+pleonasmes:"Pléonasmes",figures:"Figures de style",
+vocab:"Vocabulaire",vocabR:"Vocabulaire ↔",connecteurs:"Connecteurs",prefixes:"Préfixes et suffixes"};
 
-/* ============================ ENGINE ============================ */
-var S={sub:"calcul",pack:"__all__",hints:true,right:0,total:0,streak:0,times:[],misses:{},cur:null,answered:false,t0:0};
+/* ======================= ÉTAT ======================= */
+var S={view:"train",sub:"calcul",pack:"__all__",hints:true,auto:true,
+       right:0,total:0,streak:0,times:[],misses:{},cur:null,answered:false,t0:0,
+       hist:[],hi:-1,timer:null};
+
 var $=function(i){return document.getElementById(i);};
 var card=$("card"),tagEl=$("tag"),qEl=$("question"),memo=$("memo"),verdict=$("verdict"),
     input=$("answer"),chips=$("chips"),optsZone=$("optsZone"),inputZone=$("inputZone");
 
-var KEY="tm-reflexes-v1";
-function save(){ if(!window.storage)return; try{window.storage.set(KEY,JSON.stringify({m:S.misses}),false);}catch(e){} }
-function load(){
-  if(!window.storage){renderChips();return;}
-  try{ window.storage.get(KEY,false).then(function(r){
-    if(r&&r.value){var d=JSON.parse(r.value);S.misses=d.m||{};}
-    renderChips();
-  }).catch(function(){renderChips();}); }catch(e){renderChips();}
-}
+function persist(){store.set({m:S.misses});}
 
+/* ======================= GÉNÉRATION ======================= */
 function activePacks(){
   var st=SUBTESTS.filter(function(x){return x.id===S.sub;})[0];
-  var list = st.packs ? st.packs.slice() : Object.keys(PACKS);
-  if(S.pack!=="__all__" && list.indexOf(S.pack)>-1) list=[S.pack];
-  return list;
+  var l=st.packs?st.packs.slice():Object.keys(PACKS);
+  if(S.pack!=="__all__"&&l.indexOf(S.pack)>-1)l=[S.pack];
+  return l;
 }
-
 function buildOne(){
-  var id=pick(activePacks()), P=PACKS[id];
+  var id=pick(activePacks()),P=PACKS[id];
   if(P.kind==="gen"){
-    var it=P.gen();
-    it.tag=P.tag; it.packId=id;
-    it.type = it.opts ? "qcm" : "input";
-    if(it.opts){ it.options=shuffle(it.opts.slice()); }
+    var it=P.gen();it.tag=P.tag;it.type=it.opts?"qcm":"input";
+    if(it.opts)it.options=shuffle(it.opts.slice());
     return it;
   }
-  var item=pick(P.items);
-  var opts=item.opts;
+  var item=pick(P.items),opts=item.opts;
   if(!opts){
-    var pool=P.items.filter(function(x){return x.a!==item.a;});
-    var d=[];shuffle(pool);
-    for(var i=0;i<pool.length&&d.length<3;i++){ if(d.indexOf(pool[i].a)===-1) d.push(pool[i].a); }
+    var pool=P.items.filter(function(x){return x.a!==item.a;});shuffle(pool);
+    var d=[];for(var i=0;i<pool.length&&d.length<3;i++)if(d.indexOf(pool[i].a)===-1)d.push(pool[i].a);
     opts=[item.a].concat(d);
   }
-  return {key:P.tag+"|"+item.key,q:item.q,a:item.a,options:shuffle(opts.slice()),
-          tag:P.tag,type:"qcm",h:item.h,lab:item.lab||shorten(item.a),small:item.small,packId:id};
+  return {key:P.tag+"|"+item.key,q:item.q,a:item.a,options:shuffle(opts.slice()),tag:P.tag,type:"qcm",
+          h:item.h,lab:item.lab||shorten(item.a),small:item.small};
 }
-function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
-function shorten(s){s=String(s).replace(/<[^>]+>/g,"");return s.length>26?s.slice(0,24)+"…":s;}
-
-function next(){
+function drawQuestion(){
   var q=buildOne();
   var missed=Object.keys(S.misses).filter(function(k){return k.indexOf("|lab")===-1;});
   if(missed.length&&Math.random()<.4){
-    for(var i=0;i<14;i++){var c=buildOne();if(S.misses[c.key]){q=c;break;}}
+    for(var i=0;i<16;i++){var c=buildOne();if(S.misses[c.key]){q=c;break;}}
   }
+  return q;
+}
+
+/* ======================= RENDU ======================= */
+function clearTimer(){if(S.timer){clearTimeout(S.timer);S.timer=null;}}
+
+function showLive(){
+  clearTimer();
+  S.hi=-1;
+  var q=drawQuestion();
   S.cur=q;S.answered=false;S.t0=Date.now();
+  paint(q,null,false);
+  if(q.type==="input"){input.value="";input.focus();}
+  updateNav();
+}
+
+function paint(q,given,isReview){
+  card.className="card"+(isReview?" rev":"");
   tagEl.textContent=q.tag;
+  tagEl.className="tag"+(isReview?" revmark":"");
   qEl.innerHTML=q.q;
-  qEl.className="q"+(q.small||q.q.length>90?" small":"");
+  qEl.className="q"+((q.small||strip(q.q).length>85)?" small":"");
   memo.innerHTML=q.h||"";
-  memo.hidden=!S.hints||!q.h;
-  verdict.textContent="";verdict.className="verdict";card.className="card";
+  memo.hidden=(!S.hints&&!isReview&&given===undefined)||!q.h;
+  if(given===null&&!isReview){memo.hidden=!S.hints||!q.h;}
+  verdict.textContent="";verdict.className="verdict";
 
   if(q.type==="qcm"){
-    inputZone.hidden=true;optsZone.hidden=false;
-    optsZone.innerHTML="";
+    inputZone.hidden=true;optsZone.hidden=false;optsZone.innerHTML="";
     q.options.forEach(function(o,i){
       var b=document.createElement("button");
       b.className="opt";b.type="button";
-      b.innerHTML='<span class="lt">'+(i+1)+'</span><span>'+o+'</span>';
-      b.addEventListener("click",function(){grade(o,b);});
+      b.innerHTML='<span class="lt">'+(i+1)+'</span><span class="ot">'+o+'</span>';
+      if(given===null||given===undefined){ b.addEventListener("click",function(){grade(o,b);}); }
+      else{
+        b.disabled=true;
+        if(o===String(q.a))b.classList.add("good");
+        else if(o===given)b.classList.add("bad");
+      }
       optsZone.appendChild(b);
     });
   }else{
-    optsZone.hidden=true;optsZone.innerHTML="";inputZone.hidden=false;
-    input.value="";input.focus();
+    optsZone.hidden=true;optsZone.innerHTML="";
+    inputZone.hidden=isReview||given!==null&&given!==undefined?true:false;
+    if(given!==null&&given!==undefined)inputZone.hidden=true;
   }
 }
 
+function paintReview(h){
+  clearTimer();
+  paint(h.q,h.given===null?"":h.given,true);
+  memo.innerHTML=h.q.h||"";memo.hidden=!h.q.h;
+  inputZone.hidden=true;
+  if(h.ok){verdict.textContent="Exact · "+h.t.toFixed(1)+"s";verdict.className="verdict ok";card.className="card rev ok";}
+  else{verdict.innerHTML=(h.given===null?"Non répondu — réponse : ":"Ta réponse : "+strip(h.given)+" — réponse : ")+strip(h.q.a);
+       verdict.className="verdict ko";card.className="card rev ko";}
+  if(h.q.type==="input"){
+    optsZone.hidden=false;optsZone.innerHTML="";
+    var b=document.createElement("button");b.className="opt good";b.disabled=true;
+    b.innerHTML='<span class="lt">✓</span><span>'+strip(h.q.a)+'</span>';
+    optsZone.appendChild(b);
+  }
+  updateNav();
+}
+
+function updateNav(){
+  var lab=$("navlabel"),p=$("prev"),n=$("nextBtn");
+  if(S.hi>=0){
+    lab.innerHTML="Correction <b>"+(S.hi+1)+"</b> / "+S.hist.length;
+    p.disabled=S.hi<=0;n.disabled=false;
+  }else{
+    lab.innerHTML=S.answered?"<b>→</b> ou Entrée pour continuer":(S.hist.length?"Question en cours":"");
+    p.disabled=S.hist.length===0;n.disabled=false;
+  }
+}
+
+/* ======================= CORRECTION ======================= */
 function norm(s){return String(s).trim().toUpperCase().replace(/\s+/g,"").replace(/,/g,".").replace(/%/g,"").replace(/[''`]/g,"'");}
 function same(u,a,tol){
-  var fu=parseFloat(norm(u)),fa=parseFloat(norm(a));
-  if(!isNaN(fu)&&!isNaN(fa)&&/^-?[\d.]+$/.test(norm(u))&&/^-?[\d.]+$/.test(norm(a))){
-    return Math.abs(fu-fa)<=(tol||0.0001);
-  }
-  return norm(u)===norm(a);
+  var nu=norm(u),na=norm(a),fu=parseFloat(nu),fa=parseFloat(na);
+  if(!isNaN(fu)&&!isNaN(fa)&&/^-?[\d.]+$/.test(nu)&&/^-?[\d.]+$/.test(na))return Math.abs(fu-fa)<=(tol||1e-4);
+  return nu===na;
 }
 
 function grade(val,btn){
-  if(S.answered||!S.cur)return;
-  var q=S.cur,el=(Date.now()-S.t0)/1000;
-  var ok = val!==null && same(val,q.a,q.tol);
+  if(S.answered||!S.cur||S.hi>=0)return;
+  var q=S.cur,el=(Date.now()-S.t0)/1000,ok=val!==null&&same(val,q.a,q.tol);
   S.answered=true;S.total++;
 
   if(q.type==="qcm"){
     Array.prototype.forEach.call(optsZone.children,function(b){
       b.disabled=true;
-      var txt=b.lastChild.textContent;
-      if(txt===String(q.a)) b.classList.add("good");
-      else if(btn===b) b.classList.add("bad");
+      var txt=b.querySelector(".ot").textContent;
+      if(txt===String(q.a))b.classList.add("good");
+      else if(btn===b)b.classList.add("bad");
     });
+  }else{
+    inputZone.hidden=true;
+    optsZone.hidden=false;optsZone.innerHTML="";
+    var g=document.createElement("button");g.className="opt good";g.disabled=true;
+    g.innerHTML='<span class="lt">✓</span><span>'+strip(q.a)+'</span>';optsZone.appendChild(g);
   }
+
   if(ok){
     S.right++;S.streak++;S.times.push(el);
     if(S.misses[q.key]){S.misses[q.key]--;if(S.misses[q.key]<=0){delete S.misses[q.key];delete S.misses[q.key+"|lab"];}}
@@ -863,14 +1479,36 @@ function grade(val,btn){
     S.streak=0;
     S.misses[q.key]=(S.misses[q.key]||0)+1;
     S.misses[q.key+"|lab"]=q.lab||shorten(q.a);
-    verdict.innerHTML=(val===null?"Réponse : ":"Faux — ")+String(q.a).replace(/<[^>]+>/g,"");
+    verdict.innerHTML=(val===null?"Réponse : ":"Faux — ")+strip(q.a);
     verdict.className="verdict ko";card.className="card ko";
-    if(!S.hints&&q.h){memo.innerHTML=q.h;memo.hidden=false;}
+    if(q.h){memo.innerHTML=q.h;memo.hidden=false;}
   }
-  render();save();
-  setTimeout(next, ok?700:(q.type==="qcm"?2200:1700));
+
+  S.hist.push({q:q,given:val===null?null:String(val),ok:ok,t:el});
+  if(S.hist.length>60)S.hist.shift();
+
+  render();persist();updateNav();
+  if(S.auto&&ok){clearTimer();S.timer=setTimeout(showLive,750);}
 }
 
+function goPrev(){
+  clearTimer();
+  if(!S.hist.length)return;
+  if(S.hi<0)S.hi=S.hist.length-1; else if(S.hi>0)S.hi--;
+  paintReview(S.hist[S.hi]);
+}
+function goNext(){
+  clearTimer();
+  if(S.hi>=0){
+    if(S.hi<S.hist.length-1){S.hi++;paintReview(S.hist[S.hi]);}
+    else showLive();
+    return;
+  }
+  if(S.answered)showLive();
+  else if(S.cur&&S.cur.type==="input"&&input.value.trim())grade(input.value,null);
+}
+
+/* ======================= STATS ======================= */
 function render(){
   $("sScore").textContent=S.right+"/"+S.total;
   $("sStreak").textContent=S.streak+(S.streak>=5?" 🔥":"");
@@ -881,57 +1519,114 @@ function render(){
 function renderChips(){
   var k=Object.keys(S.misses).filter(function(x){return x.indexOf("|lab")===-1;});
   k.sort(function(a,b){return S.misses[b]-S.misses[a];});
-  if(!k.length){chips.innerHTML='<span class="empty">Rien pour l\'instant. Les erreurs reviendront plus souvent.</span>';return;}
-  chips.innerHTML=k.slice(0,22).map(function(x){
+  if(!k.length){chips.innerHTML='<span class="empty">Rien pour l\'instant. Les erreurs reviennent plus souvent.</span>';return;}
+  chips.innerHTML=k.slice(0,24).map(function(x){
     var l=S.misses[x+"|lab"]||x,n=S.misses[x];
     return '<span class="chip">'+l+(n>1?'<span>×'+n+'</span>':'')+'</span>';
   }).join("");
 }
 
-/* nav */
+/* ======================= NAV ======================= */
 function drawNav(){
   var sw=$("subtests");sw.innerHTML="";
   SUBTESTS.forEach(function(st){
+    if(S.view==="memo"&&st.id==="tout")return;
     var b=document.createElement("button");
-    b.className="st";b.textContent=st.name;b.dataset.id=st.id;
+    b.className="st";b.textContent=st.name;
     b.setAttribute("aria-pressed",String(st.id===S.sub));
-    b.addEventListener("click",function(){S.sub=st.id;S.pack="__all__";drawNav();next();});
+    b.addEventListener("click",function(){
+      S.sub=st.id;S.pack="__all__";drawNav();
+      if(S.view==="train")showLive(); else drawMemos();
+    });
     sw.appendChild(b);
   });
   var pw=$("packs");pw.innerHTML="";
+  if(S.view!=="train")return;
   var st=SUBTESTS.filter(function(x){return x.id===S.sub;})[0];
-  if(!st.packs){pw.innerHTML="";return;}
+  if(!st.packs)return;
   var all=document.createElement("button");
   all.className="pk";all.textContent="Mélangé";all.setAttribute("aria-pressed",String(S.pack==="__all__"));
-  all.addEventListener("click",function(){S.pack="__all__";drawNav();next();});
+  all.addEventListener("click",function(){S.pack="__all__";drawNav();showLive();});
   pw.appendChild(all);
   st.packs.forEach(function(p){
-    var b=document.createElement("button");
-    b.className="pk";b.textContent=PACKNAMES[p]||p;
+    var b=document.createElement("button");b.className="pk";b.textContent=PN[p]||p;
     b.setAttribute("aria-pressed",String(S.pack===p));
-    b.addEventListener("click",function(){S.pack=p;drawNav();next();});
+    b.addEventListener("click",function(){S.pack=p;drawNav();showLive();});
     pw.appendChild(b);
   });
 }
 
-/* events */
+function drawMemos(){
+  var wrap=$("memoBody");wrap.innerHTML="";
+  var secs=MEMOS[S.sub];
+  if(!secs){wrap.innerHTML='<p class="empty">Choisis un sous-test.</p>';return;}
+  secs.forEach(function(sec,idx){
+    var d=document.createElement("div");d.className="memosec"+(idx===0?" open":"");
+    var hd=document.createElement("button");hd.className="memohd";
+    hd.innerHTML='<span>'+sec.t+'</span><span class="arw">▶</span>';
+    hd.addEventListener("click",function(){d.classList.toggle("open");});
+    var bd=document.createElement("div");bd.className="memobd";
+    sec.l.forEach(function(line){
+      var i=line.indexOf(" | ");
+      var el=document.createElement("div");
+      if(i>-1){el.className="ml";el.innerHTML='<span class="t">'+line.slice(0,i)+'</span><span class="d">'+line.slice(i+3)+'</span>';}
+      else{el.className="ml plain";el.textContent=line;}
+      bd.appendChild(el);
+    });
+    d.appendChild(hd);d.appendChild(bd);wrap.appendChild(d);
+  });
+}
+
+function setView(v){
+  S.view=v;
+  $("vTrain").setAttribute("aria-pressed",String(v==="train"));
+  $("vMemo").setAttribute("aria-pressed",String(v==="memo"));
+  $("trainView").hidden=v!=="train";
+  $("memoView").hidden=v!=="memo";
+  if(v==="memo"&&S.sub==="tout")S.sub="calcul";
+  drawNav();
+  if(v==="memo")drawMemos(); else clearTimer();
+}
+
+/* ======================= ÉVÉNEMENTS ======================= */
 $("check").addEventListener("click",function(){if(!S.answered&&input.value.trim())grade(input.value,null);});
 $("reveal").addEventListener("click",function(){if(!S.answered)grade(null,null);});
-input.addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();if(!S.answered&&input.value.trim())grade(input.value,null);}});
+input.addEventListener("keydown",function(e){
+  if(e.key==="Enter"){e.preventDefault();
+    if(S.answered)showLive();
+    else if(input.value.trim())grade(input.value,null);}
+});
 document.addEventListener("keydown",function(e){
-  if(S.answered||!S.cur||S.cur.type!=="qcm")return;
+  if(S.view!=="train")return;
+  if(e.key==="ArrowLeft"){e.preventDefault();goPrev();return;}
+  if(e.key==="ArrowRight"){e.preventDefault();goNext();return;}
+  if(e.key==="Enter"&&document.activeElement!==input){e.preventDefault();goNext();return;}
+  if(S.answered||S.hi>=0||!S.cur||S.cur.type!=="qcm")return;
   var n=parseInt(e.key,10);
   if(n>=1&&n<=S.cur.options.length){var b=optsZone.children[n-1];if(b)b.click();}
 });
+$("prev").addEventListener("click",goPrev);
+$("nextBtn").addEventListener("click",goNext);
 $("hintBtn").addEventListener("click",function(){
   S.hints=!S.hints;this.setAttribute("aria-pressed",String(S.hints));
-  memo.hidden=!S.hints||!(S.cur&&S.cur.h);
+  if(!S.answered&&S.hi<0)memo.hidden=!S.hints||!(S.cur&&S.cur.h);
 });
+$("autoBtn").addEventListener("click",function(){
+  S.auto=!S.auto;this.setAttribute("aria-pressed",String(S.auto));
+  if(!S.auto)clearTimer();
+});
+$("vTrain").addEventListener("click",function(){setView("train");});
+$("vMemo").addEventListener("click",function(){setView("memo");});
 $("reset").addEventListener("click",function(){
-  S.right=S.total=S.streak=0;S.times=[];S.misses={};save();render();next();
+  S.right=S.total=S.streak=0;S.times=[];S.misses={};S.hist=[];S.hi=-1;
+  persist();render();showLive();
 });
 
-drawNav();load();render();next();
+/* ======================= INIT ======================= */
+store.get(function(d){
+  if(d&&d.m)S.misses=d.m;
+  drawNav();render();showLive();
+});
 })();
 </script>
 </body>
