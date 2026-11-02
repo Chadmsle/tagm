@@ -28,8 +28,9 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .tg:hover{border-color:var(--muted);color:var(--text)}
 .tg[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:rgba(91,141,239,.08)}
 
-.viewtabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px}
-@media (min-width:640px){.viewtabs{grid-template-columns:repeat(6,1fr)}}
+.viewtabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:14px}
+@media (max-width:380px){.viewtabs{grid-template-columns:repeat(3,1fr)}}
+.vt{overflow:hidden;text-overflow:ellipsis;font-size:11.5px;padding:10px 2px}
 .vt{flex:1;background:var(--surface);border:1px solid var(--line);color:var(--muted);font-family:inherit;
   font-size:12.5px;font-weight:500;padding:10px 4px;border-radius:10px;cursor:pointer;transition:.15s;white-space:nowrap}
 .vt[aria-pressed="true"]{background:var(--surface-2);border-color:#333844;color:var(--text);font-weight:700}
@@ -279,6 +280,59 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
 .datafoot{margin-top:30px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .datafoot .note{flex-basis:100%;font-size:11.5px}
 .datafoot .dstat{font-size:11.5px;color:var(--muted)}
+
+/* ================= FRANÇAIS & GÉOMÉTRIE ================= */
+.lx{font-size:14px;line-height:1.62;color:#C6CCD6}
+.lx h4{font-size:15px;color:var(--text);margin:18px 0 8px;font-weight:700}
+.lx h4:first-child{margin-top:2px}
+.lx p{margin:8px 0}
+.lx ul{margin:8px 0 8px 18px}
+.lx li{margin:5px 0}
+.lx b{color:var(--text);font-weight:600}
+.lx i{color:#DDE2EA}
+.lx .rule{background:rgba(91,141,239,.08);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:11px 14px;margin:12px 0}
+.lx .trap{background:rgba(232,162,58,.08);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:11px 14px;margin:12px 0}
+.lx .ex{font-family:"JetBrains Mono",monospace;font-size:12.5px;background:var(--surface-2);border-radius:8px;padding:9px 12px;margin:8px 0;color:#B6BDC9}
+table.lt{width:100%;border-collapse:collapse;margin:10px 0;font-size:13px}
+table.lt th{text-align:left;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;padding:7px 8px;border-bottom:1px solid var(--line)}
+table.lt td{padding:7px 8px;border-bottom:1px solid #1B1E24;vertical-align:top}
+table.lt td:first-child{color:var(--text);font-weight:500}
+.lsearch{width:100%;background:var(--surface-2);border:1px solid var(--line);color:var(--text);font-family:inherit;font-size:14px;padding:10px 12px;border-radius:10px;outline:none;margin:4px 0 8px}
+.lsearch:focus{border-color:var(--accent)}
+.grp{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);font-weight:700;margin:12px 0 7px}
+.grp:first-child{margin-top:0}
+.chips2{display:flex;flex-wrap:wrap;gap:6px}
+.qa-card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 18px 18px;position:relative;overflow:hidden}
+.qa-card.ok{border-color:rgba(63,182,139,.55)}
+.qa-card.ko{border-color:rgba(229,72,77,.55)}
+.qa-card.rev{background:#0F1116}
+.qa-top{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px}
+.qa-tag{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.qa-time{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--dim)}
+.qa-time.late{color:var(--warn)}
+.qa-q{font-size:clamp(16px,4vw,20px);font-weight:600;line-height:1.45;margin-bottom:4px}
+.qa-q .em{color:var(--accent)}
+.gf{width:100%;max-width:360px;height:auto;display:block;margin:12px auto 4px}
+.gf line,.gf circle,.gf polygon,.gf path,.gf rect,.gf ellipse{stroke:#8C94A3;fill:none;stroke-width:1.6;stroke-linejoin:round}
+.gf .hl{stroke:var(--accent)}
+.gf .dash{stroke-dasharray:5 4}
+.gf .sh{fill:rgba(91,141,239,.14)}
+.gf .bg{fill:var(--surface)}
+.gf .dot{fill:var(--text);stroke:none}
+.gf text{fill:var(--text);stroke:none;font-size:12px;font-family:"JetBrains Mono",monospace}
+.gf text.hl{fill:var(--accent)}
+.qa-sol{margin-top:14px;font-size:13.5px;line-height:1.6;color:#C6CCD6;background:var(--surface-2);border-left:3px solid var(--accent);border-radius:0 10px 10px 0;padding:11px 14px}
+.qa-sol b{color:var(--text)}
+.qa-fast{margin-top:8px;font-size:13px;line-height:1.55;color:#E7C894;background:rgba(232,162,58,.08);border-left:3px solid var(--warn);border-radius:0 10px 10px 0;padding:10px 14px}
+.qa-v{margin-top:12px;font-family:"JetBrains Mono",monospace;font-size:13px;min-height:18px}
+.qa-v.ok{color:var(--ok)}.qa-v.ko{color:var(--ko)}
+.pbar{height:7px;background:var(--surface-2);border-radius:999px;overflow:hidden;margin-top:6px}
+.pfill{height:100%;background:var(--accent);border-radius:999px}
+.prow{padding:10px 0;border-top:1px solid #1B1E24}
+.prow:first-child{border-top:none}
+.prow .ptop{display:flex;justify-content:space-between;gap:8px;font-size:13.5px}
+.prow .pm{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+.cont{width:100%;margin-top:10px}
 </style>
 </head>
 <body>
@@ -299,6 +353,8 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
     <button class="vt" data-view="dv" aria-pressed="false">Divisibilité</button>
     <button class="vt" data-view="lt" aria-pressed="false">Lettres</button>
     <button class="vt" data-view="fc" aria-pressed="false">Flashcards</button>
+    <button class="vt" data-view="fr" aria-pressed="false">Français</button>
+    <button class="vt" data-view="geo" aria-pressed="false">Géométrie</button>
   </div>
 
   <div class="subtests" id="subtests"></div>
@@ -356,13 +412,15 @@ header{display:flex;align-items:center;justify-content:space-between;margin-bott
   <div id="dvView" hidden></div>
   <div id="ltView" hidden></div>
   <div id="fcView" hidden></div>
+  <div id="frView" hidden></div>
+  <div id="geoView" hidden></div>
 
   <div class="datafoot">
     <button class="mini" id="dataExport">Exporter mes données</button>
     <button class="mini" id="dataImport">Importer</button>
     <input type="file" id="dataFile" accept="application/json,.json" hidden>
     <span class="dstat" id="dataStatus"></span>
-    <div class="note">Sauvegarde complète (parties, records, cartes, erreurs) dans un fichier .json, à réimporter si le navigateur efface ses données.</div>
+    <div class="note">Sauvegarde complète (parties, records, cartes, erreurs, progrès en français et en géométrie) dans un fichier .json, à réimporter si le navigateur efface ses données.</div>
   </div>
 
 </div>
@@ -1748,7 +1806,7 @@ function setView(v){
   Array.prototype.forEach.call(document.querySelectorAll(".vt[data-view]"),function(b){b.setAttribute("aria-pressed",String(b.dataset.view===v));});
   $("trainView").hidden=v!=="train";
   $("memoView").hidden=v!=="memo";
-  ["fm","dv","lt","fc"].forEach(function(id){var el=$(id+"View");if(el)el.hidden=v!==id;});
+  ["fm","dv","lt","fc","fr","geo"].forEach(function(id){var el=$(id+"View");if(el)el.hidden=v!==id;});
   $("subtests").hidden=!(v==="train"||v==="memo");
   if(v==="memo"&&S.sub==="tout")S.sub="calcul";
   if(v==="train"||v==="memo")drawNav();
@@ -2699,7 +2757,7 @@ document.addEventListener("visibilitychange",function(){if(document.hidden)save(
   function status(t,col){st.textContent=t;st.style.color=col||"";}
   ex.addEventListener("click",function(){
     var refl=null;try{refl=localStorage.getItem(RKEY);}catch(e){}
-    var payload={app:"tagemage-reflexes",version:1,exportedAt:new Date().toISOString(),data:D,reflexes:refl};
+    var payload={app:"tagemage-reflexes",version:1,exportedAt:new Date().toISOString(),data:D,reflexes:refl,frgeo:(function(){try{return localStorage.getItem("tm-frgeo-v1");}catch(e){return null;}})()};
     try{
       var blob=new Blob([JSON.stringify(payload)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a"),d=new Date();
       a.href=url;a.download="tagemage-sauvegarde-"+d.getFullYear()+"-"+p2(d.getMonth()+1)+"-"+p2(d.getDate())+".json";
@@ -2720,6 +2778,7 @@ document.addEventListener("visibilitychange",function(){if(document.hidden)save(
       if(!window.confirm("Remplacer tes données actuelles par celles du fichier ?\n"+nd.games.length+" parties · "+nd.cards.length+" cartes"))return;
       D=nd;save();
       try{if(typeof obj.reflexes==="string")localStorage.setItem(RKEY,obj.reflexes);}catch(e){}
+      try{if(typeof obj.frgeo==="string")localStorage.setItem("tm-frgeo-v1",obj.frgeo);}catch(e){}
       status("Import réussi. Rechargement…","var(--ok)");
       setTimeout(function(){location.reload();},600);
     };
@@ -2734,6 +2793,1995 @@ document.addEventListener("visibilitychange",function(){if(document.hidden)save(
 window.TMX_test={GEN:GEN,fmFinal:fmFinal,fmCheck:fmCheck,dvTruth:dvTruth,dvGen:dvGen,ltGen:ltGen,subOf:subOf,fcParse:fcParse,
   FRACS:FRACS,DECS:DECS,getD:function(){return D;},getG:function(){return G;},finish:finish,MODES:MODES};
 })();
+</script>
+<script>
+window.FRG=window.FRG||{};FRG.L=FRG.L||{};
+FRG.L.modes=`
+<h4>Le subjonctif — le mode du non-réel</h4>
+<p>On ne constate pas un fait : on le <b>souhaite, craint, doute, exige ou envisage</b>.</p>
+<ul>
+<li><b>Volonté / ordre</b> : vouloir, souhaiter, exiger, ordonner, permettre, défendre que… → <i>Je veux qu'il <b>vienne</b>.</i></li>
+<li><b>Sentiment</b> : craindre, regretter, se réjouir, être content, avoir peur que… → <i>Je regrette qu'il <b>soit</b> parti.</i></li>
+<li><b>Doute, négation d'opinion</b> : douter que, nier que, ne pas croire / ne pas penser que, croire-t-il que… → <i>Je ne crois pas qu'il <b>ait</b> raison.</i></li>
+<li><b>Tournures impersonnelles</b> : il faut que, il est nécessaire / possible / important / dommage / temps que, il semble que, il vaut mieux que.</li>
+<li><b>Conjonctions</b> : bien que, quoique, avant que, sans que, pour que, afin que, à moins que, pourvu que, jusqu'à ce que, de peur que, de crainte que, en attendant que, à condition que, non que, encore que, supposé que.</li>
+<li><b>Relative après un superlatif</b> ou le seul, le premier, le dernier, l'unique : <i>C'est le meilleur film que j'<b>aie</b> vu.</i></li>
+<li><b>Indéfinis</b> : qui que, quoi que, quel que, où que → <i>Où que tu <b>ailles</b>…</i></li>
+<li><b>En principale</b> (ordre à la 3ᵉ personne, souhait) : <i>Qu'il <b>entre</b> ! Vive la République ! Ainsi <b>soit</b>-il.</i></li>
+</ul>
+<div class="rule"><b>Restent à l'indicatif</b> : après que, dès que, pendant que, parce que, puisque, alors que, tandis que, depuis que, si bien que, de sorte que (conséquence réelle) · il est probable / certain / sûr que · il me semble que · espérer que · penser / croire que (forme affirmative).</div>
+<div class="trap"><b>Formes piégées</b> : que j'<b>aie</b>, qu'il <b>ait</b> (jamais « aye ») · que nous <b>ayons</b>, que nous <b>soyons</b> (jamais « ayions, soyions ») · que nous <b>croyions</b>, <b>voyions</b>, <b>riions</b> (le i du subjonctif s'ajoute) · que je <b>fasse</b>, <b>puisse</b>, <b>sache</b>, <b>veuille</b>, qu'il <b>aille</b>.<br>Subjonctif imparfait : qu'il <b>fût</b>, qu'il <b>eût</b> (accent circonflexe) ≠ passé simple il <b>fut</b>, il <b>eut</b>.</div>
+
+<h4>Le conditionnel — l'hypothèse et la nuance</h4>
+<ul>
+<li><b>Conséquence d'une hypothèse</b> : <i>Si j'avais le temps, je <b>viendrais</b>.</i></li>
+<li><b>Politesse, atténuation</b> : <i>Je <b>voudrais</b>… Je vous <b>saurais</b> gré de…</i></li>
+<li><b>Information non vérifiée</b> : <i>Le suspect <b>aurait</b> fui à l'étranger.</i></li>
+<li><b>Futur dans le passé</b> : <i>Il a dit qu'il <b>viendrait</b>.</i></li>
+<li><b>Souhait, imaginaire</b> : <i>On <b>dirait</b> un château.</i></li>
+</ul>
+<p>Formation : radical du futur + terminaisons de l'imparfait → je chanterais, nous chanterions.</p>
+<div class="rule"><b>Système en « si »</b><br>si + présent → futur : <i>Si tu viens, je serai content.</i><br>si + imparfait → conditionnel présent : <i>Si tu venais, je serais content.</i><br>si + plus-que-parfait → conditionnel passé : <i>Si tu étais venu, j'aurais été content.</i></div>
+<div class="trap"><b>Jamais de conditionnel après le « si » de condition</b> : « si j'aurais su » est fautif. (Après un « si » interrogatif, c'est permis : <i>Je me demande s'il viendrait.</i>)<br><b>Futur ou conditionnel à la 1ʳᵉ personne ?</b> je serai / je serais s'entendent pareil. Remplace par « nous » : nous serons (futur, certitude) / nous serions (conditionnel, hypothèse).</div>
+
+<h4>L'impératif — l'ordre, le conseil, la défense</h4>
+<p>Trois personnes seulement (tu, nous, vous), sans sujet exprimé.</p>
+<ul>
+<li>Verbes en <b>-er</b>, et <b>aller, ouvrir, offrir, cueillir, souffrir</b> : pas de s à la 2ᵉ personne → <i>mange, va, ouvre, offre</i>.</li>
+<li>Sauf devant <b>en</b> ou <b>y</b> compléments du verbe : <i>manges-en, vas-y, penses-y</i>. Mais <i>va en chercher</i> (en complète chercher, pas va).</li>
+<li>Irréguliers : <b>sois</b>, soyons, soyez · <b>aie</b>, ayons, ayez · <b>sache</b>, sachons, sachez · <b>veuille</b>, veuillez.</li>
+<li>Pronoms reliés par des traits d'union, COD avant COI : <i>dis-le-moi, donne-le-lui, prends-en</i>. Au négatif, ordre normal : <i>ne me le dis pas</i>.</li>
+<li><i>Donne-m'en</i> (jamais « donne-moi-z-en »).</li>
+</ul>`;
+
+FRG.L.quelque=`
+<h4>Quel que (en deux mots)</h4>
+<p>Suivi du verbe <b>être</b> (ou devoir être, pouvoir être) au subjonctif. <b>Quel</b> s'accorde avec le sujet du verbe.</p>
+<div class="ex">Quel que soit le prix · Quelle que soit l'heure · Quels que soient les risques · Quelles que soient vos raisons</div>
+<h4>Quelque (en un mot)</h4>
+<ul>
+<li><b>Devant un nom</b> = déterminant, il s'accorde : <i>quelques amis, quelque temps, quelques efforts que vous fassiez</i>.</li>
+<li><b>Devant un adjectif ou un adverbe</b> = « si, aussi » : adverbe <b>invariable</b> → <i>quelque habiles qu'ils soient, quelque bien qu'il parle</i>.</li>
+<li><b>Devant un nombre</b> = « environ » : <b>invariable</b> → <i>quelque cinquante personnes</i>.</li>
+</ul>
+<div class="trap"><b>Quelquefois</b> = parfois · <b>quelques fois</b> = plusieurs fois.</div>
+<h4>Quoique ou quoi que</h4>
+<ul>
+<li><b>Quoique</b> (un mot) = <b>bien que</b>. Test : remplace par « bien que ». → <i>Quoiqu'il soit tard, il travaille.</i></li>
+<li><b>Quoi que</b> (deux mots) = <b>quelle que soit la chose que / qui</b>. → <i>Quoi qu'il dise, je partirai. Quoi qu'il en soit. Quoi que ce soit.</i></li>
+</ul>
+<p>Les deux sont suivis du <b>subjonctif</b>.</p>`;
+
+FRG.L.pp=`
+<h4>1. Avec être → accord avec le sujet</h4>
+<div class="ex">Elles sont parties · Les lettres sont arrivées · Vous êtes venue (politesse, une femme)</div>
+<h4>2. Avec avoir → accord avec le COD seulement s'il est placé AVANT</h4>
+<p>Pose la question <b>« quoi ? / qui ? »</b> après le verbe.</p>
+<div class="ex">La lettre <b>que</b> j'ai écrit<b>e</b> (COD que = la lettre, avant) · J'ai écrit <b>une lettre</b> (COD après → invariable) · Je <b>les</b> ai vu<b>s</b> · Quelles fleurs as-tu cueilli<b>es</b> ? · Elles ont dormi (pas de COD → invariable)</div>
+<div class="trap"><b>Toujours invariables avec avoir</b> :<br>
+• COD = <b>en</b> : <i>Des pommes, j'en ai mangé.</i><br>
+• Verbes impersonnels : <i>les chaleurs qu'il a fait</i>.<br>
+• <b>Fait + infinitif</b> : <i>je les ai fait venir</i>.<br>
+• <b>Laissé + infinitif</b> : invariable depuis 1990 (<i>je les ai laissé partir</i>).<br>
+• Coûter, valoir, peser, mesurer, durer, vivre <b>au sens propre</b> : <i>les 100 € que ce livre m'a coûté</i>. Au sens figuré, accord : <i>les efforts que ce travail m'a coûtés</i>.<br>
+• Dû, pu, voulu, cru avec un infinitif sous-entendu : <i>il a fait tous les efforts qu'il a pu</i>.</div>
+<p><b>Participe suivi d'un infinitif</b> : accord si le COD fait l'action de l'infinitif. <i>Les chanteuses que j'ai entendu<b>es</b> chanter</i> (elles chantent) · <i>les chansons que j'ai entendu chanter</i> (les chansons ne chantent pas).</p>
+<h4>3. Verbes pronominaux → auxiliaire être, mais règle de avoir</h4>
+<ul>
+<li><b>Essentiellement pronominaux</b> (n'existent qu'avec « se » : s'évanouir, s'enfuir, se souvenir, s'absenter, s'abstenir, se méfier, se repentir, s'emparer, s'écrier, se moquer) → <b>accord avec le sujet</b> : <i>elles se sont évanouies</i>. Exception : <b>s'arroger</b> suit avoir (<i>ils se sont arrogé des droits</i>).</li>
+<li><b>Sens passif</b> → accord avec le sujet : <i>ces maisons se sont bien vendues</i>.</li>
+<li><b>Réfléchis et réciproques</b> → cherche le COD :<br>
+– « se » est COD → accord : <i>elles se sont lavées</i> (laver qui ? se).<br>
+– « se » est COI (verbe construit avec <b>à</b>) → invariable : <i>ils se sont <b>parlé</b>, elles se sont <b>succédé</b>, ils se sont <b>nui</b>, elles se sont <b>plu</b>, ils se sont <b>souri</b>, elles se sont <b>téléphoné</b>, elles se sont <b>écrit</b>, ils se sont <b>menti</b>, elles se sont <b>ressemblé</b></i>.<br>
+– COD placé après → invariable : <i>elle s'est lavé <b>les mains</b></i>. COD avant → accord avec lui : <i>les mains qu'elle s'est lavées</i>.</li>
+</ul>
+<div class="trap"><b>Toujours invariables</b> : se rendre compte (<i>elles se sont rendu compte</i>), se plaire, se complaire, se déplaire, se rire, se faire + infinitif (<i>elle s'est fait couper les cheveux</i>), s'imaginer / se permettre suivis de que ou de (<i>elle s'est permis de répondre</i>).</div>`;
+
+FRG.L.cense=`
+<h4>Censé ou sensé</h4>
+<ul>
+<li><b>Censé</b> = <b>supposé, considéré comme</b>, souvent suivi d'un infinitif → <i>Il est censé arriver à midi. Nul n'est censé ignorer la loi.</i></li>
+<li><b>Sensé</b> = <b>qui a du bon sens</b> → <i>Une remarque sensée. Un homme sensé.</i> (contraire : insensé)</li>
+</ul>
+<div class="rule"><b>Test</b> : si tu peux remplacer par « supposé », écris <b>censé</b> avec un c.</div>
+<h4>Les autres homophones qui tombent</h4>
+<ul>
+<li><b>Davantage</b> = plus (<i>travailler davantage</i>) · <b>d'avantage</b> = de profit (<i>je n'en tire pas d'avantage</i>).</li>
+<li><b>Or</b> = conjonction de coordination (<i>or, à ce moment-là…</i>) · <b>hors</b> = préposition, à l'extérieur de (<i>hors du jardin, hors de prix</i>).</li>
+<li><b>Quant à</b> = en ce qui concerne · <b>tant</b> = tellement · <b>qu'en</b> = que + en.</li>
+<li><b>Plutôt</b> = de préférence · <b>plus tôt</b> = contraire de plus tard.</li>
+<li><b>Près de</b> = proche de, sur le point de · <b>prêt à</b> = préparé à. (<i>Il est près de partir</i> = sur le point · <i>il est prêt à partir</i> = préparé.)</li>
+<li><b>Voire</b> = et même (jamais « voire même ») · <b>voir</b> = percevoir.</li>
+<li><b>Parce que</b> = car · <b>par ce que</b> = par la chose que (<i>surpris par ce que j'ai vu</i>).</li>
+<li><b>Sitôt</b> = aussitôt · <b>si tôt</b> = de si bonne heure. <b>Bientôt</b> = dans peu de temps · <b>bien tôt</b> = très tôt.</li>
+<li><b>Peut-être</b> = probablement · <b>peut être</b> = pourrait être.</li>
+<li><b>Çà</b> (adverbe : çà et là) · <b>ça</b> (cela).</li>
+<li><b>Censé, sensé · cession (vente) / session (séance) · tâche (travail) / tache (salissure) · à l'envi (à qui mieux mieux) / avoir envie</b>.</li>
+</ul>`;
+
+window.FRG=window.FRG||{};FRG.L=FRG.L||{};
+FRG.L.nature=`
+<div class="rule"><b>Le test qui règle 90 % des cas — regarde ce qui suit le mot</b><br>
+• Un <b>verbe conjugué</b> → conjonction de subordination (<i>bien qu'il <u>pleuve</u></i>).<br>
+• Un <b>nom, un pronom ou un infinitif</b> → préposition (<i>malgré <u>la pluie</u>, avant de <u>partir</u></i>).<br>
+• Le mot <b>se déplace</b> et peut suivre « et » ou « mais » → adverbe (<i>il a <u>pourtant</u> réussi · et pourtant</i>).<br>
+• Il relie deux éléments de <b>même nature</b> et reste en tête → conjonction de coordination.</div>
+<h4>Conjonctions de coordination — les 7 seules</h4>
+<p><b>mais, ou, et, donc, or, ni, car</b> (« Mais où est donc Ornicar ? »). Elles relient deux mots, groupes ou propositions de même fonction, sans subordonner. Seul <b>donc</b> peut se déplacer.</p>
+<div class="trap">« Car en effet » et « mais cependant » sont des pléonasmes. <b>Car</b> (coordination) ≠ <b>parce que</b> (subordination) : on ne commence pas une phrase par « Car ». <b>Or</b> introduit un fait nouveau qui fait pivoter le raisonnement ; <b>hors</b> est une préposition.</div>
+<h4>Conjonctions de subordination</h4>
+<p><b>que, quand, comme, si, lorsque, puisque, quoique</b> et les locutions conjonctives : parce que, bien que, afin que, pour que, alors que, tandis que, dès que, avant que, après que, sans que, à moins que, pendant que, de sorte que. Elles introduisent une proposition subordonnée avec un verbe conjugué.</p>
+<h4>Prépositions</h4>
+<p>à, de, par, pour, en, dans, avec, sans, sous, sur, chez, entre, vers, contre, malgré, selon, durant, pendant, hors, sauf, envers, dès, depuis, parmi, outre, hormis, excepté, vu.<br>
+Locutions prépositives : grâce à, à cause de, au lieu de, en dépit de, à l'instar de, au vu de, en vue de, faute de, quant à, afin de, avant de, loin de, au-delà de, à l'égard de.</p>
+<div class="trap">Même mot, deux natures : <b>avant</b> (prép.) / <b>avant que</b> (conj.) · <b>pendant</b> / <b>pendant que</b> · <b>dès</b> / <b>dès que</b> · <b>malgré</b> (prép.) / <b>bien que</b> (conj.) → d'où l'interdiction de « malgré que ».</div>
+<h4>Adverbes</h4>
+<p>Invariables ; ils modifient un verbe, un adjectif, un autre adverbe ou toute la phrase : cependant, pourtant, toutefois, néanmoins, puis, ensuite, alors, aussi, ainsi, enfin, d'ailleurs, certes, très, bien, vite, jamais.<br>
+Locutions adverbiales : en effet, tout à fait, à peu près, peu à peu, d'ores et déjà, tout de suite, au fur et à mesure.</p>
+<div class="trap"><b>Puis</b>, <b>cependant</b>, <b>pourtant</b>, <b>ainsi</b>, <b>toutefois</b> sont des <b>adverbes</b>, pas des conjonctions. La preuve : on peut dire « et puis », « mais pourtant ».</div>
+<h4>Locution</h4>
+<p>Groupe de mots figé qui fonctionne comme un seul mot : locution <b>conjonctive</b> (parce que), <b>prépositive</b> (grâce à), <b>adverbiale</b> (en effet), <b>verbale</b> (avoir lieu).</p>`;
+
+FRG.L.vue=`
+<h4>Les expressions autour de « voir » et « vue »</h4>
+<ul>
+<li><b>Au vu de</b> = compte tenu de, en considérant → <i>Au vu des résultats, le projet est abandonné.</i></li>
+<li><b>Au vu et au su de tous</b> = ouvertement, sans se cacher.</li>
+<li><b>En vue de</b> = dans le but de → <i>Il révise en vue de l'examen.</i></li>
+<li><b>Être en vue</b> = être visible, en passe de devenir célèbre.</li>
+<li><b>À la vue de</b> = en voyant → <i>À la vue du sang, il s'évanouit.</i></li>
+<li><b>À vue d'œil</b> = rapidement, de façon visible → <i>il grandit à vue d'œil.</i></li>
+<li><b>À première vue</b> = au premier abord.</li>
+<li><b>Vu</b> devant le nom = préposition, <b>invariable</b> → <i>vu les circonstances</i>. <b>Vu que</b> = étant donné que (+ indicatif).</li>
+<li><b>Avoir en vue</b> = projeter · <b>perdre de vue</b> · <b>garder à vue</b> · <b>de visu</b> = pour l'avoir vu soi-même · <b>ni vu ni connu</b>.</li>
+</ul>
+<div class="rule"><b>Participes invariables placés AVANT le nom</b> (ils jouent le rôle de prépositions), variables placés après :<br>
+vu, excepté, passé, attendu, y compris, non compris, ci-joint, ci-inclus.<br>
+<i>Excepté les enfants · les enfants exceptés · passé dix heures · dix heures passées · ci-joint la facture · la facture ci-jointe.</i></div>
+<h4>Locutions figées souvent déformées</h4>
+<ul>
+<li><b>Au temps pour moi</b> (et non autant pour moi) = je me suis trompé.</li>
+<li><b>Par acquit de conscience</b> (et non acquis) = pour être en paix avec soi-même.</li>
+<li><b>À l'envi</b> = à qui mieux mieux, à l'excès ≠ avoir envie.</li>
+<li><b>À l'instar de</b> = à l'exemple de, comme.</li>
+<li><b>De concert</b> = d'un commun accord · <b>de conserve</b> = ensemble, côte à côte.</li>
+<li><b>Faire long feu</b> = échouer, rater (et non durer longtemps). <b>Ne pas faire long feu</b> = ne pas durer.</li>
+<li><b>Quand bien même</b> (et non tant bien même) = même si.</li>
+<li><b>En l'occurrence</b> = dans le cas présent · <b>d'ores et déjà</b> = dès maintenant.</li>
+<li><b>Sens dessus dessous</b> (et non sans dessus dessous).</li>
+<li><b>Tout à coup</b> = soudain · <b>tout d'un coup</b> = en une seule fois.</li>
+</ul>`;
+
+FRG.L.cant=`
+<h4>Participe présent ou adjectif verbal ?</h4>
+<ul>
+<li><b>Participe présent</b> = une <b>action</b>. Invariable. Il peut avoir un complément, être nié, ou être précédé de « en ». → <i><b>Convainquant</b> son patron, il a obtenu une augmentation.</i></li>
+<li><b>Adjectif verbal</b> = une <b>qualité</b>. Il s'accorde et peut être précédé de « très ». → <i>Des arguments très <b>convaincants</b>.</i></li>
+</ul>
+<div class="rule"><b>Astuce du livre</b> : si tu peux mettre la phrase au féminin en prononçant « convaincante », c'est l'adjectif → <b>-cant</b>.</div>
+<h4>Les paires dont l'orthographe change</h4>
+<table class="lt"><tr><th>Participe présent (action)</th><th>Adjectif (qualité)</th></tr>
+<tr><td>convainquant</td><td>convaincant</td></tr><tr><td>provoquant</td><td>provocant</td></tr>
+<tr><td>suffoquant</td><td>suffocant</td></tr><tr><td>communiquant</td><td>communicant</td></tr>
+<tr><td>vaquant</td><td>vacant</td></tr><tr><td>fatiguant</td><td>fatigant</td></tr>
+<tr><td>intriguant</td><td>intrigant</td></tr><tr><td>naviguant</td><td>navigant</td></tr>
+<tr><td>extravaguant</td><td>extravagant</td></tr><tr><td>différant</td><td>différent</td></tr>
+<tr><td>excellant</td><td>excellent</td></tr><tr><td>négligeant</td><td>négligent</td></tr>
+<tr><td>précédant</td><td>précédent</td></tr><tr><td>influant</td><td>influent</td></tr>
+<tr><td>équivalant</td><td>équivalent</td></tr><tr><td>divergeant</td><td>divergent</td></tr>
+<tr><td>convergeant</td><td>convergent</td></tr><tr><td>adhérant</td><td>adhérent</td></tr>
+<tr><td>émergeant</td><td>émergent</td></tr><tr><td>somnolant</td><td>somnolent</td></tr>
+<tr><td>coïncidant</td><td>coïncident</td></tr></table>
+<div class="trap">-quant / -guant / -ant → participe présent, il suit la conjugaison du verbe (nous convainquons, nous fatiguons, nous différons).<br>-cant / -gant / -ent → adjectif (ou nom : un fabricant, un président, un résident).</div>`;
+
+FRG.L.syntaxe=`
+<h4>Fautes de syntaxe à repérer</h4>
+<table class="lt"><tr><th>On ne dit pas</th><th>On dit</th></tr>
+<tr><td>Malgré qu'il pleuve</td><td>Malgré la pluie · Bien qu'il pleuve</td></tr>
+<tr><td>Le système vise à nous en faire assimiler le moins</td><td>… le moins <b>possible</b></td></tr>
+<tr><td>On entend pas les chants</td><td>On <b>n'</b>entend pas (le « ne » ne s'omet pas)</td></tr>
+<tr><td>Sans moi, ils auraient demeuré à la maison</td><td>Ils <b>seraient demeurés</b> (demeurer = rester → être)</td></tr>
+<tr><td>L'enfant débutera l'école</td><td>L'enfant <b>commencera</b> l'école (débuter est intransitif)</td></tr>
+<tr><td>Le système que je parle</td><td>Le système <b>dont</b> je parle</td></tr>
+<tr><td>Je vais au coiffeur</td><td>Je vais <b>chez</b> le coiffeur</td></tr>
+<tr><td>Si vous m'éliriez</td><td>Si vous m'<b>élisiez</b> (imparfait après si)</td></tr>
+<tr><td>Nous serons capables de s'en servir</td><td>… de <b>nous</b> en servir (pronom accordé au sujet)</td></tr>
+<tr><td>C'est de cela dont je parle</td><td>C'est de cela <b>que</b> je parle · C'est cela dont je parle</td></tr>
+<tr><td>Après qu'il soit parti</td><td>Après qu'il <b>est</b> parti</td></tr>
+<tr><td>Je m'en rappelle</td><td>Je me le rappelle · Je m'en souviens</td></tr>
+<tr><td>Pallier à un manque</td><td>Pallier un manque</td></tr>
+<tr><td>Se baser sur</td><td>Se fonder sur</td></tr>
+<tr><td>Partir à Paris (soutenu)</td><td>Partir pour Paris</td></tr>
+<tr><td>Pareil que</td><td>Pareil à · identique à</td></tr>
+<tr><td>Se fâcher après quelqu'un</td><td>Se fâcher contre quelqu'un</td></tr>
+<tr><td>De façon à ce que</td><td>De façon que · de manière que</td></tr>
+<tr><td>Comme même</td><td>Quand même</td></tr></table>`;
+
+FRG.L.ortho=`
+<h4>Règles d'orthographe du livre</h4>
+<ul>
+<li><b>Apercevoir</b> : un seul p (je n'aperçois qu'un p) · <b>chuter</b> : un seul t · <b>nourrir</b> : deux r (on se nourrit plusieurs fois) · <b>mourir</b> : un seul r (on ne meurt qu'une fois).</li>
+<li><b>Adverbes en -ment</b> : adjectif en -ent → <b>-emment</b> (évident → évidemment, prudent → prudemment) ; adjectif en -ant → <b>-amment</b> (élégant → élégamment, brillant → brillamment). Les deux se prononcent [amã]. Exception : lent → lentement.</li>
+<li><b>Vingt</b> et <b>cent</b> prennent un s quand ils sont multipliés et non suivis d'un autre nombre : quatre-vingts, deux cents · mais quatre-vingt-trois, deux cent trois. <b>Mille</b> est toujours invariable.</li>
+<li>-quant / -cant : voir la fiche convaincant.</li>
+</ul>
+<p>Les mots difficiles du livre sont dans le QCM « Orthographe ». Lettres piège : dilemme (mm), hypoténuse (pas de h après t), parallélépipède, rhododendron, ornithorynque, staphylocoque, poliomyélite, susurrer, trottinette, toboggan, exorbitant (pas de h), quinconce, mnémotechnique, aéroport, rémunérer, infarctus.</p>`;
+
+FRG.L.pluriel=`
+<h4>Noms : pluriels irréguliers</h4>
+<table class="lt"><tr><th>Terminaison</th><th>Règle</th><th>Exceptions</th></tr>
+<tr><td>-eu, -au, -eau</td><td>+ x (cheveux, carreaux)</td><td>landau, sarrau, pneu, bleu, émeu → s</td></tr>
+<tr><td>-ou</td><td>+ s (écrous, mérous)</td><td>bijou, caillou, chou, genou, hibou, joujou, pou → x</td></tr>
+<tr><td>-s, -x, -z</td><td>invariables (des gaz)</td><td>—</td></tr>
+<tr><td>-al</td><td>-aux (animaux, chevaux)</td><td>bal, carnaval, chacal, festival, récital, régal, cal, serval → s</td></tr>
+<tr><td>-ail</td><td>-ails (portails, éventails)</td><td>bail, corail, émail, gemmail, soupirail, travail, vantail, vitrail → aux</td></tr></table>
+<p>Irréguliers : monsieur → messieurs, madame → mesdames, mademoiselle → mesdemoiselles, ciel → cieux, aïeul → aïeux, ail → aulx, œil → yeux.</p>
+<h4>Noms composés</h4>
+<ul>
+<li><b>Verbe + nom</b> : le verbe reste invariable, le nom suit le sens → des chasse-neige, des tire-bouchons. Exception : des touche-à-tout.</li>
+<li><b>Nom + nom</b> : les deux s'accordent → des choux-fleurs. Sauf si le 2ᵉ est complément : des timbres-poste, des pauses-café.</li>
+<li><b>Nom + adjectif / adjectif + nom</b> : les deux → des grands-mères, des coffres-forts. Sauf 1er élément en -o : des micro-ondes.</li>
+<li><b>Adverbe + nom</b> : seul le nom → des en-têtes, des arrière-pensées.</li>
+<li><b>Verbe + verbe</b> : invariable → des savoir-faire, des laissez-passer.</li>
+</ul>
+<h4>Adjectifs</h4>
+<ul>
+<li>Plusieurs noms de même genre → pluriel de ce genre. Genres différents → <b>masculin pluriel</b> : <i>un écrit et une auteure intéressants</i>.</li>
+<li><b>Couleurs</b> : un nom employé comme couleur reste invariable (des pantalons <b>marron</b>, des yeux <b>noisette</b>, des robes <b>orange</b>), sauf <b>rose, mauve, pourpre, écarlate, fauve</b>. Couleur composée : invariable (des yeux bleu clair).</li>
+<li><b>Demi</b> avant le nom : invariable (une demi-heure) · après : accord en genre (deux heures et demie).</li>
+</ul>`;
+
+FRG.L.genre=`
+<h4>Terminaisons</h4>
+<ul>
+<li><b>Masculins</b> : -age, -al, -et, -ier, -isme, -teur.</li>
+<li><b>Féminins</b> : -ade, -ance, -ation, -ence, -esse, -ette, -euse, -té, -ude.</li>
+<li>Masculins en <b>-ée</b> : athée, apogée, musée, lycée, trophée, mausolée, scarabée. En <b>-eurre</b> : leurre, beurre. En <b>-ette</b> : squelette (le seul). En <b>-ie</b> : génie, sosie, parapluie, incendie. En <b>-oire</b> : pourboire, déboire, territoire, laboratoire.</li>
+<li>Noms féminins en [tié] : jamais de e (amitié, pitié, moitié). En [té] : pas de e (beauté, rapidité) sauf butée, dictée, jetée, montée, nuitée, pâtée, portée, potée, platée, assiettée.</li>
+<li>Noms féminins en [i], [u], [é], [ou] : prennent un e, sauf brebis, fourmi, nuit, perdrix, souris, bru, glu, tribu, vertu, forêt, paix, toux.</li>
+<li>Adjectifs masculins en [il] : -ile (agile) sauf civil, puéril, subtil, vil, volatil.</li>
+</ul>
+<div class="rule"><b>Changent de genre au pluriel</b> : amour, délice, orgue sont masculins au singulier et féminins au pluriel → <i>cet orgue est puissant, ces orgues sont puissantes.</i></div>
+<p>Les listes de mots masculins et féminins du livre sont dans le QCM « Masculin / féminin ».</p>`;
+
+window.FRG=window.FRG||{};FRG.D=FRG.D||{};
+FRG.D.proverbes=`À beau mentir qui vient de loin|Mentir devient plus aisé lorsque ce que l'on dit est difficilement vérifiable
+À bon chat, bon rat|Les adversaires montrent la même force
+À cheval donné on ne regarde pas la denture|On ne se montre pas exigeant sur un cadeau reçu
+À malin, malin et demi|On trouve toujours plus fort que soi
+À la guerre comme à la guerre|Tous les moyens sont bons pour atteindre une fin
+Aide-toi, le ciel t'aidera|La Providence n'aide que ceux qui se donnent les moyens de réussir
+Au royaume des aveugles, les borgnes sont rois|Les classements sont toujours relatifs
+Avec des « si » on mettrait Paris en bouteille|On ne peut pas refaire l'Histoire
+Bien mal acquis ne profite jamais|Une chose obtenue d'une mauvaise manière ne sert jamais
+C'est dans les vieux pots qu'on fait la meilleure soupe|Les méthodes établies depuis longtemps sont les meilleures
+C'est en forgeant qu'on devient forgeron|La maîtrise s'acquiert par la pratique
+C'est l'occasion qui fait le larron|L'occasion peut pousser à faire de mauvaises choses
+C'est la goutte d'eau qui fait déborder le vase|C'est l'élément de trop
+C'est l'hôpital qui se moque de la charité|Il ne faut pas critiquer un défaut que l'on a soi-même
+Ce n'est pas à un vieux singe qu'on apprend à faire la grimace|On n'apprend rien à quelqu'un de plus expérimenté que soi dans un domaine
+Chacun voit midi à sa porte|Chacun analyse un fait par rapport à sa propre situation
+Charité bien ordonnée commence par soi-même|Il faut penser à soi avant de penser aux autres
+Chassez le naturel, il revient au galop|Nul ne peut cacher sa véritable nature
+Chat échaudé craint l'eau froide|Quand on a été victime d'un phénomène, on devient trop prudent
+Déshabiller Pierre pour habiller Paul|Régler un problème en en créant un autre
+Faute avouée à moitié pardonnée|Pour se faire pardonner, rien de tel que d'avouer sa faute
+Faute de grives, on mange des merles|Il faut se contenter de ce que l'on a
+Il faut battre le fer tant qu'il est chaud|Il faut saisir sa chance quand elle se présente
+Il faut que jeunesse se passe|La jeunesse amène à faire des erreurs
+Il faut se méfier de l'eau qui dort|Même les choses apparemment inoffensives peuvent être dangereuses
+Il faut tourner sept fois sa langue dans sa bouche avant de parler|Il faut prendre son temps pour penser à ce que l'on va dire
+Il ne faut pas dire « Fontaine, je ne boirai pas de ton eau »|Il ne faut jamais dire « jamais »
+Il ne faut pas mettre tous ses œufs dans le même panier|Il faut diversifier les risques
+Il ne faut pas remettre au lendemain ce qu'on peut faire le jour même|On ne sait pas ce qui nous attend demain, donc autant faire au plus vite ce que l'on doit faire
+Il ne faut pas réveiller le chat qui dort|Revenir sur une histoire passée ne peut que causer du tort
+Il ne faut pas vendre la peau de l'ours avant de l'avoir tué|Il ne faut rien prendre pour acquis
+Il n'y a pas de fumée sans feu|Toute rumeur a un fondement
+Il vaut mieux tenir que courir|Mieux vaut avoir quelque chose de petit que d'essayer en vain d'obtenir quelque chose de plus grand
+Jamais deux sans trois|Ce qui s'est produit deux fois risque de se produire une troisième fois
+Jeux de mains, jeux de vilains|Les chamailleries se terminent souvent par des coups
+L'appétit vient en mangeant|Plus on possède, plus on souhaite posséder
+L'argent n'a pas d'odeur|Peu importe d'où provient l'argent
+L'avenir appartient à ceux qui se lèvent tôt|Plus on se met tôt à la tâche, plus on a de chances de réaliser ses objectifs
+L'argent est un bon serviteur et un mauvais maître|L'argent doit être un moyen et non une fin
+L'enfer est pavé de bonnes intentions|La volonté de bien faire aboutit parfois au résultat inverse
+L'habit ne fait pas le moine|Il ne faut pas se fier aux apparences
+L'Homme est un loup pour l'Homme|L'Homme nuit souvent à son semblable
+L'œil du maître engraisse le cheval|Rien ne vaut la surveillance du propriétaire pour que les choses soient bien faites
+La bave du crapaud n'atteint pas la blanche colombe|Les critiques n'atteignent pas ceux qui n'ont rien à se reprocher
+La caque sent toujours le hareng|On garde toujours une trace de son origine sociale
+La fin justifie les moyens|Tous les coups sont permis pour atteindre son but
+La fortune sourit aux audacieux|Plus on tente, plus on est récompensé
+La nuit, tous les chats sont gris|La nuit, il est difficile de distinguer les choses
+La nuit porte conseil|La nuit permet de réfléchir à la journée écoulée
+La parole est d'argent et le silence est d'or|Parfois, il faut savoir se taire
+La plume est plus forte que l'épée|Les mots sont plus forts que les armes
+La vengeance est un plat qui se mange froid|Des représailles peuvent avoir lieu longtemps après l'affront subi
+Le chien aboie, la caravane passe|Quand on est sûr de soi, les contestations ne nous atteignent pas
+Le malheur des uns fait le bonheur des autres|Ce qui nuit à une personne en avantage une autre
+Mieux vaut prévenir que guérir|Mieux vaut éviter un danger que d'en subir les conséquences
+Mieux vaut tard que jamais|Il vaut mieux faire une chose tardivement que ne pas la faire
+Nécessité fait loi|Une situation extrême peut expliquer que l'on passe outre ses obligations
+Nul n'est prophète en son pays|Le talent est plus souvent reconnu à l'étranger que dans son propre pays
+Nul n'est censé ignorer la loi|On ne peut pas se réfugier derrière l'ignorance de la loi
+Œil pour œil, dent pour dent|La peine doit être égale au crime commis
+On ne fait pas d'omelette sans casser des œufs|Certains sacrifices sont nécessaires pour obtenir des résultats
+On ne peut être à la fois au four et au moulin|On ne peut pas faire plusieurs choses à la fois
+On ne peut pas avoir le beurre et l'argent du beurre|Il faut faire des choix
+On ne prête qu'aux riches|Le système avantage les gens les plus établis
+On voit la paille dans l'œil de son voisin et non la poutre dans le nôtre|On est toujours plus critique envers les autres qu'envers soi-même
+Paris ne s'est pas fait en un jour|Il faut de la patience pour accomplir un grand projet
+Petit à petit, l'oiseau fait son nid|La patience et la persévérance permettent d'accomplir de grandes choses
+Pierre qui roule n'amasse pas mousse|Si on voyage trop, on n'accumule rien
+Plus on est de fous, plus on rit|L'ambiance est d'autant meilleure que le nombre de personnes est grand
+Promettre ne ruine pas|Promettre est moins compliqué que faire vraiment
+Quand le bateau coule, les rats partent les premiers|Quand la situation dégénère, le chacun pour soi prévaut
+Quand le chat n'est pas là, les souris dansent|Sans surveillance, on agit plus librement
+Quand le vin est tiré, il faut le boire|Quand on a commencé quelque chose, il est trop tard pour revenir en arrière
+Quand on parle du loup, on en voit la queue|On parle de quelqu'un et il arrive
+Qui aime bien châtie bien|Être exigeant avec quelqu'un est une preuve d'affection
+Qui dort dîne|Dormir permet d'oublier la faim
+Qui trop embrasse mal étreint|Il vaut mieux n'entreprendre qu'une chose et la réussir que d'en entreprendre trop
+Qui ne dit mot consent|Celui qui ne dit pas « non » dit « oui »
+Qui paie ses dettes s'enrichit|En remboursant ses dettes, on s'enlève un poids
+Qui peut le plus peut le moins|Qui réussit une tâche difficile peut a fortiori réussir une tâche plus facile
+Qui sème le vent récolte la tempête|Quand on provoque de petits troubles, on en récolte de plus importants
+Qui veut la fin veut les moyens|Pour atteindre un but, il faut accepter d'employer les moyens nécessaires
+Qui veut la paix prépare la guerre|Le meilleur moyen de ne pas faire la guerre est d'être prêt à la faire
+Qui veut tuer son chien l'accuse de la rage|On trouve aisément un prétexte pour justifier ses actes
+Qui veut voyager loin ménage sa monture|Pour atteindre des objectifs lointains, il faut avancer pas à pas
+Qui vole un œuf vole un bœuf|Ce qui est grave, c'est l'acte de voler, pas l'objet volé
+Qui vivra verra|Les pronostics sur l'avenir sont inutiles
+Rien ne sert de courir, il faut partir à point|Il faut accorder aux choses le temps qu'elles méritent
+Si jeunesse savait, si vieillesse pouvait|Les jeunes manquent d'expérience et les personnes âgées manquent de force
+Tant va la cruche à l'eau qu'à la fin elle se brise|À force de braver le danger, on finit par se faire prendre
+Tel est pris qui croyait prendre|Celui qui voulait piéger se retrouve pris à son propre piège
+Tous les chemins mènent à Rome|Pour réussir une action, plusieurs moyens sont possibles
+Tous les goûts sont dans la nature|Chacun ses goûts
+Tout ce qui brille n'est pas or|Une belle apparence ne garantit pas la valeur
+Tout travail mérite salaire|Tout travail effectué doit être récompensé
+Tout vient à point à qui sait attendre|Pour atteindre son but, il faut être patient
+Un tiens vaut mieux que deux tu l'auras|Mieux vaut peu mais certain que beaucoup mais hypothétique
+Une hirondelle ne fait pas le printemps|Un cas particulier ne fait pas une règle générale
+Ventre affamé n'a point d'oreilles|Impossible de raisonner quelqu'un qui a faim`;
+
+FRG.D.expressions=`Aller sur la haquenée des cordeliers|Se déplacer à pied, un bâton à la main
+Au doigt mouillé|Approximativement
+Autant que faire se peut|Dans la mesure du possible
+Avoir de la bouteille|Avoir de l'expérience
+Avoir du plomb dans l'aile|Être mal en point
+Avoir les yeux plus gros que le ventre|Voir trop grand, surestimer ses capacités
+Boire le calice jusqu'à la lie|Subir une humiliation complète
+C'est blanc bonnet et bonnet blanc|Deux choses similaires présentées comme différentes
+Chercher la petite bête|Chercher à tout prix une erreur
+Couper l'herbe sous le pied de quelqu'un|L'empêcher de réussir en le devançant
+Couper la poire en deux|Trouver un compromis
+Dire ses quatre vérités à quelqu'un|Dire franchement à quelqu'un ce que l'on pense de lui
+Être aux pièces|Être pressé, ne pas avoir tout son temps
+Être de mèche avec quelqu'un|Être complice de quelqu'un
+Être connu comme le loup blanc|Être très connu
+Être la bête noire de quelqu'un|Être ce qui lui pose le plus de problèmes
+Être la lanterne rouge|Être le dernier
+Faire couler beaucoup d'encre|Susciter de nombreux commentaires
+Faire le dos rond|Laisser passer les critiques sans réagir
+Faire le pied de grue|Attendre debout pendant longtemps
+Jouer des coudes|Se frayer un passage dans une foule
+La cerise sur le gâteau|Le petit détail qui parfait une réalisation
+La quadrature du cercle|Un problème insoluble
+Laver son linge sale en famille|Régler ses affaires discrètement
+Mettre les bouchées doubles|Redoubler d'efforts
+Ne pas y aller avec le dos de la cuillère|Agir sans modération
+Ne pas y aller par quatre chemins|Agir ou parler sans détour
+Pleurer comme une madeleine|Pleurer abondamment
+Quand les poules auront des dents|Jamais
+Rouler des mécaniques|Avoir une attitude prétentieuse
+S'entendre comme larrons en foire|S'entendre parfaitement
+Se faire mousser|Se vanter exagérément
+Se noyer dans un verre d'eau|Être débordé par pas grand-chose
+Se ranger des voitures|S'assagir, se calmer
+Tenir la dragée haute à quelqu'un|Lui résister longtemps
+Tiré par les cheveux|Exagéré, alambiqué
+Tourner au vinaigre|Mal tourner
+Voir midi à sa porte|Juger selon son propre point de vue
+Avoir des larmes de crocodile|Feindre de pleurer pour obtenir quelque chose
+Avoir un caractère de cochon|Avoir un caractère difficile à supporter
+Avoir un chat dans la gorge|Être enroué
+Avoir une faim de loup|Avoir très faim
+Avoir une mémoire d'éléphant|Avoir une très bonne mémoire
+Bayer aux corneilles|Rêvasser, perdre son temps
+Donner sa langue au chat|Demander la réponse
+Dormir comme un loir|Dormir à poings fermés
+Être comme un poisson dans l'eau|Être parfaitement à l'aise, dans son élément
+Être muet comme une carpe|Ne pas dire un mot
+Être têtu comme une mule|Être très têtu
+Faire mouche|Tomber précisément, viser juste
+Faire un froid de canard|Faire très froid
+Marcher à pas de loup|Se déplacer sans faire de bruit
+Monter sur ses grands chevaux|S'emporter, se mettre en colère
+Noyer le poisson|Embrouiller pour ne pas répondre à la question
+Poser un lapin|Ne pas venir à un rendez-vous
+Prendre le taureau par les cornes|Affronter les difficultés de face
+Sauter du coq à l'âne|Changer brusquement de sujet
+Se jeter dans la gueule du loup|Se mettre de soi-même en danger
+Tomber de Charybde en Scylla|Échapper à un mal pour tomber dans un pire
+Une victoire à la Pyrrhus|Une victoire si coûteuse qu'elle équivaut à une défaite
+Le talon d'Achille|Le point faible d'un ensemble solide
+Une épée de Damoclès|Une menace permanente
+Le fil d'Ariane|Ce qui guide et permet de ne pas se perdre
+Un travail de Sisyphe|Une tâche sans fin, toujours à recommencer
+Le tonneau des Danaïdes|Un gouffre qu'on ne peut jamais remplir
+Ouvrir la boîte de Pandore|Libérer par imprudence une série de malheurs
+Renvoyer aux calendes grecques|Reporter à une date qui n'arrivera jamais
+Passer sous les fourches caudines|Subir des conditions humiliantes
+Trancher le nœud gordien|Résoudre brutalement un problème inextricable
+Le lit de Procuste|Un cadre rigide auquel on force la réalité à se plier
+Une pomme de discorde|Le motif d'un conflit
+Le chant du cygne|La dernière œuvre brillante avant la fin
+Un travail de Romain|Une tâche longue et considérable
+Faire long feu|Échouer, rater son effet
+Battre sa coulpe|Reconnaître ses fautes
+Avoir maille à partir avec quelqu'un|Avoir un différend avec quelqu'un
+Une réponse de Normand|Une réponse volontairement évasive
+Prêcher le faux pour savoir le vrai|Avancer une erreur pour provoquer un aveu`;
+
+FRG.D.latin=`A contrario|Inversement, par le raisonnement contraire
+A fortiori|À plus forte raison
+A posteriori|Après coup
+A priori|Avant examen des faits
+Ad hoc|Parfaitement adapté à un usage
+Ad hominem|Dirigé contre la personne
+Ad litteram|À la lettre
+Ad vitam aeternam|Pour toujours
+Ad nauseam|Jusqu'à l'écœurement
+Alea jacta est|Le sort en est jeté, advienne que pourra
+Alter ego|Un autre moi
+Carpe diem|Profite du jour présent
+Casus belli|Acte qui peut déclencher une guerre
+De facto|De fait
+De visu|Pour l'avoir vu soi-même
+Deus ex machina|Dénouement providentiel et inattendu
+Et cætera|Et ainsi de suite
+Ex abrupto|Brusquement
+Ex æquo|À égalité
+Ex cathedra|Sur un ton professoral
+Ex nihilo|À partir de rien
+Grosso modo|Dans les grandes lignes
+Hic et nunc|Ici et maintenant
+In abstracto|Abstraitement
+In extenso|Intégralement
+In extremis|De justesse
+In fine|Finalement, tout compte fait
+In situ|Dans son milieu naturel
+In vitro|En milieu artificiel
+In vivo|Sur un organisme vivant
+Intra muros|À l'intérieur de la ville
+Extra muros|Hors de la ville
+Ipso facto|Par voie de conséquence
+Manu militari|Par la force
+Mea culpa|Je reconnais ma faute
+Modus operandi|Mode opératoire
+Modus vivendi|Compromis permettant de vivre ensemble
+Nec plus ultra|Ce qu'il y a de mieux
+Nolens volens|Bon gré, mal gré
+Persona non grata|Personne indésirable
+Post mortem|Après la mort
+Pro bono|Pour le bien public, gratuitement
+Pro domo|Pour sa propre cause
+Sic|Cité exactement, erreur comprise
+Sine die|Sans fixer de date
+Sine qua non|Indispensable
+Statu quo|État actuel des choses
+Stricto sensu|Au sens strict
+Lato sensu|Au sens large
+Urbi et orbi|Partout, à tout le monde
+Vade-mecum|Guide pratique que l'on garde sur soi
+Vice versa|Réciproquement`;
+
+window.FRG=window.FRG||{};FRG.D=FRG.D||{};
+/* pays/langue|périphrase1;périphrase2 */
+FRG.D.peri=`Afrique du Sud|La nation arc-en-ciel
+Albanie|La forteresse des Balkans
+Allemagne|Outre-Rhin (pour les Français)
+Australie|Le pays des kangourous
+Belgique|Le plat pays
+Chine|L'Empire du Milieu;L'Empire céleste
+Corée|Le pays du Matin calme
+Costa Rica|La Suisse de l'Amérique centrale
+Espagne|Le pays de Cervantes;La péninsule ibérique
+États-Unis|Le pays de l'oncle Sam
+Finlande|Le pays des mille lacs
+France|Le pays aux 300 fromages;Le pays des droits de l'Homme;L'Hexagone
+Inde|La plus grande démocratie du monde
+Italie|La Botte
+Japon|Le pays du Soleil levant;L'Archipel
+Liban|Le pays du Cèdre
+Monaco|Le Rocher
+Norvège|Le pays des fjords
+Nouvelle-Zélande|Le pays des kiwis
+Ouganda|La perle de l'Afrique
+Pays-Bas|Le pays des tulipes
+Royaume-Uni|Le pays du thé
+Roumanie|Le pays de Dracula
+Russie|Le pays des tsars
+Singapour|La Suisse d'Asie
+Suisse|La Confédération helvétique;L'Helvétie
+Thaïlande|Le pays du Sourire
+Tunisie|Le pays du Jasmin
+Turquie|L'Anatolie
+Ukraine|La petite Russie;Le grenier à blé de l'Europe;Le panier d'Europe
+Uruguay|La Suisse d'Amérique du Sud
+Vatican|Le Saint-Siège
+Europe (continent)|Le Vieux Continent
+Amériques (continent)|Le Nouveau Monde;Outre-Atlantique (pour un Européen)
+Asie (continent)|L'Orient
+Afrique (continent)|Le berceau de l'Humanité
+L'allemand|La langue de Goethe;La langue de l'industrie
+L'anglais|La langue de Shakespeare;La langue du commerce
+L'arabe|La langue du Coran
+Le chinois|La langue de Confucius
+L'espagnol|La langue de Cervantes;La langue de la passion
+Le français|La langue de Molière;La langue de Voltaire;La langue d'Hugo;La langue de la diplomatie
+Le grec|La langue d'Homère
+L'hébreu|La langue de l'Ancien Testament
+L'italien|La langue de Dante;La langue de l'amour
+Le japonais|La langue de Mishima
+Le latin|La langue de Cicéron;La langue de Virgile;La langue de l'Église
+Le néerlandais|La langue de Vondel
+Le polonais|La langue de Mickiewicz
+Le portugais|La langue de Camões
+Le roumain|La langue d'Eminescu
+Le russe|La langue de Tolstoï;La langue de Pouchkine
+Le suédois|La langue de Strindberg
+L'ukrainien|La langue de Chevtchenko`;
+
+/* figure|définition|exemple */
+FRG.D.figures=`Anaphore|Répétition d'un mot ou d'un groupe de mots en début de phrase ou de vers|« Paris outragé, Paris brisé, Paris martyrisé, mais Paris libéré ! »
+Épiphore|Répétition d'un mot ou d'un groupe en fin de phrase ou de vers|« Infiniment, la pluie, la longue pluie, la pluie. »
+Chiasme|Croisement d'éléments selon le modèle AB / BA|« Il faut manger pour vivre et non pas vivre pour manger. »
+Parallélisme|Symétrie d'éléments selon le modèle AB / AB|« Et jamais je ne pleure, et jamais je ne ris. »
+Énumération|Liste d'au moins trois mots de même nature|« J'ai acheté des pommes, des poires, des figues. »
+Gradation|Énumération de termes d'intensité croissante ou décroissante|« Va, cours, vole, et nous venge ! »
+Pléonasme|Répétition de termes ou d'expressions de même sens|« Monter en haut. »
+Antithèse|Opposition de deux idées ou de deux mots dans un parallèle|« Certains l'aiment chaud, d'autres l'aiment froid. »
+Oxymore|Réunion de deux mots opposés dans une même expression|« Un soleil froid » · « une obscure clarté »
+Allitération|Répétition d'un même son consonantique|« Pour qui sont ces serpents qui sifflent sur vos têtes ? »
+Assonance|Répétition d'un même son vocalique|« Ce rêve étrange et pénétrant »
+Allégorie|Représentation concrète d'une idée abstraite|« Ô Mort, vieux capitaine, il est temps ! »
+Personnification|Attribution de caractéristiques humaines à un objet ou un animal|« Cette rose aimable comme toi »
+Comparaison|Rapprochement de deux éléments avec un outil de comparaison (comme, tel que…)|« Elle est comme mon soleil. »
+Métaphore|Rapprochement de deux éléments sans outil de comparaison|« Elle est mon soleil. »
+Métonymie|Remplacement d'un mot par un autre lié logiquement (contenant, auteur, lieu…)|« Boire un verre » (= ce qu'il contient)
+Synecdoque|Cas de métonymie fondé sur l'inclusion : la partie pour le tout ou le tout pour la partie|« Faire de la voile » (= du bateau à voile)
+Périphrase|Remplacement d'un mot par un groupe de mots qui le décrit|« La capitale de la France » pour Paris
+Antonomase|Emploi d'un nom propre comme nom commun, ou l'inverse|« C'est un Harpagon » (un avare) · « le Corse » pour Napoléon
+Litote|Dire moins pour suggérer davantage|« Ce n'est pas mauvais » (= c'est bon)
+Euphémisme|Atténuation d'une réalité brutale|« Il nous a quittés » (= il est mort)
+Antiphrase|Exprimer ironiquement le contraire de ce que l'on pense|« Que tu es gentil ! » (à quelqu'un de méchant)
+Hyperbole|Exagération pour frapper l'esprit|« Je suis mort de rire. »
+Aposiopèse|Interruption brusque d'une phrase laissée en suspens|« Si jamais tu recommences, je… »
+Prétérition|Annoncer qu'on ne dira pas ce qu'on est en train de dire|« Je ne vous parlerai pas de ses mensonges… »
+Zeugma|Rattacher à un même mot deux éléments de nature ou de sens incompatibles|« Il prit son chapeau et la fuite. »
+Ellipse|Suppression de mots que l'on peut sous-entendre|« À chacun son métier. »
+Hypallage|Attribuer à un mot ce qui convient logiquement à un autre de la phrase|« Ce marchand accoudé sur son comptoir avide »
+Apostrophe|Interpeller directement une personne, un absent ou une chose|« Ô temps, suspends ton vol ! »
+Question rhétorique|Question qui n'attend pas de réponse|« Qui pourrait croire une chose pareille ? »
+Anacoluthe|Rupture dans la construction syntaxique de la phrase|« Le nez de Cléopâtre, s'il eût été plus court, la face du monde aurait changé. »`;
+
+/* motA|défA|motB|défB */
+FRG.D.paronymes=`Abjurer|Renoncer à une croyance|Adjurer|Supplier
+Abstrait|Qui n'est pas concret|Abstrus|Difficile à comprendre
+Acceptation|Fait de donner son accord|Acception|Sens particulier d'un mot
+Accident|Événement grave non souhaité|Incident|Petit événement sans gravité
+Affectif|Qui relève des sentiments|Effectif|Réel ; nombre de personnes
+Affection|Sentiment de tendresse|Affectation|Assignation à un poste ; manque de naturel
+Affermir|Rendre ferme|Affirmer|Dire avec force
+Affidé|Complice à qui l'on se fie|Affilié|Associé à un groupe
+Affirmer|Soutenir que c'est vrai|Infirmer|Démentir, contredire
+Affleurer|Apparaître à la surface|Effleurer|Toucher légèrement
+Affliger|Peiner profondément|Infliger|Faire subir une peine
+Allocution|Discours bref|Élocution|Manière de parler
+Alternative|Choix entre deux possibilités|Alternance|Succession tour à tour
+Amoral|Qui ignore les principes moraux|Immoral|Contraire à la morale
+Antinomie|Contradiction entre deux principes|Antonymie|Relation de sens contraire entre deux mots
+Aplanir|Égaliser, lever les difficultés|Aplatir|Rendre plat
+Apurer|Vérifier l'exactitude d'un compte|Épurer|Rendre pur
+Arborer|Porter fièrement, montrer|Abhorrer|Détester
+Bimensuel|Qui paraît deux fois par mois|Bimestriel|Qui paraît tous les deux mois
+Blanchiment|Recyclage d'argent sale ; action de blanchir|Blanchissage|Nettoyage du linge
+Canonner|Tirer au canon|Canoniser|Déclarer saint
+Capter|Recueillir, recevoir un signal|Captiver|Retenir l'attention
+Cérébral|Qui concerne le cerveau|Cervical|Qui concerne la nuque
+Cinéphile|Amateur de cinéma|Cynophile|Amateur de chiens
+Collision|Choc brutal|Collusion|Entente secrète au détriment d'un tiers
+Crédule|Qui croit trop facilement|Crédible|Que l'on peut croire
+Déceler|Découvrir ce qui était caché|Desceller|Ouvrir ce qui était scellé
+Démystifier|Ôter le caractère mystérieux|Démythifier|Ôter le caractère mythique
+Dénuer|Dépourvoir de|Dénuder|Mettre à nu
+Détendre|Relâcher ce qui est tendu|Distendre|Soumettre à une forte tension
+Échoir|Revenir à quelqu'un par le sort ; arriver à échéance|Échouer|Ne pas réussir
+Édicter|Prescrire par une loi|Éditer|Publier
+Effraction|Bris de clôture ou de serrure|Infraction|Violation d'une loi ou d'un règlement
+Éluder|Éviter adroitement|Élucider|Rendre clair
+Émerger|Sortir de l'eau|Immerger|Plonger dans l'eau
+Emménager|S'installer dans un logement|Aménager|Disposer avec ordre
+Éruption|Jaillissement soudain (volcan)|Irruption|Entrée soudaine et brutale
+Esquisser|Dessiner à grands traits|Esquiver|Éviter adroitement
+Estamper|Imprimer en relief|Estomper|Atténuer, effacer
+Évasion|Fuite, sortie|Invasion|Entrée de force sur un territoire
+Exalter|Glorifier ; enthousiasmer|Exulter|Éprouver une joie intense
+Gradation|Progression par degrés|Graduation|Division en degrés d'une échelle
+Habileté|Adresse|Habilité|Autorisé légalement à
+Imagé|Riche en images|Imaginé|Inventé
+Importun|Qui dérange|Opportun|Qui arrive au bon moment
+Léser|Causer du tort|Lésiner|Économiser avec avarice
+Libération|Délivrance d'une oppression|Libéralisation|Fait de rendre une économie plus libre
+Luxueux|Riche, fastueux|Luxurieux|Débauché
+Lymphe|Liquide organique|Nymphe|Divinité des eaux et des bois
+Matériau|Matière servant à construire|Matériel|Ensemble d'outils, équipement
+Muer|Changer de peau ou de voix|Muter|Changer de poste ; se transformer génétiquement
+Résignation|Renoncement avec regret|Résiliation|Annulation d'un contrat
+Respectable|Digne de respect|Respectueux|Qui témoigne du respect
+Sceptique|Qui doute|Septique|Qui produit une infection
+Somptueux|D'une richesse splendide|Somptuaire|Relatif aux dépenses de luxe
+Conjecture|Hypothèse sans preuve|Conjoncture|Ensemble des circonstances d'une situation
+Éminent|Remarquable|Imminent|Sur le point d'arriver
+Inclinaison|Angle d'une pente|Inclination|Penchant, tendance
+Recouvrer|Récupérer (la santé, une somme)|Recouvrir|Couvrir de nouveau
+Percepteur|Agent qui collecte l'impôt|Précepteur|Éducateur particulier
+Vénéneux|Toxique, en parlant d'une plante|Venimeux|Qui a du venin, en parlant d'un animal
+Notable|Digne d'être noté|Notoire|Connu de tous
+Infecter|Contaminer par un germe|Infester|Envahir en grand nombre
+Oppresser|Gêner la respiration, angoisser|Opprimer|Soumettre par la violence
+Décerner|Attribuer une récompense|Discerner|Distinguer nettement
+Évoquer|Rappeler à la mémoire|Invoquer|Appeler à l'aide ; citer en sa faveur
+Inanité|Caractère vain|Inanition|Épuisement par manque de nourriture
+Prodigue|Qui dépense sans compter|Prodige|Fait extraordinaire ; enfant surdoué
+Prémices|Premiers signes, début|Prémisses|Propositions de départ d'un raisonnement
+Perpétrer|Commettre (un crime)|Perpétuer|Faire durer
+Agonir|Accabler d'injures|Agoniser|Être à l'agonie
+Original|Nouveau, singulier|Originel|Qui remonte à l'origine
+Avènement|Arrivée au pouvoir ; venue|Événement|Fait qui se produit
+Compréhensible|Que l'on peut comprendre|Compréhensif|Indulgent envers autrui`;
+
+FRG.D.vocab2=`Abscons|Difficile à comprendre, obscur
+Acerbe|Qui critique avec méchanceté
+Affable|D'une politesse bienveillante
+Aléatoire|Qui dépend du hasard
+Altruiste|Qui se soucie d'autrui
+Amène|Aimable, agréable
+Anachronique|Qui n'est pas à sa place dans le temps
+Apathique|Sans énergie, indifférent
+Apocryphe|Dont l'authenticité est douteuse
+Arbitraire|Qui dépend du seul bon vouloir, sans justification
+Atavique|Transmis par hérédité
+Austère|Sévère, sans ornement
+Bénin|Sans gravité
+Caduc|Qui n'est plus en vigueur, périmé
+Captieux|Qui cherche à tromper par des raisonnements subtils
+Caustique|D'une ironie mordante
+Chimérique|Irréalisable
+Clément|Indulgent
+Cocasse|Drôle par son côté inattendu
+Comminatoire|Qui contient une menace
+Condescendant|Qui marque une supériorité méprisante
+Cupide|Avide d'argent
+Désuet|Démodé, tombé en désuétude
+Diaphane|Qui laisse passer la lumière ; très pâle
+Didactique|Qui vise à instruire
+Dithyrambique|D'un éloge excessif
+Dilettante|Qui s'occupe d'une chose en amateur
+Éphémère|Qui dure très peu
+Épicurien|Qui recherche le plaisir
+Érudit|Qui possède un savoir approfondi
+Fastidieux|Ennuyeux et long
+Fat|Prétentieux, content de lui
+Fruste|Grossier, sans raffinement
+Futile|Sans importance
+Hermétique|Impossible à comprendre ; parfaitement clos
+Hétéroclite|Fait d'éléments disparates
+Ignare|Totalement ignorant
+Impassible|Qui ne montre aucune émotion
+Impavide|Qui ne connaît pas la peur
+Impécunieux|Qui manque d'argent
+Impérieux|Qui s'impose, pressant
+Impétueux|Fougueux, violent
+Incongru|Déplacé, contraire aux convenances
+Indolent|Nonchalant, qui évite l'effort
+Inepte|Absurde, stupide
+Ineffable|Qu'on ne peut exprimer par des mots
+Inexorable|Que rien ne peut arrêter
+Inextricable|Impossible à démêler
+Ingénu|Naïf, d'une franchise innocente
+Intègre|D'une honnêteté absolue
+Invétéré|Enraciné par le temps
+Irascible|Qui se met facilement en colère
+Itératif|Répété plusieurs fois
+Labile|Instable, changeant
+Licite|Permis par la loi
+Loquace|Qui parle beaucoup
+Magnanime|Généreux envers les vaincus
+Mièvre|D'une grâce fade
+Misanthrope|Qui fuit le genre humain
+Obsolète|Dépassé, périmé
+Onéreux|Qui coûte cher
+Opiniâtre|Tenace, obstiné
+Ostentatoire|Qui s'affiche avec excès
+Patent|Évident, manifeste
+Pécuniaire|Relatif à l'argent
+Pédant|Qui fait étalage de son savoir
+Pernicieux|Nuisible, dangereux
+Perspicace|Qui comprend vite et finement
+Philanthrope|Qui œuvre au bien d'autrui
+Placide|Calme, paisible
+Pléthorique|En quantité excessive
+Pragmatique|Orienté vers l'action concrète
+Précaire|Instable, sans garantie de durée
+Probe|D'une honnêteté scrupuleuse
+Prolifique|Qui produit beaucoup
+Rédhibitoire|Qui constitue un obstacle absolu
+Retors|Rusé, habile à tromper
+Sardonique|D'une moquerie méchante
+Sporadique|Qui se produit de façon irrégulière
+Stoïque|Qui supporte la douleur sans se plaindre
+Taciturne|Qui parle peu
+Téméraire|Hardi jusqu'à l'imprudence
+Ténu|Très mince, très fin
+Trivial|Vulgaire ; banal
+Ubuesque|D'une absurdité grotesque
+Utopique|Irréalisable
+Vénal|Qui se laisse acheter
+Véhément|Ardent, emporté
+Versatile|Qui change souvent d'avis
+Vétuste|Usé par le temps
+Volubile|Qui parle avec abondance et rapidité
+Zélé|Plein d'ardeur au service d'une cause
+Une allégation|Une affirmation non prouvée
+Une diatribe|Une critique violente
+Une gageure|Une entreprise presque impossible
+Une hégémonie|Une domination
+Un leitmotiv|Une idée qui revient sans cesse
+Une litanie|Une énumération longue et monotone
+Une panacée|Un remède universel
+Un parangon|Un modèle parfait
+Une parcimonie|Une économie poussée à l'excès
+Une philippique|Un discours violent contre quelqu'un
+Une sinécure|Une charge rémunérée sans travail
+Un subterfuge|Un moyen détourné pour se tirer d'affaire
+Une velléité|Une intention faible, sans suite
+Une vacuité|Un vide
+Une apologie|Un discours de défense, un éloge
+Abhorrer|Détester
+Acquiescer|Donner son accord
+Atermoyer|Remettre à plus tard
+Circonvenir|Manœuvrer quelqu'un pour obtenir quelque chose
+Conspuer|Huer publiquement
+Dénigrer|Discréditer
+Fustiger|Critiquer violemment
+Invectiver|Lancer des injures
+Obtempérer|Obéir à un ordre
+Pérorer|Discourir longuement avec emphase
+Proscrire|Interdire
+Stigmatiser|Blâmer publiquement
+Subodorer|Pressentir
+Vilipender|Dénoncer comme méprisable
+Abroger|Annuler une loi
+Entériner|Ratifier, rendre définitif
+Galvauder|Gâcher par un mauvais usage
+Juguler|Arrêter le développement de
+Pallier|Atténuer sans résoudre
+Péricliter|Décliner, aller à la ruine
+Spolier|Dépouiller par la force ou la fraude
+Tergiverser|Hésiter pour ne pas décider`;
+
+/* mot|M / F / MF */
+FRG.D.genre=`aphte|M
+apogée|M
+augure|M
+entracte|M
+hémisphère|M
+obélisque|M
+agrume|M
+amalgame|M
+appendice|M
+armistice|M
+asphalte|M
+astérisque|M
+cerne|M
+effluve|M
+éloge|M
+emblème|M
+en-tête|M
+épilogue|M
+équinoxe|M
+exécutoire|M
+exode|M
+haltère|M
+intervalle|M
+interclasse|M
+interstice|M
+ivoire|M
+méandre|M
+opuscule|M
+pétale|M
+planisphère|M
+rail|M
+tentacule|M
+amiante|M
+antidote|M
+antipode|M
+aparté|M
+squelette|M
+pourboire|M
+trophée|M
+mausolée|M
+acné|F
+aérogare|F
+agora|F
+algèbre|F
+alcôve|F
+anagramme|F
+apothéose|F
+argile|F
+atmosphère|F
+câpre|F
+catacombes|F
+échappatoire|F
+écritoire|F
+épithète|F
+équivoque|F
+icône|F
+idylle|F
+interview|F
+obsèques|F
+octave|F
+omoplate|F
+orbite|F
+stalactite|F
+ténèbres|F
+alvéole|MF
+après-midi|MF
+enzyme|MF
+météorite|MF
+oasis|MF
+palabre|MF
+perce-neige|MF
+réglisse|MF`;
+
+/* mot|sens au masculin|sens au féminin */
+FRG.D.genre2=`livre|Document écrit|Unité de mesure de la masse
+manche|Partie d'un outil qui permet de le tenir|Partie d'un vêtement ; partie d'un match
+voile|Étoffe ; coiffure ; tissu léger|Pièce de toile qui fait avancer un bateau
+moule|Objet creux qui donne une forme|Mollusque marin comestible
+poêle|Appareil de chauffage|Ustensile de cuisine qui sert à frire
+mode|Manière, méthode (le mode d'emploi)|Goût d'une époque, tendance
+tour|Mouvement circulaire ; ruse|Bâtiment élevé
+mémoire|Écrit, dissertation|Faculté de se souvenir
+critique|Personne qui juge des œuvres|Jugement, examen
+vase|Récipient|Boue au fond de l'eau
+solde|Somme restant due ; marchandise soldée|Salaire du militaire`;
+
+/* correct|faux|faux|faux */
+FRG.D.mots=`abbaye|abaye|abbeye|abbaille
+aborigène|aborygène|abborigène|aborigenne
+accueil|acceuil|accueuil|acueil
+acoustique|accoustique|acousstique|acoustic
+acquérir|aquérir|accquérir|acquèrir
+amygdale|amigdale|amydgale|amygdalle
+appeler|apeler|appeller|apppeler
+astérisque|astérique|asthérisque|astérixe
+balbutier|balbucier|balbuttier|ballbutier
+boycotter|boycoter|boïcotter|boyccotter
+camelote|camelotte|cammelote|camellote
+cannelle|canelle|cannele|cannèle
+carrousel|caroussel|carousel|carroussel
+cassonade|cassonnade|casonade|cassonnnade
+clown|cloune|clowne|cloun
+coccyx|coxis|cocyx|coccix
+dilemme|dilemne|dilème|dillemme
+dissonance|disonance|dissonnance|dyssonance
+dissymétrie|dyssimétrie|disymétrie|dissimétrie
+écuyer|écuier|equyer|écuiller
+embarrasser|embarasser|emmbarrasser|embarraser
+ennuyer|ennuier|enuyer|ennuiller
+erroné|érronné|erronné|éroné
+étymologie|éthymologie|étimologie|ethymologie
+exaucer (un vœu)|exhausser (un vœu)|exauser (un vœu)|éxaucer (un vœu)
+exorbitant|exhorbitant|exorbittant|exhorbitent
+fanfaronnade|fanfaronade|fanfarronnade|fanfaronnnade
+fourmilière|fourmillière|fourmiliere|fourmillère
+gaufre|gauffre|goffre|gaufrre
+geyser|geiser|gueyser|geysère
+hippopotame|hipopotame|hippopotamme|hyppopotame
+houppette|houpette|houppète|hupette
+hypoténuse|hypothénuse|hipoténuse|hypoténnuse
+hypothèse|hypotèse|hipothèse|hypothése
+illettrisme|illétrisme|ilettrisme|illetrisme
+imbécillité|imbécilité|imbéssilité|imbécillitée
+indemne|indemme|indème|indenne
+inondation|innondation|inondassion|innondassion
+intéresser|interresser|intérresser|intéreser
+interroger|intérroger|interoger|intterroger
+joaillier|joailler|joallier|joaïllier
+kinésithérapeute|kinésitérapeute|kinésithérapeuthe|kynésithérapeute
+langage|language|langague|langagge
+occurrence|occurence|ocurrence|occurrance
+en l'occurrence|en l'occurence|en l'ocurrence|en l'occurrance
+magazine|magasine|magazinne|maggazine
+marchepied|marche-pied|marchepié|marchpied
+méditerranéen|méditéranéen|méditerrannéen|méditérranéen
+misogynie|misogénie|mysogynie|misoginie
+montgolfière|mongolfière|montgolphière|montgolfiére
+obnubiler|obnibuler|obnubbiler|onbubiler
+opprobre|opprobe|oprobre|opprobbre
+ornithorynque|ornythorinque|ornithorinque|ornitorynque
+parallélépipède|parallèlépipède|parralélépipède|parallélipipède
+parmi|parmis|parmit|parmie
+philanthrope|philantrope|filanthrope|phylanthrope
+pittoresque|pitoresque|pittorresque|pittoresc
+plinthe|plinte|pleinthe|plynthe
+larynx|larinx|larynks|laryngs
+poliomyélite|poliomiélite|poliomyelithe|polyomyélite
+poney|poné|ponney|ponet
+quinconce|quinquonce|quinconse|quainconce
+rapiécer|rapiècer|rapiesser|rapièçer
+recueillir|receuillir|recueuillir|recueilir
+rhododendron|rododendron|rhododindron|rhodondendron
+ruisseler|ruiseler|ruisseller|ruisler
+satellite|satelite|sattelite|satellitte
+serpillière|serpillère|serpilière|cerpillière
+staphylocoque|staphilocoque|staphylocoq|stafylocoque
+susurrer|sussurer|susurer|sussurrer
+tressaillir|tressailir|trésaillir|tressaillire
+trottinette|trotinette|trottinnette|trotinnette
+triptyque|tryptique|triptique|tryptyque
+toboggan|tobogan|tobbogan|tobboggan
+tutoiement|tutoîment|tutoiment|tutoyement
+vraisemblable|vraissemblable|vraisemblabe|vraisenblable
+yaourt|yahourt|yaourth|iaourt
+malgré|malgrè|malgrés|mallgré
+au temps pour moi|autant pour moi|au tant pour moi|autemps pour moi
+par acquit de conscience|par acquis de conscience|par aquit de conscience|par acquits de conscience
+bayer aux corneilles|bâiller aux corneilles|bailler aux corneilles|bayer aux cornelles
+infarctus|infractus|infarcthus|infarctuce
+aéroport|aréoport|aéreport|aérauport
+rémunérer|rénumérer|rémunnérer|rémmunérer
+mnémotechnique|mémotechnique|mnémothechnique|mnémotecnique
+digression|disgression|digrétion|diggression
+rasséréner|rassénérer|rasérener|rassérainer`;
+
+window.FRG=window.FRG||{};FRG.Q=FRG.Q||{};
+/* question|bonne|fausse|fausse|fausse|explication — question vide = « Quelle phrase est correcte ? » */
+FRG.Q.modes=`Je veux qu'il ___ à l'heure.|vienne|vient|viendra|viendrait|Volonté (vouloir que) → subjonctif.
+Bien qu'il ___ fatigué, il continue.|soit|est|sera|serait|Bien que → toujours le subjonctif.
+Après qu'il ___ parti, la réunion a repris.|est|soit|fût|serait|Après que → indicatif : le fait est accompli. Seul « avant que » prend le subjonctif.
+Avant qu'il ne ___, rangeons la salle.|parte|part|partira|partirait|Avant que → subjonctif (le « ne » explétif est facultatif).
+Je pense qu'il ___ raison.|a|ait|aie|aurait eu|Penser que à la forme affirmative → indicatif.
+Je ne pense pas qu'il ___ raison.|ait|a|aura|aie|Négation d'une opinion → subjonctif. « Aie » est la 1ʳᵉ personne.
+Il est probable qu'il ___ demain.|viendra|vienne|vint|viennent|Probable = fait jugé presque sûr → indicatif.
+Il est possible qu'il ___ demain.|vienne|viendra|vient|viendrait|Possible = simple éventualité → subjonctif.
+C'est le meilleur livre que j'___ lu.|aie|ai|aies|aurai|Relative après un superlatif → subjonctif : que j'aie.
+Il faut que nous ___ prêts à huit heures.|soyons|sommes|soyions|serons|Subjonctif de être : que nous soyons, jamais « soyions ».
+Il faut que vous ___ confiance.|ayez|avez|ayiez|aillez|Subjonctif de avoir : que vous ayez, jamais « ayiez ».
+Il faut que nous ___ en nous-mêmes.|croyions|croyons|croiions|croirons|Au subjonctif, le i de -ions s'ajoute : que nous croyions, voyions, riions.
+Il faut que nous ___ de bon cœur.|riions|rions|riyons|rirons|Subjonctif de rire : que nous riions (deux i).
+Si j'___ su, je serais venu.|avais|aurais|aurai|eus|Jamais de conditionnel après le « si » de condition : si + plus-que-parfait.
+Si tu venais, je ___ ravi.|serais|serai|sois|fusse|Si + imparfait → conditionnel présent.
+Si tu viens demain, je ___ ravi.|serai|serais|sois|serait|Si + présent → futur.
+Demain, je te le ___ sans faute (c'est certain).|dirai|dirais|dise|dirait|Certitude → futur. Test : « nous dirons ».
+Je ___ un café, s'il vous plaît.|voudrais|voudrai|veuille|voulais|Conditionnel de politesse.
+Selon la presse, le ministre ___ démissionné (non confirmé).|aurait|aura|ait|avait|Information non vérifiée → conditionnel.
+Il m'a promis qu'il ___ le lendemain.|viendrait|viendra|vienne|venait|Futur dans le passé → conditionnel.
+Je vous ___ gré de me répondre rapidement.|saurais|serais|saurai|serai|L'expression est « savoir gré », au conditionnel.
+Je doute qu'il ___ la réponse.|sache|sait|saura|saurait|Douter que → subjonctif.
+J'espère qu'il ___ demain.|viendra|vienne|vint|vienne-t-il|Espérer que → indicatif.
+Il semble qu'il ___ tort.|ait|a|aura|aie|Il semble que → subjonctif (mais « il me semble que » → indicatif).
+Il est sorti sans que personne ne le ___.|voie|voit|verra|verrait|Sans que → subjonctif.
+Où que tu ___, je te suivrai.|ailles|vas|iras|irais|Où que → subjonctif.
+Impératif de « aller » à la 2ᵉ personne du singulier :|va|vas|vat|aille|Pas de s à l'impératif pour aller… sauf devant y : vas-y.
+___-y tout de suite !|Vas|Va|Vat|Ailles|Devant « y », on ajoute un s : vas-y.
+Des fruits ? ___-en autant que tu veux (à un ami).|Manges|Mange|Mangent|Mangé|Devant « en » complément du verbe, s euphonique : manges-en.
+Impératif de « savoir », 2ᵉ personne du singulier :|sache|sais|saches|sachs|Impératif irrégulier : sache, sachons, sachez.
+Impératif de « avoir », 2ᵉ personne du singulier :|aie|aies|ai|as|Impératif irrégulier : aie, ayons, ayez.
+Impératif de « être », 2ᵉ personne du singulier :|sois|soit|soies|es|Impératif irrégulier : sois, soyons, soyez.
+« ___ la fenêtre ! » (ouvrir, 2ᵉ personne)|Ouvre|Ouvres|Ouvrent|Ouvrit|Ouvrir, offrir, cueillir, souffrir se conjuguent comme les verbes en -er : pas de s.
+|Donne-le-moi.|Donne-moi-le.|Donne le moi.|Donne-moi le.|À l'impératif affirmatif : verbe-COD-COI, reliés par des traits d'union.
+|Donne-m'en.|Donne-moi-z-en.|Donne-moi-en.|Donnes-en-moi.|« Moi » devient « m' » devant en.
+Subjonctif imparfait de « être », 3ᵉ personne :|qu'il fût|qu'il fut|qu'il fusse|qu'ils furent|Subjonctif imparfait = accent circonflexe ; le passé simple « il fut » n'en a pas.
+|Bien qu'il eût terminé, il resta.|Bien qu'il eut terminé, il resta.|Bien qu'il a terminé, il resta.|Bien qu'il aurait terminé, il resta.|Bien que + subjonctif : « eût » (plus-que-parfait du subjonctif, avec accent).
+Quel mode exprime l'ordre, le conseil ou la défense ?|L'impératif|Le subjonctif|Le conditionnel|L'indicatif|L'impératif n'a que trois personnes et pas de sujet exprimé.
+Quel mode exprime une action souhaitée, redoutée ou envisagée, non constatée ?|Le subjonctif|L'impératif|L'indicatif|Le participe|Le subjonctif est le mode du non-réel.
+Quel mode exprime l'hypothèse, la politesse ou un fait non vérifié ?|Le conditionnel|Le subjonctif|L'impératif|L'infinitif|Le conditionnel exprime l'éventualité.
+Je ne crois pas qu'elle ___ venir.|puisse|peut|pourra|pourrait|Ne pas croire que → subjonctif : qu'elle puisse.
+Il faut qu'il ___ ses devoirs.|fasse|fait|fera|ferait|Il faut que → subjonctif : qu'il fasse.
+Je cherche un employé qui ___ l'anglais (je n'en connais pas encore).|parle|parlera|parlé|parlerait|Relative exprimant un but ou une éventualité → subjonctif.
+Pourvu qu'il ___ beau demain !|fasse|fait|fera|ferait|Pourvu que → subjonctif.`;
+
+FRG.Q.quelque=`___ soient vos raisons, la règle s'applique.|Quelles que|Quelques|Quelque|Quel que|Quel que + être : quel s'accorde avec le sujet « vos raisons » (féminin pluriel).
+___ soit le prix, je l'achète.|Quel que|Quelque|Quelle que|Quels que|Accord avec « le prix » : masculin singulier.
+___ soit l'heure, appelle-moi.|Quelle que|Quel que|Quelque|Quelles que|Accord avec « l'heure » : féminin singulier.
+___ soient les risques, il ira.|Quels que|Quelques|Quel que|Quelque|Accord avec « les risques » : masculin pluriel.
+Il y avait ___ cinquante invités (environ).|quelque|quelques|quel que|quelles que|Devant un nombre, quelque = environ : adverbe invariable.
+___ habiles qu'ils soient, ils échoueront.|Quelque|Quelques|Quels que|Quel que|Devant un adjectif, quelque = si : adverbe invariable.
+___ grandes que soient ses ambitions…|Quelque|Quelques|Quelles que|Quel que|Devant un adjectif : invariable.
+J'ai ___ amis à Lyon.|quelques|quelque|quels que|quel que|Devant un nom, quelque est un déterminant qui s'accorde.
+___ efforts que vous fassiez, vous n'y arriverez pas.|Quelques|Quelque|Quels que|Quel que|Devant un nom : déterminant accordé (quelques efforts).
+Il attend depuis ___ temps.|quelque|quelques|quel que|quelle que|« Quelque temps » : temps est singulier ici.
+Je vais au cinéma ___ (= parfois).|quelquefois|quelques fois|quelque fois|quelques-fois|Quelquefois (un mot) = parfois.
+Je l'ai croisé ___ cette année (= plusieurs fois).|quelques fois|quelquefois|quelque fois|quel que fois|Quelques fois (deux mots) = plusieurs fois.
+___ il soit tard, il travaille encore.|Quoiqu'|Quoi qu'|Quel qu'|Quelqu'|Remplaçable par « bien que » → quoique en un mot.
+___ il dise, je ne changerai pas d'avis.|Quoi qu'|Quoiqu'|Quel qu'|Quoique|= quelle que soit la chose qu'il dise → quoi que en deux mots.
+___ il en soit, la décision est prise.|Quoi qu'|Quoiqu'|Quel qu'|Quelque|Expression figée : quoi qu'il en soit.
+Si tu as besoin de ___ ce soit, appelle-moi.|quoi que|quoique|quel que|quelque|Expression figée : quoi que ce soit.
+___ malade, il est venu travailler.|Quoique|Quoi que|Quelque que|Quel que|= bien que malade → quoique.
+Quel test permet de choisir « quoique » ?|On peut le remplacer par « bien que »|On peut le remplacer par « quelle que soit la chose que »|Il est suivi d'un nom|Il est suivi de l'indicatif|Quoique = bien que.
+Que signifie « quoi que » en deux mots ?|Quelle que soit la chose que|Bien que|Parce que|Pourtant|Quoi qu'il fasse = quelle que soit la chose qu'il fasse.
+|Quelles que soient les difficultés, nous avancerons.|Quelques soient les difficultés, nous avancerons.|Quelque soient les difficultés, nous avancerons.|Quels que soient les difficultés, nous avancerons.|Quel que + être, accordé avec « les difficultés ».`;
+
+FRG.Q.pp=`Les lettres que j'ai ___.|écrites|écrit|écrits|écrite|Avoir + COD « que » (= les lettres) placé avant → accord.
+J'ai ___ une longue lettre.|écrit|écrite|écrites|écris|Le COD est placé après : invariable.
+Elles sont ___ hier soir.|parties|parti|partie|partis|Avec être : accord avec le sujet.
+Ces fleurs, je les ai ___ ce matin.|cueillies|cueilli|cueillis|cueillie|COD « les » (= ces fleurs) avant → accord.
+Elles ont ___ toute la nuit.|dormi|dormies|dormis|dormit|Pas de COD → invariable.
+Des pommes ? J'en ai ___ trois.|mangé|mangées|mangés|mangée|COD « en » → toujours invariable.
+Les chaleurs qu'il a ___ cet été…|fait|faites|faits|faite|Verbe impersonnel → invariable.
+Elle s'est ___ couper les cheveux.|fait|faite|faits|faites|Fait + infinitif → toujours invariable.
+Je les ai ___ venir.|fait|faits|faites|faite|Fait + infinitif → toujours invariable.
+Elles se sont ___ (s'évanouir).|évanouies|évanoui|évanouis|évanouie|Verbe essentiellement pronominal → accord avec le sujet.
+Elles se sont ___ (se laver).|lavées|lavé|lavés|lavée|« Se » est COD (laver qui ? se) → accord.
+Elle s'est ___ les mains.|lavé|lavée|lavées|lavés|Le COD « les mains » est après → invariable.
+Les mains qu'elle s'est ___…|lavées|lavé|lavée|lavés|COD « que » (= les mains) avant → accord.
+Ils se sont ___ pendant des heures (se parler).|parlé|parlés|parlée|parlées|Parler à quelqu'un : « se » est COI → invariable.
+Les rois se sont ___ sur le trône.|succédé|succédés|succédées|succédée|Succéder à : COI → invariable.
+Elles se sont ___ dès le premier jour (se plaire).|plu|plues|plus|plut|Se plaire est toujours invariable.
+Elles se sont ___ compte de leur erreur.|rendu|rendues|rendus|rendue|Se rendre compte : toujours invariable.
+Elles se sont ___ hier soir (se téléphoner).|téléphoné|téléphonées|téléphonés|téléphonée|Téléphoner à : COI → invariable.
+Ils se sont ___ des privilèges (s'arroger).|arrogé|arrogés|arrogées|arrogée|S'arroger suit la règle de avoir : COD après → invariable.
+Les privilèges qu'ils se sont ___…|arrogés|arrogé|arrogées|arrogée|COD « que » (= les privilèges) avant → accord.
+Ces maisons se sont bien ___.|vendues|vendu|vendus|vendue|Pronominal de sens passif → accord avec le sujet.
+Les 100 euros que ce livre m'a ___…|coûté|coûtés|coûtées|coûtée|Coûter au sens propre (prix) → invariable.
+Les efforts que ce travail m'a ___…|coûtés|coûté|coûtées|coûtée|Coûter au sens figuré → accord avec le COD placé avant.
+Les chanteuses que j'ai ___ chanter…|entendues|entendu|entendus|entendue|Le COD fait l'action (elles chantent) → accord.
+Les chansons que j'ai ___ chanter…|entendu|entendues|entendus|entendue|Les chansons ne chantent pas → invariable.
+Il a fait tous les efforts qu'il a ___.|pu|pus|pue|pues|Infinitif sous-entendu (qu'il a pu faire) → invariable.
+Quelle question permet de trouver le COD ?|« Quoi ? » ou « qui ? » après le verbe|« Où ? » après le verbe|« Quand ? » après le verbe|« À qui ? » après le verbe|« À qui ? » donne le COI, pas le COD.
+Avec l'auxiliaire avoir, le participe passé s'accorde…|avec le COD placé avant le verbe|toujours avec le sujet|jamais|avec le COD placé après le verbe|Jamais avec le sujet.
+Elles se sont ___ de cette journée (se souvenir).|souvenues|souvenu|souvenus|souvenue|Essentiellement pronominal → accord avec le sujet.
+Ils se sont ___ mutuellement (se nuire).|nui|nuis|nuits|nuies|Nuire à : COI → invariable.
+Elle s'est ___ de répondre.|permis|permise|permises|permit|Le COD est « de répondre », placé après : invariable.
+Quelle histoire il nous a ___ !|racontée|raconté|racontées|racontés|COD « quelle histoire » placé avant → accord.
+Vous êtes ___, madame ?|venue|venu|venus|venues|Vous de politesse : accord avec la personne réelle.
+Elles se sont ___ des sourires (s'adresser).|adressé|adressées|adressés|adressée|COD « des sourires » après → invariable.`;
+
+FRG.Q.usage=`Il parle parfaitement français : il est à l'aise avec la langue de ___.|Molière|Goethe|Shakespeare|Cervantes|Langue de Molière = français. Goethe = allemand.
+« La langue de Goethe » désigne…|l'allemand|l'anglais|le français|le néerlandais|Goethe est l'écrivain allemand de référence.
+Elle a vécu à Madrid et maîtrise la langue de ___.|Cervantes|Dante|Camões|Molière|Espagnol = langue de Cervantes.
+« La langue de Dante » désigne…|l'italien|l'espagnol|le portugais|le latin|
+« La langue de Shakespeare » désigne…|l'anglais|l'allemand|le néerlandais|le suédois|
+« Fan de Tolstoï, il lit tout dans la langue de Pouchkine. » Cette phrase est-elle cohérente ?|Oui, les deux écrivaient en russe|Non, Pouchkine écrivait en polonais|Non, Tolstoï écrivait en ukrainien|Non, la langue de Pouchkine est l'allemand|Tolstoï et Pouchkine : deux périphrases du russe.
+« Passionné par Camões, il apprend la langue de ___. »|Camões|Cervantes|Dante|Vondel|Camões = portugais : la phrase doit rester cohérente.
+Le français est aussi appelé la langue de la ___.|diplomatie|passion|industrie|commerce|Passion = espagnol, industrie = allemand, commerce = anglais.
+|Il faut résoudre ce problème.|Il faut solutionner ce problème.|Il faut pallier à ce problème.|Il faut se rappeler de ce problème.|« Solutionner » est un barbarisme ; « pallier » et « se rappeler » sont transitifs directs.
+Au sens strict, « un magasin bien achalandé » est un magasin…|qui a beaucoup de clients|qui a beaucoup de marchandises|bien situé|bien rangé|Les chalands sont les clients.
+Au sens strict, « conséquent » signifie…|cohérent, logique|important, considérable|nombreux|coûteux|« Une somme conséquente » est un emploi critiqué.
+|Quand bien même il viendrait, je partirais.|Tant bien même il viendrait, je partirais.|Quand bien que il viendrait, je partirais.|Tant bien que même il viendrait, je partirais.|La locution est « quand bien même » (= même si).
+|Je vais chez le médecin.|Je vais au médecin.|Je vais sur le médecin.|Je vais au docteur.|On va chez une personne, à un lieu.
+|Je travaille à Paris.|Je travaille sur Paris.|Je travaille dessus Paris.|Je travaille par Paris.|« Sur Paris » est un tic de langage fautif.
+|Sa santé va de mal en pis.|Sa santé va de mal en pire.|Sa santé va de mal à pire.|Sa santé va de pis en mal.|Locution figée : de mal en pis.
+|Il est en retard et, qui pis est, il ment.|Il est en retard et, qui pire est, il ment.|Il est en retard et, qui plus pire est, il ment.|Il est en retard et, qui pis sont, il ment.|Locution figée : qui pis est.
+|Il est identique à son frère.|Il est pareil que son frère.|Il est identique que son frère.|Il est semblable que son frère.|Pareil à, identique à, semblable à.
+|Il s'est fâché contre moi.|Il s'est fâché après moi.|Il s'est fâché sur moi.|Il s'est fâché à moi.|On se fâche contre quelqu'un.
+Présent de croire, 3ᵉ personne du pluriel :|ils croient|ils croivent|ils croyent|ils croirent|
+Présent de dire, 2ᵉ personne du pluriel :|vous dites|vous disez|vous disiez|vous ditez|Comme « vous faites » : dites, faites, êtes.
+Présent de faire, 2ᵉ personne du pluriel :|vous faites|vous faisez|vous fêtes|vous faisiez|
+Présent de résoudre, 1ʳᵉ personne du pluriel :|nous résolvons|nous résoudons|nous résolons|nous résoudrons|
+Présent de acquérir, 3ᵉ personne du singulier :|il acquiert|il acquière|il acquérit|il aquiert|
+|Il se fonde sur ces chiffres.|Il se base sur ces chiffres.|Il se fonde de ces chiffres.|Il se repose dessus ces chiffres.|« Se baser sur » est critiqué : on dit « se fonder sur ».
+« Agonir quelqu'un » signifie…|l'accabler d'injures|être à l'agonie|l'achever|le soigner|Ne pas confondre avec agoniser.
+« Perpétrer » signifie…|commettre un crime|faire durer|prolonger|pardonner|Faire durer = perpétuer.
+|Il a recouvré la vue.|Il a recouvert la vue.|Il a recouvri la vue.|Il a recouverte la vue.|Recouvrer = récupérer.
+|Les prémices de la crise étaient visibles.|Les prémisses de la crise étaient visibles.|Les prémice de la crise étaient visibles.|Les primices de la crise étaient visibles.|Prémices = premiers signes ; prémisses = propositions d'un raisonnement.
+|C'est difficile, voire impossible.|C'est difficile, voire même impossible.|C'est difficile, voir même impossible.|C'est difficile, voir impossible.|Voire = et même : « voire même » est un pléonasme.
+|Aujourd'hui, il fait beau.|Au jour d'aujourd'hui, il fait beau.|À jour d'aujourd'hui, il fait beau.|Aujourd'hui même ce jour, il fait beau.|« Au jour d'aujourd'hui » est un pléonasme.
+« Ce projet a fait long feu » signifie…|il a échoué|il a duré longtemps|il a réussi brillamment|il a été vite adopté|Faire long feu = rater, comme une charge qui part trop tard.
+Au sens premier, « un avatar » est…|une transformation, une métamorphose|une mésaventure|un ennemi|un accident|Le sens « mésaventure » est un emploi critiqué.
+|Il se rappelle son enfance.|Il se rappelle de son enfance.|Il s'en rappelle de son enfance.|Il se souvient son enfance.|Se rappeler quelque chose ; se souvenir de quelque chose.
+|Il s'en est souvenu.|Il s'en est rappelé.|Il s'est rappelé de cela.|Il s'en est rappelés.|Avec « en », on emploie se souvenir.
+|Il cause avec son voisin.|Il cause à son voisin.|Il cause sur son voisin.|Il cause dessus son voisin.|On cause avec quelqu'un.
+|Il faut pallier ce manque.|Il faut pallier à ce manque.|Il faut palier ce manque.|Il faut pallier au manque.|Pallier est transitif direct.
+|Je m'en souviens parfaitement.|Je m'en rappelle parfaitement.|Je me rappelle d'elle parfaitement.|Je me souviens elle parfaitement.|Je m'en souviens ; je me le rappelle.
+|Il est parti pour Londres.|Il est parti à Londres demain.|Il est parti sur Londres.|Il est parti dessus Londres.|En langue soignée : partir pour un lieu.`;
+
+window.FRG=window.FRG||{};FRG.Q=FRG.Q||{};FRG.D=FRG.D||{};
+FRG.Q.cense=`Il est ___ arriver à midi.|censé|sensé|sencé|censer|Censé = supposé. Test : « il est supposé arriver ».
+C'est une décision très ___.|sensée|censée|sencée|sensé|Sensée = pleine de bon sens (accord au féminin).
+Nul n'est ___ ignorer la loi.|censé|sensé|sensée|censer|= nul n'est supposé ignorer la loi.
+Vous êtes ___ connaître le règlement.|censés|sensés|censé|censées|Censé = supposé, accordé avec « vous » (pluriel).
+Une remarque ___ et utile.|sensée|censée|sensé|censé|Pleine de bon sens → sensée.
+Il faut travailler ___ (= plus).|davantage|d'avantage|d'avantages|davantages|Davantage = plus.
+Je n'en retire pas d'___ (= de profit).|avantage|avantâge|avantages|davantage|D'avantage = de profit, de bénéfice.
+___, à ce moment-là, il jouait encore.|Or|Hors|Ors|Hor|Or = conjonction de coordination qui introduit un fait nouveau.
+Il habite ___ de la ville.|hors|or|ors|hord|Hors = préposition, à l'extérieur de.
+___ à moi, je refuse.|Quant|Quand|Qu'en|Tant|Quant à = en ce qui concerne.
+Je préfère ___ partir.|plutôt|plus tôt|plutot|plu tôt|Plutôt = de préférence.
+Il est arrivé ___ que prévu.|plus tôt|plutôt|plutot|plus-tôt|Plus tôt = contraire de plus tard.
+Il est ___ à partir (il est préparé).|prêt|près|pré|prés|Prêt à = préparé à.
+Il est ___ de partir (sur le point de).|près|prêt|prés|pré|Près de = sur le point de.
+Il a été surpris ___ il a vu.|par ce qu'|parce qu'|parcequ'|par-ce qu'|= par la chose qu'il a vue.
+Il est resté ___ il pleuvait.|parce qu'|par ce qu'|parcequ'|par-ce qu'|Parce que = car.
+Les invités le complimentaient ___ (à qui mieux mieux).|à l'envi|à l'envie|à l'en vie|alenvi|À l'envi = à l'excès, à qui mieux mieux.
+Il est ___ venu (probablement).|peut-être|peut être|peu-être|peut-étre|Peut-être = probablement ; peut être = pourrait être.
+Cela ___ vrai (pourrait être).|peut être|peut-être|peu être|peut-êtres|Remplaçable par « pourrait être » → sans trait d'union.`;
+
+FRG.Q.nature=`Combien existe-t-il de conjonctions de coordination ?|7|5|9|12|Mais, ou, et, donc, or, ni, car.
+Quelle liste ne contient que des conjonctions de coordination ?|mais, ou, et, donc, or, ni, car|mais, ou, et, donc, or, ni, puis|mais, et, donc, car, cependant, ou, ni|mais, ou, et, donc, hors, ni, car|Puis et cependant sont des adverbes, hors une préposition.
+Pourquoi « malgré que » est-il fautif ?|Malgré est une préposition : il introduit un nom, jamais une proposition|Malgré est un adverbe|Malgré exige l'indicatif|Malgré est une conjonction de coordination|On dit « malgré la pluie » ou « bien qu'il pleuve ».
+Quel indice signale une conjonction de subordination ?|Elle est suivie d'un verbe conjugué|Elle est suivie d'un nom|Elle peut se déplacer dans la phrase|Elle relie deux mots de même nature|La subordonnée contient un verbe conjugué.
+Quel indice signale une préposition ?|Elle est suivie d'un nom, d'un pronom ou d'un infinitif|Elle est suivie d'un verbe conjugué|Elle s'accorde|Elle se place toujours en fin de phrase|Malgré la pluie, avant de partir.
+Quel indice signale un adverbe ?|Il peut se déplacer et suivre « et » ou « mais »|Il introduit une subordonnée|Il s'accorde avec le nom|Il est toujours suivi d'un nom|Et pourtant, mais cependant (ce dernier est lourd).
+Quel enchaînement est un pléonasme ?|car en effet|car|en effet|parce que|Car et en effet expriment tous deux la cause.
+« Avant » et « avant que » sont respectivement…|une préposition et une locution conjonctive|deux prépositions|deux adverbes|une conjonction de coordination et un adverbe|Avant midi / avant qu'il parte.
+Une locution est…|un groupe de mots figé qui fonctionne comme un seul mot|un mot invariable|un verbe pronominal|une conjonction de coordination|Parce que, grâce à, en effet.
+« Car » se distingue de « parce que » car…|car coordonne, parce que subordonne|car subordonne, parce que coordonne|ils sont identiques|car est un adverbe|On ne commence pas une phrase par « Car ».`;
+
+/* mot|phrase|C (coord.) S (subord.) P (prép.) A (adverbe) Lc Lp La (locutions) */
+FRG.D.nature=`mais|Il est riche mais malheureux.|C
+or|Tous les hommes sont mortels ; or Socrate est un homme.|C
+car|Il est resté, car il pleuvait.|C
+donc|Je pense, donc je suis.|C
+ni|Il ne boit ni ne fume.|C
+et|Il chante et danse.|C
+ou|Tu viens ou tu restes ?|C
+pourtant|Il a pourtant tout essayé.|A
+cependant|Il a cependant échoué.|A
+néanmoins|C'est difficile ; néanmoins, j'essaierai.|A
+toutefois|Je viendrai, toutefois pas avant midi.|A
+puis|Il mange, puis il part.|A
+ainsi|Ainsi, la preuve est faite.|A
+ensuite|Lis d'abord, réponds ensuite.|A
+alors|Il pleuvait ; alors, nous sommes rentrés.|A
+certes|Certes, il a raison, mais il exagère.|A
+malgré|Il est sorti malgré la pluie.|P
+hors|Il vit hors de la ville.|P
+hormis|Tous sont venus, hormis Paul.|P
+dès|Je pars dès l'aube.|P
+pendant|Il a dormi pendant le film.|P
+selon|Selon lui, tout va bien.|P
+avant|Viens avant midi.|P
+chez|Je vais chez Paul.|P
+vu|Vu les circonstances, on annule.|P
+outre|Outre ses défauts, il a des qualités.|P
+quand|Je viendrai quand tu voudras.|S
+comme|Comme il pleuvait, nous sommes rentrés.|S
+puisque|Puisque tu insistes, je viens.|S
+lorsque|Lorsqu'il arrive, tout s'arrête.|S
+si|Si tu viens, préviens-moi.|S
+quoique|Quoiqu'il soit tard, il travaille.|S
+que|Je veux que tu viennes.|S
+bien que|Bien qu'il pleuve, il sort.|Lc
+parce que|Il reste parce qu'il pleut.|Lc
+afin que|Parle fort afin qu'on t'entende.|Lc
+dès que|Appelle-moi dès que tu arrives.|Lc
+pendant que|Il lit pendant que je cuisine.|Lc
+alors que|Il sort alors qu'il pleut.|Lc
+grâce à|Il a réussi grâce à toi.|Lp
+à cause de|Il est en retard à cause de la neige.|Lp
+au lieu de|Il joue au lieu de travailler.|Lp
+en dépit de|Il est venu en dépit du froid.|Lp
+à l'instar de|À l'instar de son père, il est médecin.|Lp
+au vu de|Au vu des résultats, on arrête.|Lp
+en effet|Il est absent ; en effet, il est malade.|La
+tout à fait|C'est tout à fait juste.|La
+d'ores et déjà|Je peux d'ores et déjà vous répondre.|La
+peu à peu|Il progresse peu à peu.|La
+tout de suite|Viens tout de suite.|La`;
+
+FRG.Q.vue=`___ des résultats, le projet est abandonné (= compte tenu de).|Au vu|En vue|À la vue|De visu|Au vu de = en considérant.
+Il révise ___ de l'examen (= dans le but de).|en vue|au vu|à la vue|à vue|En vue de = dans le but de.
+___ du sang, il s'est évanoui (= en voyant).|À la vue|Au vu|En vue|À vue d'œil|À la vue de = en voyant.
+L'enfant grandit ___.|à vue d'œil|au vu d'œil|en vue d'œil|à la vue d'œil|À vue d'œil = rapidement, visiblement.
+___ les circonstances, nous annulons.|Vu|Vus|Vues|Vue|Placé avant le nom, vu est une préposition invariable.
+___ que tu insistes, je viendrai.|Vu|Au vu|En vue|À la vue|Vu que = étant donné que.
+Il a agi ___ de tous (= ouvertement).|au vu et au su|au vu et au vu|en vue et en su|à la vue et au su|Au vu et au su de tous.
+___ la facture (en tête de phrase).|Ci-joint|Ci-jointe|Ci-joints|Ci-jointes|Placé avant le nom, ci-joint est invariable.
+Veuillez trouver la facture ___.|ci-jointe|ci-joint|ci-joints|ci-jointes|Placé après le nom, ci-joint s'accorde.
+Tous étaient présents, ___ les enfants.|excepté|exceptés|exceptées|exceptée|Excepté avant le nom = préposition invariable.
+___ dix heures, plus personne n'entre.|Passé|Passées|Passée|Passés|Passé avant le nom = invariable.
+Il est arrivé à dix heures ___.|passées|passé|passés|passée|Passé après le nom = accord.
+« De visu » signifie…|pour l'avoir vu soi-même|de loin|à première vue|en secret|
+« À première vue » signifie…|au premier abord|définitivement|après réflexion|dans le but de|
+|Au temps pour moi, je me suis trompé.|Autant pour moi, je me suis trompé.|Au tant pour moi, je me suis trompé.|Autemps pour moi, je me suis trompé.|L'orthographe académique est « au temps pour moi ».
+Ils ont agi ___ (= d'un commun accord).|de concert|de concerts|du concert|en concert|De concert = en s'étant concertés.
+___ son père, il est devenu médecin (= à l'exemple de).|À l'instar de|Au lieu de|En dépit de|Faute de|
+Il a tout revérifié par ___ de conscience.|acquit|acquis|acquits|aquis|Par acquit de conscience : acquit = quittance, décharge.
+|La pièce était sens dessus dessous.|La pièce était sans dessus dessous.|La pièce était sens dessous dessus.|La pièce était cent dessus dessous.|Sens dessus dessous : le « sens » est le côté.
+« En l'occurrence » signifie…|dans le cas présent|par hasard|à l'occasion|en conséquence|
+« Tout à coup » signifie…|soudain|en une seule fois|peu à peu|de temps en temps|Tout d'un coup = en une seule fois.
+« Être en vue » signifie…|être visible, en passe de devenir célèbre|être myope|être dans le but de|être surveillé|`;
+
+FRG.Q.cant=`Ses arguments sont très ___.|convaincants|convainquants|convainquant|convaincant|Qualité, accord, « très » possible → adjectif : -cant.
+___ son patron, il a obtenu une augmentation.|Convainquant|Convaincant|Convaincants|Convainquante|Action avec complément → participe présent : -quant.
+Une tenue ___.|provocante|provoquante|provocant|provoquant|Qualité accordée → adjectif.
+Les enfants, ___ leurs parents, ont été punis.|provoquant|provocants|provocant|provoquants|Action avec complément → participe présent invariable.
+Un travail très ___.|fatigant|fatiguant|fatigants|fatiguante|Adjectif : -gant.
+___ ses collègues de questions, il a été renvoyé.|Fatiguant|Fatigant|Fatigants|Fatiguante|Participe présent : -guant.
+Un personnage ___.|intrigant|intriguant|intrigants|intriguante|Adjectif : -gant.
+Le personnel ___ de la compagnie.|navigant|naviguant|navigants|naviguante|Adjectif : navigant.
+Deux avis ___.|différents|différants|différent|différant|Adjectif : -ent, accordé.
+Les dates ___ selon les cas, rien n'est fixé.|différant|différents|différent|différantes|Action avec complément → participe présent : différant.
+Un élève ___.|excellent|excellant|excellents|excellante|Adjectif : excellent.
+___ en mathématiques, elle a été admise.|Excellant|Excellent|Excellente|Excellants|Participe présent : excellant.
+Un employé ___.|négligent|négligeant|négligents|négligeante|Adjectif : négligent.
+___ ses devoirs, il a échoué.|Négligeant|Négligent|Négligente|Négligeants|Participe présent : négligeant.
+Le jour ___.|précédent|précédant|précédents|précédante|Adjectif : précédent.
+Le jour ___ l'examen, il était stressé.|précédant|précédent|précédente|précédents|Avec un complément → participe présent : précédant.
+Une personnalité ___.|influente|influante|influent|influant|Adjectif : influent(e).
+Deux valeurs ___.|équivalentes|équivalantes|équivalant|équivalent|Adjectif accordé : équivalentes.
+Une odeur ___.|suffocante|suffoquante|suffocant|suffoquant|Adjectif : suffocant(e).
+Des vases ___.|communicants|communiquants|communicant|communiquant|Adjectif : communicant.
+Un poste ___.|vacant|vaquant|vacants|vaquante|Adjectif : vacant.
+Les opinions ___ sur ce point, le débat continue.|divergeant|divergentes|divergent|divergeantes|Action avec complément → participe présent.
+Des avis ___.|divergents|divergeants|divergeant|divergente|Adjectif : divergent.
+Le participe présent…|est invariable et exprime une action|s'accorde et exprime une qualité|s'écrit toujours -cant|ne peut jamais avoir de complément|
+L'adjectif verbal…|s'accorde et exprime une qualité|est toujours invariable|peut être précédé de « en »|s'écrit toujours -quant|
+« En ___ ses amis, il a gagné. »|convainquant|convaincant|convaincants|convainquants|Après « en » (gérondif) → participe présent.`;
+
+FRG.Q.syntaxe=`|Le système vise à nous en faire assimiler le moins possible.|Le système vise à nous en faire assimiler le moins.|Le système vise à nous en faire assimiler au moins.|Le système vise à nous en faire assimiler moins possible.|Il faut « le moins possible ».
+|On n'entend pas les chants des supporters.|On entend pas les chants des supporters.|On n'entend les chants des supporters pas.|On ne entend pas les chants des supporters.|Le « ne » de la négation ne s'omet pas à l'écrit.
+|Sans moi, ils seraient demeurés à la maison.|Sans moi, ils auraient demeuré à la maison.|Sans moi, ils auraient demeurés à la maison.|Sans moi, ils seront demeurés à la maison.|Demeurer au sens de rester se conjugue avec être.
+|L'enfant commencera l'école cette année.|L'enfant débutera l'école cette année.|L'enfant débutera de l'école cette année.|L'enfant aura débuté l'école cette année.|Débuter est intransitif : on ne débute pas quelque chose.
+|Le système dont je parle est celui que j'ai connu.|Le système que je parle est celui que j'ai connu.|Le système duquel je parle de est celui que j'ai connu.|Le système où je parle est celui que j'ai connu.|Parler de → dont.
+|Si vous m'élisiez, je serais président.|Si vous m'éliriez, je serais président.|Si vous m'élisez, je serais président.|Si vous m'aurez élu, je serais président.|Si + imparfait, jamais le conditionnel.
+|Nous serons capables de nous en servir.|Nous serons capables de s'en servir.|Nous serons capables de se servir.|Nous serons capables de vous en servir.|Le pronom réfléchi s'accorde avec le sujet « nous ».
+|C'est de cela que je parle.|C'est de cela dont je parle.|C'est cela de quoi dont je parle.|C'est de cela duquel je parle.|« Dont » contient déjà « de ».
+|Après qu'il est parti, nous avons dîné.|Après qu'il soit parti, nous avons dîné.|Après qu'il fût parti, nous avons dîné.|Après qu'il serait parti, nous avons dîné.|Après que + indicatif.
+|Je me le rappelle très bien.|Je m'en rappelle très bien.|Je me rappelle de ça très bien.|Je m'en rappelle de ça.|Se rappeler quelque chose (sans « de »).
+|Malgré la pluie, il est sorti.|Malgré qu'il pleuve, il est sorti.|Malgré qu'il pleut, il est sorti.|Malgré qu'il ait plu, il est sorti.|« Malgré que » est toujours fautif.
+|Il a accepté quand même.|Il a accepté comme même.|Il a accepté comme-même.|Il a accepté quand-même.|Quand même, sans trait d'union.
+|Je préfère le thé au café.|Je préfère le thé que le café.|Je préfère le thé que du café.|Je préfère le thé contre le café.|Préférer A à B.
+|C'est un livre dont l'auteur est célèbre.|C'est un livre dont son auteur est célèbre.|C'est un livre que l'auteur est célèbre.|C'est un livre duquel l'auteur en est célèbre.|« Dont » remplace déjà le possessif.
+|Je vais chez le coiffeur.|Je vais au coiffeur.|Je vais à coiffeur.|Je vais sur le coiffeur.|On va chez une personne.
+|C'est à lui que je pense.|C'est à lui à qui je pense.|C'est lui à qui que je pense.|C'est à lui auquel je pense.|Pas de double relatif.`;
+
+FRG.Q.ortho=`|apercevoir|appercevoir|apercevoire|aperçevoir|Je n'aperçois qu'un p.
+|nourrir|nourir|nourrire|nourrrir|On se nourrit plusieurs fois par jour : deux r.
+|mourir|mourrir|mourire|mourrire|On ne meurt qu'une fois : un seul r.
+|chuter|chutter|chûter|chuterr|On ne chute qu'une fois : un seul t.
+Adverbe formé sur « évident » :|évidemment|évidamment|évidement|évidament|Adjectif en -ent → -emment.
+Adverbe formé sur « élégant » :|élégamment|élégemment|élégament|élégement|Adjectif en -ant → -amment.
+Adverbe formé sur « prudent » :|prudemment|prudamment|prudement|prudament|-ent → -emment.
+Adverbe formé sur « brillant » :|brillamment|brillemment|brillament|brilliamment|-ant → -amment.
+Adverbe formé sur « fréquent » :|fréquemment|fréquamment|fréquement|fréquament|-ent → -emment.
+Adverbe formé sur « constant » :|constamment|constemment|constament|constantement|-ant → -amment.
+Adverbe formé sur « patient » :|patiemment|patiamment|patiement|patienment|-ent → -emment.
+Adverbe formé sur « lent » :|lentement|lemment|lentemment|lantement|Exception : lentement.
+80 s'écrit :|quatre-vingts|quatre-vingt|quatres-vingts|quatre-vingt-s|Vingt multiplié et non suivi d'un nombre → s.
+83 s'écrit :|quatre-vingt-trois|quatre-vingts-trois|quatres-vingt-trois|quatre-vingts trois|Suivi d'un autre nombre → pas de s.
+200 s'écrit :|deux cents|deux cent|deux centt|deux cents-s|Cent multiplié et non suivi → s.
+203 s'écrit :|deux cent trois|deux cents trois|deux centtrois|deux cents-trois|Suivi d'un autre nombre → pas de s.
+2 000 s'écrit :|deux mille|deux milles|deux mils|deux-milles|Mille est toujours invariable.
+Adverbe formé sur « notable » :|notablement|notablemment|notabement|notablament|Adjectif sans -ant/-ent → -ment simple.`;
+
+FRG.Q.pluriel=`Pluriel de « bijou » :|bijoux|bijous|bijoues|bijou|Bijou, caillou, chou, genou, hibou, joujou, pou → x.
+Pluriel de « clou » :|clous|cloux|cloues|clou|Les noms en -ou prennent un s, sauf les 7 exceptions.
+Pluriel de « genou » :|genoux|genous|genoues|genou|Une des 7 exceptions en -oux.
+Pluriel de « pneu » :|pneus|pneux|pneues|pneu|Landau, sarrau, pneu, bleu, émeu → s.
+Pluriel de « landau » :|landaus|landaux|landeaux|landau|Exception : landaus.
+Pluriel de « bal » :|bals|baux|bales|bal|Bal, carnaval, chacal, festival, récital, régal → s.
+Pluriel de « festival » :|festivals|festivaux|festivales|festival|Exception en -als.
+Pluriel de « cheval » :|chevaux|chevals|chevaus|chevales|-al → -aux.
+Pluriel de « travail » :|travaux|travails|travailles|travaus|Bail, corail, émail, soupirail, travail, vantail, vitrail → aux.
+Pluriel de « portail » :|portails|portaux|portailles|portail|-ail → -ails en règle générale.
+Pluriel de « vitrail » :|vitraux|vitrails|vitrailles|vitrals|Exception en -aux.
+Pluriel de « éventail » :|éventails|éventaux|éventailles|éventaus|-ail → -ails.
+Pluriel de « œil » :|yeux|œils|œuils|yeuxs|
+Pluriel de « madame » :|mesdames|madames|mesdame|madamess|
+Pluriel de « monsieur » :|messieurs|monsieurs|messieur|monsieures|
+Pluriel de « tire-bouchon » :|tire-bouchons|tires-bouchons|tires-bouchon|tire-bouchon|Verbe + nom : le verbe reste invariable.
+Pluriel de « chou-fleur » :|choux-fleurs|chou-fleurs|choux-fleur|chous-fleurs|Nom + nom : les deux s'accordent.
+Pluriel de « timbre-poste » :|timbres-poste|timbre-postes|timbres-postes|timbre-poste|Le 2ᵉ nom est complément (timbre pour la poste) : invariable.
+Pluriel de « coffre-fort » :|coffres-forts|coffre-forts|coffres-fort|coffre-fort|Nom + adjectif : les deux s'accordent.
+Pluriel de « micro-onde » :|micro-ondes|micros-ondes|micros-onde|micro-onde|Premier élément en -o : invariable.
+Pluriel de « en-tête » :|en-têtes|ens-têtes|en-tête|ens-tête|Adverbe + nom : seul le nom s'accorde.
+Pluriel de « savoir-faire » :|savoir-faire|savoirs-faire|savoir-faires|savoirs-faires|Verbe + verbe : invariable.
+Des pantalons ___ (couleur marron).|marron|marrons|marronnes|marronne|Nom employé comme couleur → invariable.
+Des rubans ___ (couleur rose).|roses|rose|rosés|rosent|Exception : rose, mauve, pourpre, écarlate, fauve s'accordent.
+Des yeux ___.|bleu clair|bleus clairs|bleus clair|bleu clairs|Couleur composée → invariable.
+Des robes ___ (couleur orange).|orange|oranges|orangées|orangés|Nom employé comme couleur → invariable.
+Une ___-heure.|demi|demie|demis|demies|Demi avant le nom : invariable.
+Deux heures et ___.|demie|demi|demis|demies|Après le nom : accord en genre seulement.
+Un écrit et une auteure ___.|intéressants|intéressantes|intéressant|intéressante|Genres différents → masculin pluriel.
+Cet orgue est puissant ; ces orgues sont ___.|puissantes|puissants|puissante|puissant|Orgue, amour, délice : féminins au pluriel.`;
+
+window.GEO=window.GEO||{};
+GEO.L=[
+{id:"methode",t:"La méthode pour arrêter de perdre des points",h:`
+<div class="rule"><b>Les 7 réflexes, à appliquer à chaque question de géométrie</b><br>
+<b>1. Dessine toujours la figure</b>, même grossièrement, et écris les données dessus. 80 % des erreurs viennent d'une donnée mal placée.<br>
+<b>2. Entoure le mot demandé</b> : aire, périmètre, volume, rayon ou diamètre. La moitié des pièges du QCM sont la réponse à une autre question (le périmètre quand on demande l'aire, le diamètre quand on demande le rayon).<br>
+<b>3. Cherche la figure cachée</b> : un triangle rectangle (→ Pythagore), deux droites parallèles (→ Thalès), un carré dans un cercle (→ diagonale = diamètre).<br>
+<b>4. Garde π et les racines sous forme symbolique</b> jusqu'au bout : les réponses sont presque toujours écrites « 25π » ou « 5√3 ».<br>
+<b>5. Reconnais les triplets de Pythagore</b> avant de calculer : 3-4-5, 5-12-13, 8-15-17, 7-24-25 et leurs multiples.<br>
+<b>6. Contrôle l'unité</b> : une aire est en cm², un volume en cm³. Si ta réponse contient r², c'est une aire ; r³, un volume.<br>
+<b>7. Élimine par l'ordre de grandeur</b> : π ≈ 3,14 ; √2 ≈ 1,41 ; √3 ≈ 1,73. Un disque de rayon 5 a une aire d'environ 78, jamais 15.</div>
+<div class="trap"><b>Les pièges qui reviennent</b> : rayon ↔ diamètre · oublier le « ÷ 2 » de l'aire du triangle · oublier le « ÷ 3 » du cône et de la pyramide · oublier la racine dans Pythagore · confondre angle inscrit et angle au centre · appliquer Thalès sans vérifier le parallélisme · additionner des pourcentages d'agrandissement au lieu de les élever au carré.</div>`},
+{id:"cercle",t:"Cercle, disque, arc et secteur",h:`
+<table class="lt"><tr><th>Grandeur</th><th>Formule</th></tr>
+<tr><td>Diamètre</td><td>d = 2r</td></tr>
+<tr><td>Périmètre (circonférence)</td><td>2πr = πd</td></tr>
+<tr><td>Aire du disque</td><td>πr²</td></tr>
+<tr><td>Arc d'angle n (en degrés)</td><td>2πr × n/360</td></tr>
+<tr><td>Secteur d'angle n</td><td>πr² × n/360</td></tr></table>
+<p><b>Réflexe arc/secteur</b> : simplifie d'abord n/360 → 90° = 1/4, 60° = 1/6, 120° = 1/3, 45° = 1/8, 30° = 1/12, 72° = 1/5.</p>
+<div class="trap">Doubler le rayon double le périmètre mais <b>multiplie l'aire par 4</b>.</div>`},
+{id:"triangles",t:"Triangles et Pythagore",h:`
+<ul><li><b>Hauteur</b> : passe par un sommet, perpendiculaire au côté opposé.</li>
+<li><b>Médiane</b> : passe par un sommet et le milieu du côté opposé.</li>
+<li><b>Médiatrice</b> : perpendiculaire à un côté en son milieu.</li></ul>
+<table class="lt"><tr><th>Triangle</th><th>Périmètre</th><th>Aire</th></tr>
+<tr><td>Quelconque</td><td>AB + BC + AC</td><td>base × hauteur / 2</td></tr>
+<tr><td>Isocèle en A</td><td>2 × AB + BC</td><td>base × hauteur / 2</td></tr>
+<tr><td>Équilatéral de côté a</td><td>3a</td><td>a²√3 / 4 (hauteur a√3/2)</td></tr>
+<tr><td>Rectangle en A</td><td>AB + BC + AC</td><td>AB × AC / 2</td></tr>
+<tr><td>Rectangle isocèle de côté a</td><td>a(2 + √2)</td><td>a² / 2 (hypoténuse a√2)</td></tr></table>
+<p><b>Somme des angles = 180°</b>. Isocèle : deux angles égaux. Équilatéral : trois angles de 60°. Rectangle isocèle : 90°, 45°, 45°.</p>
+<div class="rule"><b>Pythagore</b> : dans un triangle rectangle, (hypoténuse)² = somme des carrés des deux autres côtés.<br>
+<b>Triplets à connaître</b> : 3-4-5 · 5-12-13 · 8-15-17 · 7-24-25 · 20-21-29 · 9-40-41, et tous leurs multiples (6-8-10, 9-12-15, 10-24-26…).</div>
+<p>Pyramide : V = aire de la base × hauteur / 3.</p>`},
+{id:"quadri",t:"Quadrilatères et polygones",h:`
+<table class="lt"><tr><th>Figure</th><th>Périmètre</th><th>Aire</th></tr>
+<tr><td>Carré de côté c</td><td>4c</td><td>c² · diagonale c√2</td></tr>
+<tr><td>Rectangle L × l</td><td>2(L + l)</td><td>L × l · diagonale √(L² + l²)</td></tr>
+<tr><td>Losange (diagonales D, d)</td><td>4 × côté</td><td>D × d / 2</td></tr>
+<tr><td>Parallélogramme</td><td>somme des côtés</td><td>base × hauteur</td></tr>
+<tr><td>Trapèze (bases B, b)</td><td>somme des côtés</td><td>(B + b) × h / 2</td></tr></table>
+<p>Losange, rectangle et carré sont des parallélogrammes particuliers. Les diagonales d'un losange se coupent perpendiculairement en leur milieu : chaque côté est l'hypoténuse d'un triangle de côtés D/2 et d/2.</p>
+<p><b>Polygone à N côtés</b> : somme des angles = 180° × (N − 2). Pentagone 540°, hexagone 720°, octogone 1080°. Polygone régulier : chaque angle = 180° × (N − 2) / N (hexagone : 120°).</p>`},
+{id:"espace",t:"Volumes et surfaces",h:`
+<table class="lt"><tr><th>Solide</th><th>Volume</th><th>Surface</th></tr>
+<tr><td>Cube d'arête c</td><td>c³</td><td>6c²</td></tr>
+<tr><td>Pavé L × l × h</td><td>L × l × h</td><td>2(Ll + Lh + lh)</td></tr>
+<tr><td>Cylindre</td><td>πr²h</td><td>latérale 2πrh</td></tr>
+<tr><td>Cône</td><td>πr²h / 3</td><td>—</td></tr>
+<tr><td>Pyramide</td><td>aire de base × h / 3</td><td>—</td></tr>
+<tr><td>Sphère</td><td>4/3 πr³</td><td>4πr²</td></tr></table>
+<div class="rule"><b>Agrandissement de rapport k</b> : longueurs × k · aires × k² · volumes × k³.<br>Rayon + 10 % → aire × 1,21 (+21 %) · rayon × 2 → volume × 8.</div>`},
+{id:"thales",t:"Théorème de Thalès",h:`
+<p>Une droite parallèle à un côté d'un triangle découpe un triangle aux <b>proportions identiques</b>.</p>
+<p><b>Cas n°1, le triangle simple</b> : D sur [AB], E sur [AC], (DE) ∥ (BC) → <b>AD/AB = AE/AC = DE/BC</b> (petit côté / grand côté).</p>
+<p><b>Cas n°2, le nœud papillon</b> : les droites se croisent en E, (AD) ∥ (BC) → <b>EA/EC = ED/EB = AD/BC</b>.</p>
+<p><b>Cas n°3, le cercle</b> : AB diamètre d'un cercle de centre E ; le segment reliant le centre au milieu d'une corde est parallèle à l'autre côté → les rapports valent <b>rayon / diamètre = 1/2</b>.</p>
+<div class="trap">Toujours écrire les rapports dans le même ordre : petit triangle en haut, grand triangle en bas. Une droite qui passe par les milieux de deux côtés est parallèle au troisième et mesure sa moitié.</div>`},
+{id:"astuces",t:"Astuces et propriétés",h:`
+<ul>
+<li><b>Angles opposés par le sommet</b> : égaux deux à deux.</li>
+<li><b>Angles alternes-internes</b> : deux parallèles coupées par une sécante forment des angles alternes-internes égaux.</li>
+<li><b>Triangle inscrit dont un côté est un diamètre</b> → il est rectangle, et ce côté est l'hypoténuse.</li>
+<li><b>Angle inscrit = moitié de l'angle au centre</b> qui intercepte le même arc. Deux angles inscrits interceptant le même arc sont égaux.</li>
+<li><b>Les trois médiatrices</b> d'un triangle se croisent au centre du cercle circonscrit.</li>
+<li><b>Rayon du cercle inscrit dans un triangle</b> = 2 × aire / périmètre. Pour un triangle rectangle : (a + b − c) / 2.</li>
+<li><b>Carré de côté c inscrit dans un cercle</b> → diamètre du cercle = diagonale = c√2, rayon = c√2/2.</li>
+<li><b>Cercle inscrit dans un carré</b> → diamètre = côté du carré.</li>
+<li><b>Triangle isocèle ou équilatéral coupé par sa hauteur</b> → deux triangles de même aire ; la hauteur s'obtient par Pythagore.</li>
+</ul>
+<div class="rule"><b>Valeurs à connaître</b> : π ≈ 3,14 · √2 ≈ 1,414 · √3 ≈ 1,732 · √5 ≈ 2,236 · 1/π ≈ 0,32.</div>`}
+];
+
+(function(){
+"use strict";
+var G=window.GEO=window.GEO||{};
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1));}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function gcd(a,b){while(b){var t=b;b=a%b;a=t;}return a;}
+function nf(x){var r=Math.round(x*100)/100;if(Math.abs(r-Math.round(r))<1e-9)return String(Math.round(r));return String(r).replace(".",",");}
+function nice(x){return Math.abs(x*10-Math.round(x*10))<1e-9;}
+function pi(k){if(Math.abs(k)<1e-9)return "0";return (Math.abs(k-1)<1e-9?"":nf(k))+"π";}
+function sq(k,rad){return (Math.abs(k-1)<1e-9?"":nf(k))+"√"+rad;}
+function frac(n,d){var g=gcd(n,d);return (n/g)+"/"+(d/g);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+var NAMES={disque:"Cercle et disque",arc:"Arcs et secteurs",pyth:"Pythagore",equi:"Triangle équilatéral",inscrit:"Figures inscrites",
+  thales:"Thalès",angles:"Angles",volumes:"Volumes",echelle:"Agrandissement",quadri:"Quadrilatères",flash:"Formules flash"};
+G.names=NAMES;
+function mk(theme,key,q,svg,a,dists,sol,fast){
+  var seen={},pool=[];seen[a]=1;
+  dists.forEach(function(x){x=String(x);if(!seen[x]&&!/NaN|Infinity|^-|−\d|^0(\D|$)/.test(x)){seen[x]=1;pool.push(x);}});
+  return {key:"geo|"+key,theme:theme,tag:NAMES[theme],q:q,svg:svg,a:a,pool:pool,expl:sol,fast:fast,geo:true};
+}
+
+/* ---------- dessin ---------- */
+function W(i){return '<svg class="gf" viewBox="0 0 260 170" role="img" aria-label="Figure">'+i+'</svg>';}
+function L(a,b,c,d,k){return '<line x1="'+a.toFixed(1)+'" y1="'+b.toFixed(1)+'" x2="'+c.toFixed(1)+'" y2="'+d.toFixed(1)+'"'+(k?' class="'+k+'"':'')+'/>';}
+function T(x,y,s,an,k){return '<text x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" text-anchor="'+(an||"middle")+'"'+(k?' class="'+k+'"':'')+'>'+esc(s)+'</text>';}
+function P(pts,k){return '<polygon points="'+pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1);}).join(" ")+'"'+(k?' class="'+k+'"':'')+'/>';}
+function C(x,y,r,k){return '<circle cx="'+x+'" cy="'+y+'" r="'+r+'"'+(k?' class="'+k+'"':'')+'/>';}
+function E(x,y,rx,ry,k){return '<ellipse cx="'+x+'" cy="'+y+'" rx="'+rx+'" ry="'+ry+'"'+(k?' class="'+k+'"':'')+'/>';}
+function dot(x,y){return '<circle cx="'+x+'" cy="'+y+'" r="2.4" class="dot"/>';}
+function circ(lab,diam){return W(C(130,85,62)+dot(130,85)+(diam?L(68,85,192,85,"hl"):L(130,85,192,85,"hl"))+T(diam?130:161,77,lab));}
+function sector(n,lab){
+  var cx=130,cy=88,r=64,a=n*Math.PI/180,x1=cx+r*Math.cos(a),y1=cy-r*Math.sin(a),m=n/2*Math.PI/180;
+  return W(C(cx,cy,r)+'<path class="sh hl" d="M'+cx+' '+cy+' L'+(cx+r)+' '+cy+' A'+r+' '+r+' 0 '+(n>180?1:0)+' 0 '+x1.toFixed(1)+' '+y1.toFixed(1)+' Z"/>'+
+    dot(cx,cy)+T(cx+30*Math.cos(m),cy-30*Math.sin(m)+4,n+"°")+T(cx+32,cy+16,lab));
+}
+function rtri(a,b,c){return W(P([[50,140],[50,40],[210,140]])+'<path d="M50 128 H62 V140" />'+T(40,94,String(a),"end")+T(130,159,String(b))+T(140,82,String(c),"start","hl"));}
+function rectF(Lg,l){return W('<rect x="50" y="40" width="160" height="90"/>'+L(50,130,210,40,"hl dash")+T(130,148,Lg+" cm")+T(218,90,l+" cm","start")+T(124,80,"?","middle","hl"));}
+function squareF(s){return W('<rect x="85" y="30" width="100" height="100"/>'+L(85,130,185,30,"hl dash")+T(135,148,s+" cm")+T(128,76,"?","middle","hl"));}
+function equiF(lab){return W(P([[130,22],[48,150],[212,150]])+L(130,22,130,150,"dash hl")+'<path d="M130 140 H140 V150"/>'+T(130,165,"côté a")+T(136,100,lab,"start"));}
+function sqInC(lab,isR){var h=45.25;return W(C(130,85,64)+P([[130-h,85-h],[130+h,85-h],[130+h,85+h],[130-h,85+h]],"sh")+L(130-h,85+h,130+h,85-h,"dash")+dot(130,85)+(isR?L(130,85,194,85,"hl")+T(165,79,lab):T(130,33,lab)));}
+function cInSq(lab){return W('<rect x="66" y="21" width="128" height="128" class="sh"/>'+C(130,85,64,"bg")+dot(130,85)+T(130,165,lab));}
+function triInC(){var x=156.2,y=33.8;return W(C(130,90,62)+P([[68,90],[192,90],[x,y]],"sh")+dot(130,90)+L(68,90,192,90,"hl")+T(130,106,"hypoténuse = diamètre")+T(103,56,"a","end")+T(180,58,"b","start"));}
+function inC(){return W(P([[45,150],[215,150],[45,25]])+C(87,108,42,"hl")+dot(87,108)+L(87,108,87,150,"dash")+T(78,132,"r","end")+T(33,90,"a","end")+T(130,165,"b")+T(140,82,"c","start"));}
+function thTri(lAD,lAB,lBC,lDE){var t=.42,D=[145-70*t,18+134*t],Ee=[145+90*t,18+134*t];
+  return W(P([[145,18],[75,152],[235,152]])+L(D[0],D[1],Ee[0],Ee[1],"hl")+T(145,13,"A")+T(67,160,"B","end")+T(243,160,"C","start")+T(D[0]-6,D[1]+3,"D","end")+T(Ee[0]+6,Ee[1]+3,"E","start")+
+    (lAD?T(124,44,lAD,"end"):"")+T(84,118,lAB,"end")+T(155,167,lBC)+T(149,D[1]-6,lDE,"middle","hl"));}
+function thBow(lEA,lEC,lBC){var A=[70,40],D=[70,120],B=[200,22],Cc=[200,150],Ex=120,Ey=82.3;
+  return W(L(A[0],A[1],D[0],D[1],"hl")+L(B[0],B[1],Cc[0],Cc[1])+L(A[0],A[1],Cc[0],Cc[1])+L(D[0],D[1],B[0],B[1])+
+    T(62,38,"A","end")+T(62,128,"D","end")+T(208,22,"B","start")+T(208,155,"C","start")+T(Ex,Ey-9,"E")+
+    T(100,52,lEA,"start")+T(150,140,lEC,"end")+T(208,90,lBC,"start")+T(62,84,"AD = ?","end","hl"));}
+function polyF(n){var pts=[];for(var i=0;i<n;i++){var a=-Math.PI/2+i*2*Math.PI/n;pts.push([130+66*Math.cos(a),86+66*Math.sin(a)]);}return W(P(pts,"sh")+T(130,90,n+" côtés"));}
+function inscF(li,lc){var O=[130,78],r=58,f=function(d){return [O[0]+r*Math.cos(d*Math.PI/180),O[1]-r*Math.sin(d*Math.PI/180)];},A=f(215),B=f(325),M=f(95);
+  return W(C(O[0],O[1],r)+L(O[0],O[1],A[0],A[1],"hl")+L(O[0],O[1],B[0],B[1],"hl")+L(M[0],M[1],A[0],A[1])+L(M[0],M[1],B[0],B[1])+dot(O[0],O[1])+T(O[0],O[1]-8,"O")+
+    T(O[0],O[1]+r+18,"angle au centre AÔB : "+lc,"middle","hl")+T(6,12,"angle inscrit AMB : "+li,"start")+T(M[0]+7,M[1]+4,"M","start")+T(A[0]-6,A[1]+8,"A","end")+T(B[0]+6,B[1]+8,"B","start"));}
+function isoF(l){return W(P([[130,22],[55,150],[205,150]])+L(88,82,96,90)+L(164,90,172,82)+T(130,48,l)+T(48,160,"B","end")+T(212,160,"C","start")+T(130,14,"A"));}
+function triAng(a,b){return W(P([[40,150],[220,150],[150,30]])+T(62,143,a+"°","start")+T(198,143,b+"°","end")+T(150,58,"?","middle","hl"));}
+function parF(l){return W(L(25,55,235,55)+L(25,118,235,118)+L(85,160,180,10,"hl")+T(168,72,l,"start")+T(102,110,"?","end","hl")+T(238,52,"d₁","start")+T(238,115,"d₂","start"));}
+function cylF(r,h){return W(E(130,35,55,13)+L(75,35,75,140)+L(185,35,185,140)+'<path d="M75 140 A55 13 0 0 0 185 140"/><path class="dash" d="M75 140 A55 13 0 0 1 185 140"/>'+L(130,140,185,140,"hl")+T(158,134,"r = "+r)+T(195,90,"h = "+h,"start"));}
+function coneF(r,h){return W(L(130,22,70,140)+L(130,22,190,140)+'<path d="M70 140 A60 14 0 0 0 190 140"/><path class="dash" d="M70 140 A60 14 0 0 1 190 140"/>'+L(130,22,130,140,"dash")+L(130,140,190,140,"hl")+T(160,134,"r = "+r)+T(136,90,"h = "+h,"start"));}
+function sphF(r){return W(C(130,85,62)+E(130,85,62,15,"dash")+dot(130,85)+L(130,85,192,85,"hl")+T(161,78,"r = "+r));}
+function cubeF(c){return W('<rect x="70" y="55" width="90" height="90"/>'+P([[70,55],[105,25],[195,25],[160,55]])+P([[160,55],[195,25],[195,115],[160,145]])+T(115,162,"c = "+c));}
+function paveF(a,b,c){return W('<rect x="50" y="60" width="130" height="80"/>'+P([[50,60],[85,30],[215,30],[180,60]])+P([[180,60],[215,30],[215,110],[180,140]])+T(115,157,a+"")+T(205,135,b+"","start")+T(42,104,c+"","end"));}
+function pyrF(c,h){return W(P([[60,140],[170,140],[205,110],[95,110]])+L(132,20,60,140)+L(132,20,170,140)+L(132,20,205,110)+L(132,20,95,110,"dash")+L(132,20,132,125,"dash hl")+T(115,158,"côté "+c)+T(138,80,"h = "+h,"start"));}
+function squareD(dg){return W('<rect x="85" y="30" width="100" height="100"/>'+L(85,130,185,30,"hl")+T(128,76,"d = "+dg,"middle","hl")+T(135,148,"aire = ?"));}
+function rectP(k){return W('<rect x="35" y="45" width="155" height="80" class="sh"/>'+T(112,143,"longueur = "+k+" × largeur")+T(196,90,"largeur","start"));}
+function losF(D,d){return W(P([[50,85],[130,35],[210,85],[130,135]],"sh")+L(50,85,210,85,"dash")+L(130,35,130,135,"dash")+T(170,80,"D = "+D)+T(136,120,"d = "+d,"start"));}
+function trapF(b,B,h){return W(P([[40,140],[220,140],[175,50],[85,50]],"sh")+L(110,50,110,140,"dash")+T(130,42,"b = "+b)+T(130,158,"B = "+B)+T(116,100,"h = "+h,"start"));}
+
+/* ---------- générateurs ---------- */
+var TRIP=[[3,4,5],[5,12,13],[8,15,17],[7,24,25],[20,21,29]];
+function gDisque(){
+  var r=ri(2,12),m=ri(1,5),q,a,d,s,svg;
+  if(m===1){q="Un cercle a un rayon de "+r+" cm. Quelle est l'aire du disque ?";a=pi(r*r)+" cm²";d=[pi(2*r),pi(4*r*r),nf(r*r),pi(2*r*r),pi(r)].map(function(x){return x+" cm²";});s="Aire = πr² = π × "+r+"² = "+pi(r*r)+" cm².";svg=circ("r = "+r);}
+  else if(m===2){var D=2*r;q="Un disque a un diamètre de "+D+" cm. Quelle est son aire ?";a=pi(r*r)+" cm²";d=[pi(D*D),pi(D),pi(D*D/2),pi(2*r*r),pi(r)].map(function(x){return x+" cm²";});s="Rayon = "+D+" ÷ 2 = "+r+" cm, donc aire = π × "+r+"² = "+pi(r*r)+" cm².";svg=circ("d = "+D,true);}
+  else if(m===3){q="Un cercle a un périmètre de "+pi(2*r)+" cm. Quelle est l'aire du disque ?";a=pi(r*r)+" cm²";d=[pi(4*r*r),pi(2*r*r),pi(r),pi((r+1)*(r+1)),pi(2*r)].map(function(x){return x+" cm²";});s="2πr = "+pi(2*r)+", donc r = "+r+" cm. Aire = πr² = "+pi(r*r)+" cm².";svg=circ("P = "+pi(2*r));}
+  else if(m===4){q="Un disque a une aire de "+pi(r*r)+" cm². Quel est son périmètre ?";a=pi(2*r)+" cm";d=[pi(r),pi(4*r),pi(r*r),pi(2*r*r),pi(r/2)].map(function(x){return x+" cm";});s="πr² = "+pi(r*r)+", donc r = "+r+" cm. Périmètre = 2πr = "+pi(2*r)+" cm.";svg=circ("A = "+pi(r*r));}
+  else{q="Un cercle a un rayon de "+r+" cm. Quel est son périmètre ?";a=pi(2*r)+" cm";d=[pi(r*r),pi(r),pi(4*r),pi(4*r*r),pi(r/2)].map(function(x){return x+" cm";});s="Périmètre = 2πr = 2 × π × "+r+" = "+pi(2*r)+" cm.";svg=circ("r = "+r);}
+  return mk("disque","D"+m+"_"+r,q,svg,a,d,s,"Périmètre ↔ r, aire ↔ r². Trouve d'abord le rayon, puis élimine les réponses qui confondent les deux.");
+}
+function gArc(){
+  var A=[30,36,40,45,60,72,90,120,135,150,180,240,270,300],n,r,ka,ks,t=0;
+  do{n=pick(A);r=ri(2,12);ka=r*n/180;ks=r*r*n/360;t++;}while(t<80&&(!nice(ka)||!nice(ks)));
+  var sec=Math.random()<.5,fr=frac(n,360),q,a,d,s;
+  if(sec){q="Quelle est l'aire d'un secteur d'angle "+n+"° dans un disque de rayon "+r+" cm ?";a=pi(ks)+" cm²";d=[pi(ka),pi(r*r),pi(ks*2),pi(ks/2),pi(r*n/360)].map(function(x){return x+" cm²";});s="Aire = πr² × n/360 = π × "+(r*r)+" × "+fr+" = "+pi(ks)+" cm².";}
+  else{q="Quelle est la longueur d'un arc d'angle "+n+"° sur un cercle de rayon "+r+" cm ?";a=pi(ka)+" cm";d=[pi(ks),pi(2*r),pi(ka*2),pi(ka/2),pi(r*n/360)].map(function(x){return x+" cm";});s="Arc = 2πr × n/360 = "+pi(2*r)+" × "+fr+" = "+pi(ka)+" cm.";}
+  return mk("arc","A"+(sec?"s":"a")+n+"_"+r,q,sector(n,"r = "+r),a,d,s,"Simplifie d'abord : "+n+"/360 = "+fr+". Le secteur vaut "+fr+" du disque, l'arc "+fr+" du périmètre.");
+}
+function gPyth(){
+  var t=pick(TRIP),k=t[2]>20?1:ri(1,t[2]<=5?4:2),a=t[0]*k,b=t[1]*k,c=t[2]*k,m=ri(1,4),q,an,d,s,svg;
+  if(m===4){var z=ri(2,12);return mk("pyth","PQ"+z,"Quelle est la longueur de la diagonale d'un carré de côté "+z+" cm ?",squareF(z),sq(z,2)+" cm",
+    [nf(2*z),sq(z,3),nf(z*z),sq(2*z,2),nf(z*1.5)].map(function(x){return x+" cm";}),"Pythagore : d² = c² + c² = 2c², donc d = c√2 = "+sq(z,2)+" cm.","Diagonale d'un carré = côté × √2 ≈ côté × 1,41.");}
+  if(m===1){q="Un triangle est rectangle. Les côtés de l'angle droit mesurent "+a+" cm et "+b+" cm. Combien mesure l'hypoténuse ?";an=c;d=[a+b,a*a+b*b,c+1,c-1,b-a+1];s="c² = "+a+"² + "+b+"² = "+(a*a)+" + "+(b*b)+" = "+(c*c)+", donc c = "+c+" cm.";svg=rtri(a,b,"?");}
+  else if(m===2){q="Dans un triangle rectangle, l'hypoténuse mesure "+c+" cm et un côté de l'angle droit "+a+" cm. Combien mesure le troisième côté ?";an=b;d=[c-a,c+a,b+1,b-1,c*c-a*a];s="b² = "+c+"² − "+a+"² = "+(c*c)+" − "+(a*a)+" = "+(b*b)+", donc b = "+b+" cm.";svg=rtri(a,"?",c);}
+  else{q="Un rectangle mesure "+b+" cm sur "+a+" cm. Quelle est la longueur de sa diagonale ?";an=c;d=[a+b,2*(a+b),a*b,c+2,(a+b)/2];s="La diagonale est l'hypoténuse d'un triangle rectangle de côtés "+a+" et "+b+" : √("+(a*a)+" + "+(b*b)+") = "+c+" cm.";svg=rectF(b,a);}
+  return mk("pyth","P"+m+"_"+a+"_"+b,q,svg,nf(an)+" cm",d.map(function(x){return nf(x)+" cm";}),s,"Reconnais le triplet "+t.join("-")+(k>1?" (× "+k+")":"")+" : la réponse tombe sans calcul.");
+}
+function gEqui(){
+  var a=pick([2,4,6,8,10,12]),m=ri(1,3),h=a/2,q,an,d,s;
+  if(m===1){q="Quelle est la hauteur d'un triangle équilatéral de côté "+a+" cm ?";an=sq(h,3)+" cm";d=[sq(a,3),sq(h,2),nf(h),sq(a,2),sq(a/4,3)].map(function(x){return x+" cm";});s="La hauteur coupe la base en son milieu : h² = "+a+"² − "+h+"² = "+(a*a-h*h)+", donc h = "+sq(h,3)+" cm (formule a√3/2).";}
+  else if(m===2){q="Quelle est l'aire d'un triangle équilatéral de côté "+a+" cm ?";an=sq(a*a/4,3)+" cm²";d=[sq(a*a/2,3),sq(a*a,3),sq(a*a/4,2),nf(a*a/2),nf(a*a/4)].map(function(x){return x+" cm²";});s="Aire = a²√3/4 = "+(a*a)+"√3/4 = "+sq(a*a/4,3)+" cm² (ou base × hauteur / 2 = "+a+" × "+sq(h,3)+" / 2).";}
+  else{q="Un triangle équilatéral a une hauteur de "+sq(h,3)+" cm. Quel est son périmètre ?";an=nf(3*a)+" cm";d=[nf(3*h),sq(3*h,3),nf(2*a),nf(6*a),sq(a,3)].map(function(x){return x+" cm";});s="h = a√3/2 = "+sq(h,3)+", donc a = "+a+" cm. Périmètre = 3a = "+(3*a)+" cm.";}
+  return mk("equi","E"+m+"_"+a,q,equiF(m===3?"h = "+sq(h,3):"a = "+a),an,d,s,"Hauteur = côté × √3/2 ≈ côté × 0,87. Aire = côté² × √3/4 ≈ côté² × 0,43.");
+}
+function gInscrit(){
+  var m=ri(1,5),q,an,d,s,f,svg,key,U=function(u){return function(x){return x+u;};};
+  if(m===1){var c=pick([2,4,6,8,10,12]);q="Un carré de côté "+c+" cm est inscrit dans un cercle. Quelle est l'aire du disque ?";an=pi(c*c/2)+" cm²";d=[pi(c*c),pi(c*c/4),pi(2*c*c),nf(c*c/2),pi(c*c/8)].map(U(" cm²"));
+    s="Diamètre = diagonale du carré = "+sq(c,2)+", donc r = "+sq(c/2,2)+" et r² = "+nf(c*c/2)+". Aire = πr² = "+pi(c*c/2)+" cm².";f="Carré inscrit dans un cercle : r² = c²/2, donc aire du disque = πc²/2.";svg=sqInC("c = "+c);key="I1_"+c;}
+  else if(m===2){var r=ri(2,10);q="Un carré est inscrit dans un cercle de rayon "+r+" cm. Quelle est l'aire du carré ?";an=nf(2*r*r)+" cm²";d=[nf(r*r),nf(4*r*r),pi(2*r*r),sq(r*r,2),nf(2*r)].map(U(" cm²"));
+    s="La diagonale du carré est un diamètre : 2r = "+(2*r)+". Aire d'un carré = diagonale² / 2 = "+(4*r*r)+" / 2 = "+(2*r*r)+" cm².";f="Aire d'un carré = d²/2 : inutile de calculer le côté.";svg=sqInC("r = "+r,true);key="I2_"+r;}
+  else if(m===3){var c2=pick([2,4,6,8,10,12]),k=c2*c2/4,S=nf(c2*c2);q="Un cercle est inscrit dans un carré de côté "+c2+" cm. Quelle est l'aire de la partie du carré située hors du cercle ?";an=S+" − "+pi(k)+" cm²";
+    d=[S+" − "+pi(c2*c2),S+" − "+pi(c2*c2/2),pi(k),S+" − "+pi(c2),nf(4*c2)+" − "+pi(k)].map(U(" cm²"));s="Le diamètre du cercle vaut le côté, donc r = "+nf(c2/2)+". Surface = c² − πr² = "+S+" − "+pi(k)+" cm².";f="Cercle inscrit dans un carré : rayon = moitié du côté.";svg=cInSq("c = "+c2);key="I3_"+c2;}
+  else if(m===4){var t=pick(TRIP.slice(0,3)),kk=ri(1,2),a=t[0]*kk,b=t[1]*kk,h=t[2]*kk;q="Un triangle rectangle dont les côtés de l'angle droit mesurent "+a+" cm et "+b+" cm est inscrit dans un cercle. Quel est le rayon du cercle ?";an=nf(h/2)+" cm";
+    d=[nf(h),nf((a+b)/2),nf(a*b/2),nf(h/2+1),nf(b/2)].map(U(" cm"));s="Un triangle rectangle inscrit a pour hypoténuse un diamètre. Hypoténuse = "+h+" (triplet "+t.join("-")+"), donc rayon = "+nf(h/2)+" cm.";f="Triangle rectangle inscrit ⇒ hypoténuse = diamètre.";svg=triInC();key="I4_"+a+"_"+b;}
+  else{var t2=pick(TRIP.slice(0,3)),k2=ri(1,2),a2=t2[0]*k2,b2=t2[1]*k2,c3=t2[2]*k2,rr=(a2+b2-c3)/2;q="Quel est le rayon du cercle inscrit dans un triangle rectangle de côtés "+a2+", "+b2+" et "+c3+" cm ?";an=nf(rr)+" cm";
+    d=[nf(c3/2),nf(a2*b2/2),nf((a2+b2+c3)/2),nf(rr+1),nf(rr*2)].map(U(" cm"));s="Rayon = 2 × aire / périmètre = 2 × "+nf(a2*b2/2)+" / "+(a2+b2+c3)+" = "+nf(rr)+" cm.";f="Triangle rectangle : r = (a + b − c)/2 = ("+a2+" + "+b2+" − "+c3+")/2.";svg=inC();key="I5_"+a2;}
+  return mk("inscrit",key,q,svg,an,d,s,f);
+}
+function gThales(){
+  var R=[[1,2],[1,3],[2,3],[3,4],[2,5],[3,5]],p=pick(R),s=ri(1,5),u=ri(1,5),q,an,d,sol,svg,key;
+  if(Math.random()<.55){
+    var AB=p[1]*s*2,AD=p[0]*s*2,BC=p[1]*u*2,DE=p[0]*u*2;
+    if(Math.random()<.5){q="Dans le triangle ABC, D est sur [AB] et E sur [AC], avec (DE) ∥ (BC). AD = "+AD+", AB = "+AB+" et BC = "+BC+". Combien mesure DE ?";an=DE;d=[BC*AB/AD,BC-AD,AB-AD,DE+p[0],BC/2];
+      sol="Thalès : AD/AB = DE/BC, donc DE = BC × AD/AB = "+BC+" × "+AD+"/"+AB+" = "+DE+".";svg=thTri("AD = "+AD,"AB = "+AB,"BC = "+BC,"DE = ?");key="T1_"+AD+"_"+AB+"_"+BC;}
+    else{q="Dans le triangle ABC, (DE) ∥ (BC) avec D sur [AB] et E sur [AC]. DE = "+DE+", BC = "+BC+" et AB = "+AB+". Combien mesure DB ?";an=AB-AD;d=[AD,BC-DE,AB-DE,AB-AD+1,AB*DE/BC+1];
+      sol="AD/AB = DE/BC, donc AD = "+AB+" × "+DE+"/"+BC+" = "+AD+", puis DB = AB − AD = "+(AB-AD)+".";svg=thTri("","AB = "+AB,"BC = "+BC,"DE = "+DE);key="T2_"+AD+"_"+AB+"_"+BC;}
+  }else{
+    var EA=p[0]*s,EC=p[1]*s,AD2=p[0]*u*2,BC2=p[1]*u*2;
+    q="Les droites (AC) et (DB) se coupent en E, et (AD) ∥ (BC). EA = "+EA+", EC = "+EC+" et BC = "+BC2+". Combien mesure AD ?";an=AD2;d=[BC2*EC/EA,BC2-EC+EA,AD2+EA,BC2/2,BC2-AD2];
+    sol="Nœud papillon : EA/EC = AD/BC, donc AD = BC × EA/EC = "+BC2+" × "+EA+"/"+EC+" = "+AD2+".";svg=thBow("EA = "+EA,"EC = "+EC,"BC = "+BC2);key="T3_"+EA+"_"+EC+"_"+BC2;
+  }
+  return mk("thales",key,q,svg,nf(an),d.map(nf),sol,"Petit triangle en haut, grand en bas, toujours dans le même ordre. Ici le rapport vaut "+p[0]+"/"+p[1]+".");
+}
+function gAngles(){
+  var m=ri(1,6),q,an,d,s,f,svg,key;
+  if(m===1){var n=ri(5,12);q="Quelle est la somme des angles intérieurs d'un polygone à "+n+" côtés ?";an=180*(n-2);d=[180*n,180*(n-1),360*(n-2),180*(n-3),90*n];s="S = 180° × (N − 2) = 180 × "+(n-2)+" = "+an+"°.";f="On découpe le polygone en N − 2 triangles depuis un sommet.";svg=polyF(n);key="G1_"+n;}
+  else if(m===2){var n2=pick([5,6,8,9,10,12]);q="Combien mesure chaque angle intérieur d'un polygone régulier à "+n2+" côtés ?";an=180*(n2-2)/n2;d=[360/n2,180*(n2-2),180-180/n2,180*(n2-1)/n2,90+360/n2];
+    s="Somme = 180 × "+(n2-2)+" = "+(180*(n2-2))+"°, partagée en "+n2+" angles égaux : "+nf(an)+"°.";f="Angle intérieur = 180° − 360°/N.";svg=polyF(n2);key="G2_"+n2;}
+  else if(m===3){var inv=Math.random()<.5,x;if(inv){x=ri(4,16)*10;q="Dans un cercle, un angle au centre mesure "+x+"°. Combien mesure un angle inscrit qui intercepte le même arc ?";an=x/2;d=[x,2*x,180-x,90-x/2,x/4];svg=inscF("?",x+"°");}
+    else{x=ri(4,16)*5;q="Dans un cercle, un angle inscrit mesure "+x+"°. Combien mesure l'angle au centre qui intercepte le même arc ?";an=2*x;d=[x,x/2,180-x,180-2*x,3*x];svg=inscF(x+"°","?");}
+    s="L'angle inscrit vaut la moitié de l'angle au centre qui intercepte le même arc.";f="Inscrit = centre ÷ 2. Centre = inscrit × 2.";key="G3_"+x+(inv?"i":"c");}
+  else if(m===4){var a0=ri(2,14)*10;q="Un triangle est isocèle en A et l'angle en A mesure "+a0+"°. Combien mesure l'angle en B ?";an=(180-a0)/2;d=[180-a0,a0,(180-a0)/3,a0/2,90-a0];s="Les deux angles à la base sont égaux : (180 − "+a0+") / 2 = "+nf(an)+"°.";f="Isocèle : 180 moins l'angle au sommet, divisé par 2.";svg=isoF(a0+"°");key="G4_"+a0;}
+  else if(m===5){var a=ri(3,12)*5,b=ri(3,12)*5;if(a+b>=170)b=30;q="Dans un triangle, deux angles mesurent "+a+"° et "+b+"°. Combien mesure le troisième ?";an=180-a-b;d=[360-a-b,a+b,180-a,180-b,90-a+b];s="La somme des angles d'un triangle vaut 180° : 180 − "+a+" − "+b+" = "+an+"°.";f="Somme des angles d'un triangle : toujours 180°.";svg=triAng(a,b);key="G5_"+a+"_"+b;}
+  else{var y=ri(5,16)*5;q="Deux droites parallèles sont coupées par une sécante. Un angle mesure "+y+"°. Combien mesure son angle alterne-interne ?";an=y;d=[180-y,2*y,y/2,90+y,360-y];s="Deux parallèles coupées par une sécante forment des angles alternes-internes égaux : "+y+"°.";f="Alternes-internes égaux · opposés par le sommet égaux · angles adjacents sur une droite : somme 180°.";svg=parF(y+"°");key="G6_"+y;}
+  return mk("angles",key,q,svg,nf(an)+"°",d.map(function(v){return nf(v)+"°";}),s,f);
+}
+function gVol(){
+  var m=ri(1,7),q,an,d,s,f,svg,key,U=function(u){return function(x){return x+u;};};
+  if(m===1){var r=ri(1,6),h=ri(2,10);q="Quel est le volume d'un cylindre de rayon "+r+" cm et de hauteur "+h+" cm ?";an=pi(r*r*h)+" cm³";d=[pi(2*r*h),pi(r*r*h/3),pi(2*r*r*h),pi(r*h),pi(4*r*r*h)].map(U(" cm³"));s="V = πr²h = π × "+(r*r)+" × "+h+" = "+pi(r*r*h)+" cm³.";f="Cylindre = aire du disque de base × hauteur.";svg=cylF(r,h);key="V1_"+r+"_"+h;}
+  else if(m===2){var r2=ri(1,6),h2=ri(1,4)*3;q="Quel est le volume d'un cône de rayon "+r2+" cm et de hauteur "+h2+" cm ?";an=pi(r2*r2*h2/3)+" cm³";d=[pi(r2*r2*h2),pi(r2*r2*h2/2),pi(r2*h2/3),pi(2*r2*r2*h2/3),pi(r2*h2)].map(U(" cm³"));s="V = πr²h / 3 = π × "+(r2*r2)+" × "+h2+" / 3 = "+pi(r2*r2*h2/3)+" cm³.";f="Cône = cylindre ÷ 3. Le ÷ 3 est le piège n°1.";svg=coneF(r2,h2);key="V2_"+r2+"_"+h2;}
+  else if(m===3){var r3=pick([3,6,9]);q="Quel est le volume d'une sphère de rayon "+r3+" cm ?";an=pi(4*Math.pow(r3,3)/3)+" cm³";d=[pi(4*r3*r3),pi(4*Math.pow(r3,3)),pi(4*r3*r3/3),pi(2*Math.pow(r3,3)/3),pi(Math.pow(r3,3))].map(U(" cm³"));s="V = 4/3 πr³ = 4/3 × π × "+Math.pow(r3,3)+" = "+pi(4*Math.pow(r3,3)/3)+" cm³.";f="Sphère : volume 4/3 πr³, surface 4πr².";svg=sphF(r3);key="V3_"+r3;}
+  else if(m===4){var r4=ri(1,6);q="Quelle est la surface d'une sphère de rayon "+r4+" cm ?";an=pi(4*r4*r4)+" cm²";d=[pi(4*Math.pow(r4,3)/3),pi(r4*r4),pi(2*r4*r4),pi(8*r4*r4),pi(4*r4)].map(U(" cm²"));s="S = 4πr² = 4 × π × "+(r4*r4)+" = "+pi(4*r4*r4)+" cm².";f="La surface d'une sphère vaut 4 fois l'aire de son grand disque.";svg=sphF(r4);key="V4_"+r4;}
+  else if(m===5){var c=ri(2,9),su=Math.random()<.5,u=su?" cm²":" cm³";q=su?"Quelle est l'aire totale des faces d'un cube d'arête "+c+" cm ?":"Quel est le volume d'un cube d'arête "+c+" cm ?";an=nf(su?6*c*c:c*c*c)+u;d=[c*c*c,4*c*c,c*c,12*c,6*c*c].map(function(x){return nf(x)+u;});
+    s=su?"6 faces carrées de "+(c*c)+" cm² : 6 × "+(c*c)+" = "+(6*c*c)+" cm².":"V = c³ = "+c+"³ = "+(c*c*c)+" cm³.";f="Cube : 6 faces, 12 arêtes, 8 sommets.";svg=cubeF(c);key="V5_"+c+(su?"s":"v");}
+  else if(m===6){var Lg=ri(3,10),l=ri(2,6),h3=ri(2,8);q="Quel est le volume d'un pavé droit de "+Lg+" × "+l+" × "+h3+" cm ?";an=nf(Lg*l*h3)+" cm³";d=[2*(Lg*l+Lg*h3+l*h3),Lg+l+h3,Lg*l,Lg*l*h3/2,Lg*l*h3/3].map(function(x){return nf(x)+" cm³";});s="V = L × l × h = "+Lg+" × "+l+" × "+h3+" = "+(Lg*l*h3)+" cm³.";f="Pavé : volume = produit des trois dimensions.";svg=paveF(Lg,l,h3);key="V6_"+Lg+"_"+l+"_"+h3;}
+  else{var cb=ri(2,8),hp=ri(1,4)*3;q="Quel est le volume d'une pyramide à base carrée de côté "+cb+" cm et de hauteur "+hp+" cm ?";an=nf(cb*cb*hp/3)+" cm³";d=[cb*cb*hp,cb*cb*hp/2,cb*hp/3,4*cb*hp/3,cb*cb*hp/6].map(function(x){return nf(x)+" cm³";});s="V = aire de base × h / 3 = "+(cb*cb)+" × "+hp+" / 3 = "+nf(cb*cb*hp/3)+" cm³.";f="Pyramide et cône : base × hauteur ÷ 3.";svg=pyrF(cb,hp);key="V7_"+cb+"_"+hp;}
+  return mk("volumes",key,q,svg,an,d,s,f);
+}
+function gEch(){
+  var m=ri(1,4),q,an,d,s,f,key;
+  if(m===1){var k=pick(["2","3","4","1/2"]),kv=k==="1/2"?.5:+k,w=pick(["aire","volume","périmètre"]),pw=w==="aire"?2:w==="volume"?3:1;
+    var fp=function(p){return k==="1/2"?"1/"+Math.pow(2,p):nf(Math.pow(kv,p));};
+    q="On multiplie toutes les longueurs d'une figure par "+k+". Par combien son "+w+" est-il multiplié ?";an=fp(pw);d=[fp(1),fp(2),fp(3),k==="1/2"?"2":nf(kv*3),k==="1/2"?"1/6":nf(kv*2+1)];
+    s="Agrandissement de rapport k : longueurs × k, aires × k², volumes × k³. Ici k = "+k+" et le "+w+" est multiplié par "+an+".";f="Longueur → k · aire → k² · volume → k³.";key="S1_"+k+w;}
+  else if(m===2){var p=pick([10,20,30,50,100]),g=(Math.pow(1+p/100,2)-1)*100;q="Le rayon d'un disque augmente de "+p+" %. De combien son aire augmente-t-elle ?";an=nf(g)+" %";d=[p,2*p,p*p/100,(Math.pow(1+p/100,3)-1)*100,p+10].map(function(x){return nf(x)+" %";});
+    s="L'aire varie comme r² : coefficient (1 + "+p+"/100)² = "+nf(Math.pow(1+p/100,2))+", soit +"+nf(g)+" %.";f="Pourcentage sur une aire : élève le coefficient au carré, jamais × 2.";key="S2_"+p;}
+  else if(m===3){var v=pick([8,27,64,125,1000]),c=Math.round(Math.cbrt(v));q="Le volume d'un cube est multiplié par "+v+". Par combien son arête est-elle multipliée ?";an=nf(c);d=[nf(v/3),nf(Math.sqrt(v)),nf(v/2),nf(c+1),nf(c*c)];s="Volume × k³ = "+v+", donc k = ∛"+v+" = "+c+".";f="Pour revenir du volume à la longueur : racine cubique.";key="S3_"+v;}
+  else{if(Math.random()<.5){q="Le rayon d'une sphère double. Par combien son volume est-il multiplié ?";an="8";d=["2","4","6","16"];s="Volume × k³ = 2³ = 8.";key="S4a";}
+    else{q="Le côté d'un carré augmente de 50 %. De combien son aire augmente-t-elle ?";an="125 %";d=["50 %","100 %","150 %","225 %"];s="Coefficient 1,5² = 2,25, donc +125 %.";key="S4b";}
+    f="Longueur → k · aire → k² · volume → k³.";}
+  return mk("echelle",key,q,"",an,d,s,f);
+}
+function gQuad(){
+  var m=ri(1,5),q,an,d,s,f,svg,key;
+  if(m===1){var l=ri(2,9),k=ri(2,4),Lg=k*l,P=2*(Lg+l);q="Un rectangle a un périmètre de "+P+" cm et sa longueur vaut "+k+" fois sa largeur. Quelle est son aire ?";an=nf(Lg*l)+" cm²";d=[P*P/16,2*Lg*l,P,(Lg+l)*l,Lg*Lg].map(function(x){return nf(x)+" cm²";});
+    s="L + l = "+(P/2)+" et L = "+k+"l, donc "+(k+1)+"l = "+(P/2)+" : l = "+l+", L = "+Lg+". Aire = "+Lg+" × "+l+" = "+(Lg*l)+" cm².";f="Le demi-périmètre donne directement L + l.";svg=rectP(k);key="Q1_"+l+"_"+k;}
+  else if(m===2){var D=2*ri(2,8),dd=2*ri(1,6);q="Les diagonales d'un losange mesurent "+D+" cm et "+dd+" cm. Quelle est son aire ?";an=nf(D*dd/2)+" cm²";d=[D*dd,D+dd,D*dd/4,2*(D+dd),D*dd/2+2].map(function(x){return nf(x)+" cm²";});s="Aire = D × d / 2 = "+D+" × "+dd+" / 2 = "+(D*dd/2)+" cm².";f="Losange : aire = produit des diagonales ÷ 2.";svg=losF(D,dd);key="Q2_"+D+"_"+dd;}
+  else if(m===3){var k3=ri(1,3);q="Les diagonales d'un losange mesurent "+(6*k3)+" cm et "+(8*k3)+" cm. Quel est son périmètre ?";an=nf(20*k3)+" cm";d=[28*k3,5*k3,40*k3,24*k3,14*k3].map(function(x){return nf(x)+" cm";});
+    s="Les diagonales se coupent perpendiculairement en leur milieu : côté = √("+(3*k3)+"² + "+(4*k3)+"²) = "+(5*k3)+" cm. Périmètre = 4 × "+(5*k3)+" = "+(20*k3)+" cm.";f="Demi-diagonales "+(3*k3)+" et "+(4*k3)+" : triplet 3-4-5.";svg=losF(6*k3,8*k3);key="Q3_"+k3;}
+  else if(m===4){var b=ri(2,8),B=b+ri(2,8),h=ri(2,8);q="Un trapèze a pour bases "+b+" cm et "+B+" cm, et pour hauteur "+h+" cm. Quelle est son aire ?";an=nf((b+B)*h/2)+" cm²";d=[(b+B)*h,b*B*h/2,(B-b)*h/2,(b+B)/2+h,B*h].map(function(x){return nf(x)+" cm²";});s="Aire = (B + b) × h / 2 = "+(b+B)+" × "+h+" / 2 = "+nf((b+B)*h/2)+" cm².";f="Trapèze : moyenne des deux bases × hauteur.";svg=trapF(b,B,h);key="Q4_"+b+"_"+B+"_"+h;}
+  else{var dg=2*ri(2,7);q="La diagonale d'un carré mesure "+dg+" cm. Quelle est son aire ?";an=nf(dg*dg/2)+" cm²";d=[nf(dg*dg),nf(dg*dg/4),sq(dg,2),nf(2*dg),sq(dg*dg/2,2)].map(function(x){return x+" cm²";});s="Aire = d² / 2 = "+(dg*dg)+" / 2 = "+(dg*dg/2)+" cm².";f="Aire d'un carré = diagonale² ÷ 2.";svg=squareD(dg);key="Q5_"+dg;}
+  return mk("quadri",key,q,svg,an,d,s,f);
+}
+var FL=`Aire d'un disque|πr²
+Périmètre d'un cercle|2πr
+Longueur d'un arc d'angle n|2πr × n/360
+Aire d'un secteur d'angle n|πr² × n/360
+Volume d'un cylindre|πr²h
+Volume d'un cône|πr²h / 3
+Volume d'une sphère|4/3 πr³
+Surface d'une sphère|4πr²
+Aire latérale d'un cylindre|2πrh
+Volume d'une pyramide|aire de base × h / 3
+Volume d'un cube d'arête c|c³
+Surface d'un cube d'arête c|6c²
+Surface d'un pavé|2(Ll + Lh + lh)
+Aire d'un triangle|base × hauteur / 2
+Hauteur d'un triangle équilatéral de côté a|a√3 / 2
+Aire d'un triangle équilatéral de côté a|a²√3 / 4
+Hypoténuse d'un triangle rectangle isocèle de côté a|a√2
+Périmètre d'un triangle rectangle isocèle de côté a|a(2 + √2)
+Aire d'un triangle rectangle isocèle de côté a|a² / 2
+Diagonale d'un carré de côté c|c√2
+Aire d'un carré de diagonale d|d² / 2
+Aire d'un losange de diagonales D et d|D × d / 2
+Aire d'un parallélogramme|base × hauteur
+Aire d'un trapèze|(B + b) × h / 2
+Somme des angles d'un polygone à N côtés|180° × (N − 2)
+Angle intérieur d'un hexagone régulier|120°
+Somme des angles d'un pentagone|540°
+Angle inscrit par rapport à l'angle au centre|sa moitié
+Rayon du cercle inscrit dans un triangle|2 × aire / périmètre
+Rayon du cercle circonscrit à un carré de côté c|c√2 / 2
+Rayon du cercle inscrit dans un carré de côté c|c / 2
+Un triangle inscrit dont un côté est un diamètre est…|rectangle
+Coefficient sur l'aire si les longueurs sont multipliées par k|k²
+Coefficient sur le volume si les longueurs sont multipliées par k|k³
+Point de concours des médiatrices d'un triangle|centre du cercle circonscrit
+Thalès, triangle simple : AD/AB = AE/AC = …|DE/BC
+Triplet de Pythagore commençant par 5|5-12-13
+Triplet de Pythagore commençant par 8|8-15-17
+Triplet de Pythagore commençant par 7|7-24-25
+Valeur approchée de √2|1,414
+Valeur approchée de √3|1,732
+Polygone à 7 côtés|heptagone
+Polygone à 9 côtés|ennéagone ou nonagone
+Polygone à 10 côtés|décagone`.split("\n").map(function(l){return l.split("|");});
+function gFlash(){
+  var i=Math.floor(Math.random()*FL.length),it=FL[i],d=[];
+  var idx=FL.map(function(_,j){return j;}).filter(function(j){return j!==i;});
+  for(var n=0;n<8;n++){var j=idx.splice(Math.floor(Math.random()*idx.length),1)[0];d.push(FL[j][1]);}
+  return mk("flash","F"+i,it[0]+" ?","",it[1],d,"<b>"+it[0]+"</b> = "+it[1]+".","Toutes ces formules sont dans la leçon « Volumes », « Triangles » et « Astuces ».");
+}
+G.gens={disque:gDisque,arc:gArc,pyth:gPyth,equi:gEqui,inscrit:gInscrit,thales:gThales,angles:gAngles,volumes:gVol,echelle:gEch,quadri:gQuad,flash:gFlash};
+G.order=["disque","arc","pyth","equi","inscrit","thales","angles","volumes","echelle","quadri","flash"];
+G.FL=FL;
+})();
+
+(function(){
+"use strict";
+var F=window.FRG;
+function ri(n){return Math.floor(Math.random()*n);}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function nrm(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/^(un |une |le |la |l'|les )/,"").trim();}
+function lines(s){return String(s||"").split("\n").map(function(l){return l.trim();}).filter(Boolean).map(function(l){return l.split("|").map(function(x){return x.trim();});});}
+function blank(s){return esc(s).replace(/___/g,'<span class="em">____</span>');}
+function lc1(s){return s.charAt(0).toLowerCase()+s.slice(1);}
+
+var P={};["proverbes","expressions","latin","vocab2","peri","figures","paronymes","genre","genre2","mots","nature"].forEach(function(k){P[k]=lines(F.D[k]);});
+var Q={};Object.keys(F.Q).forEach(function(k){Q[k]=lines(F.Q[k]).map(function(f){return {q:f[0]||"Quelle phrase est correcte ?",a:f[1],bad:f.slice(2,f.length-1),ex:f[f.length-1]||""};});});
+
+/* vocabulaire : nouveau + celui déjà présent sur le site */
+var VOC=P.vocab2.slice(),seen={};VOC.forEach(function(r){seen[nrm(r[0])]=1;});
+if(window.TM_DATA&&window.TM_DATA.VOCAB)window.TM_DATA.VOCAB.forEach(function(r){if(!seen[nrm(r[0])]){seen[nrm(r[0])]=1;VOC.push([r[0],r[1]]);}});
+VOC.sort(function(a,b){return nrm(a[0]).localeCompare(nrm(b[0]));});
+
+/* périphrases éclatées */
+var PERI=[];P.peri.forEach(function(r,i){var cat=/\(continent\)/.test(r[0])?"c":/^(L'|Le |La )/.test(r[0])?"l":"p";
+  r[1].split(";").forEach(function(p){PERI.push({x:r[0].replace(" (continent)",""),p:p.trim(),cat:cat,i:i});});});
+var AUTH=PERI.filter(function(e){return e.cat==="l"&&/^La langue (de |d')[A-ZÉ]/.test(e.p);}).map(function(e){return {x:e.x,i:e.i,au:e.p.replace(/^La langue (de |d')/,"")};});
+
+/* paronymes : deux entrées par paire */
+var PAR=[];P.paronymes.forEach(function(r,i){PAR.push({w:r[0],d:r[1],pw:r[2],pd:r[3],i:i});PAR.push({w:r[2],d:r[3],pw:r[0],pd:r[1],i:i});});
+
+/* ---------- constructeurs d'items ---------- */
+function qItem(k){var arr=Q[k],i=ri(arr.length),o=arr[i];return {key:"fr|"+k+"|"+i,theme:k,q:blank(o.q),a:o.a,pool:o.bad.slice(),fixed:true,expl:esc(o.ex),small:o.q.length>70};}
+function pairItem(k,rows,qa,qb){
+  var i=ri(rows.length),r=rows[i],dir=ri(2);
+  var others=shuffle(rows.filter(function(x,j){return j!==i&&x[0]!==r[0]&&x[1]!==r[1];})).slice(0,6);
+  return {key:"fr|"+k+"|"+i+"|"+dir,theme:k,q:dir?qb(r[1]):qa(r[0]),a:dir?r[0]:r[1],pool:others.map(function(x){return dir?x[0]:x[1];}),
+    expl:"<b>"+esc(r[0])+"</b> : "+esc(r[1])+".",small:true};
+}
+var NC={C:"Conjonction de coordination",S:"Conjonction de subordination",P:"Préposition",A:"Adverbe",Lc:"Locution conjonctive",Lp:"Locution prépositive",La:"Locution adverbiale"};
+var NEX={C:"Mais, ou, et, donc, or, ni, car : ce sont les 7 seules conjonctions de coordination.",S:"Elle est suivie d'un verbe conjugué et introduit une subordonnée.",
+  P:"Elle est suivie d'un nom, d'un pronom ou d'un infinitif, jamais d'un verbe conjugué.",A:"Invariable et mobile : on peut le déplacer, ou le faire précéder de « et ».",
+  Lc:"Groupe figé qui introduit une subordonnée (verbe conjugué derrière).",Lp:"Groupe figé suivi d'un nom ou d'un infinitif.",La:"Groupe figé qui joue le rôle d'un adverbe."};
+function natureItem(){
+  if(Math.random()<.3)return qItem("nature");
+  var i=ri(P.nature.length),r=P.nature[i],c=r[2],loc=c.charAt(0)==="L";
+  var opts=loc?["Lc","Lp","La","C"]:["C","S","P","A"];
+  return {key:"fr|naturegen|"+i,theme:"nature",q:"Dans « "+esc(r[1])+" », quelle est la nature de « <span class=\"em\">"+esc(r[0])+"</span> » ?",
+    a:NC[c],pool:opts.filter(function(x){return x!==c;}).map(function(x){return NC[x];}),fixed:true,expl:"<b>"+esc(r[0])+"</b> : "+NC[c].toLowerCase()+". "+NEX[c],small:true};
+}
+function periItem(){
+  var i=ri(PERI.length),e=PERI[i],dir=ri(2),same=PERI.filter(function(o){return o.cat===e.cat&&o.i!==e.i;});
+  if(dir===0){var xs=[];shuffle(same).forEach(function(o){if(xs.indexOf(o.x)<0)xs.push(o.x);});
+    return {key:"fr|peri|"+i+"|0",theme:"peri",q:"« "+esc(e.p)+" » désigne…",a:e.x,pool:xs.slice(0,5),expl:"<b>"+esc(e.p)+"</b> = "+esc(e.x)+".",small:true};}
+  return {key:"fr|peri|"+i+"|1",theme:"peri",q:"Quelle périphrase désigne : "+esc(e.x)+" ?",a:e.p,pool:shuffle(same).slice(0,5).map(function(o){return o.p;}),expl:"<b>"+esc(e.p)+"</b> = "+esc(e.x)+".",small:true};
+}
+function usageItem(){
+  if(Math.random()<.68)return qItem("usage");
+  var i=ri(AUTH.length),e=AUTH[i],oth=shuffle(AUTH.filter(function(o){return o.i!==e.i;})).slice(0,5).map(function(o){return o.au;});
+  return {key:"fr|usageau|"+i,theme:"usage",q:"Il parle couramment "+esc(lc1(e.x))+" : il maîtrise la langue de <span class=\"em\">____</span>.",a:e.au,pool:oth,
+    expl:"La langue de <b>"+esc(e.au)+"</b> = "+esc(lc1(e.x))+". Une périphrase doit rester cohérente avec le reste de la phrase.",small:true};
+}
+function figItem(){
+  var i=ri(P.figures.length),r=P.figures[i],dir=ri(3),oth=shuffle(P.figures.filter(function(x,j){return j!==i;})).slice(0,6);
+  var ex="<b>"+esc(r[0])+"</b> : "+esc(lc1(r[1]))+". Exemple : "+esc(r[2]);
+  if(dir===0)return {key:"fr|fig|"+i+"|0",theme:"figures",q:"Quelle figure de style consiste à : "+esc(lc1(r[1]))+" ?",a:r[0],pool:oth.map(function(x){return x[0];}),expl:ex,small:true};
+  if(dir===1)return {key:"fr|fig|"+i+"|1",theme:"figures",q:"Quelle figure de style dans : "+esc(r[2])+" ?",a:r[0],pool:oth.map(function(x){return x[0];}),expl:ex,small:true};
+  return {key:"fr|fig|"+i+"|2",theme:"figures",q:"Qu'est-ce qu'une "+esc(lc1(r[0]))+" ?",a:r[1],pool:oth.map(function(x){return x[1];}),expl:ex,small:true};
+}
+function parItem(){
+  var i=ri(PAR.length),e=PAR[i],dir=ri(2),oth=shuffle(PAR.filter(function(o){return o.i!==e.i&&o.w!==e.w&&o.w!==e.pw;})).slice(0,4);
+  var ex="<b>"+esc(e.w)+"</b> : "+esc(lc1(e.d))+" · <b>"+esc(e.pw)+"</b> : "+esc(lc1(e.pd))+".";
+  if(dir===0)return {key:"fr|par|"+i+"|0",theme:"paronymes",q:"Quel mot signifie : « "+esc(e.d)+" » ?",a:e.w,pool:[e.pw].concat(oth.map(function(o){return o.w;})),keepFirst:true,expl:ex,small:true};
+  return {key:"fr|par|"+i+"|1",theme:"paronymes",q:"Que signifie « "+esc(e.w)+" » ?",a:e.d,pool:[e.pd].concat(oth.map(function(o){return o.d;})),keepFirst:true,expl:ex,small:true};
+}
+var GL={M:"masculin",F:"féminin",MF:"des deux genres (même sens)"};
+function art(w,g){var v=/^[aeiouyéèêâîôûœh]/i.test(w);return g==="M"?(v?"un ":"un ")+w:(v?"une ":"une ")+w;}
+function genreItem(){
+  if(Math.random()<.25){var j=ri(P.genre2.length),r=P.genre2[j],fem=ri(2),a=fem?r[2]:r[1],other=fem?r[1]:r[2];
+    var oth=shuffle(P.genre2.filter(function(x,k){return k!==j;})).slice(0,3).map(function(x){return x[1+ri(2)];});
+    return {key:"fr|genre2|"+j+"|"+fem,theme:"genre",q:"« "+(fem?"Une ":"Un ")+esc(r[0])+" » désigne…",a:a,pool:[other].concat(oth),keepFirst:true,
+      expl:"<b>Un "+esc(r[0])+"</b> : "+esc(lc1(r[1]))+" · <b>une "+esc(r[0])+"</b> : "+esc(lc1(r[2]))+".",small:true};}
+  var i=ri(P.genre.length),g=P.genre[i],c=g[1];
+  return {key:"fr|genre|"+i,theme:"genre",q:"« "+esc(g[0])+" » est un nom…",a:GL[c],pool:["M","F","MF"].filter(function(x){return x!==c;}).map(function(x){return GL[x];}),fixed:true,
+    expl:c==="MF"?"On peut dire <b>un</b> ou <b>une "+esc(g[0])+"</b>, avec le même sens.":"On dit <b>"+esc(art(g[0],c))+"</b>."};
+}
+function orthoItem(){
+  if(Math.random()<.35)return qItem("ortho");
+  var i=ri(P.mots.length),r=P.mots[i];
+  return {key:"fr|mots|"+i,theme:"ortho",q:"Quelle orthographe est correcte ?",a:r[0],pool:r.slice(1),fixed:true,expl:"On écrit <b>"+esc(r[0])+"</b>."};
+}
+
+/* ---------- leçons générées à partir des listes ---------- */
+function table(head,rows){
+  return '<input class="lsearch" placeholder="Rechercher…"><table class="lt"><tr>'+head.map(function(h){return "<th>"+h+"</th>";}).join("")+"</tr>"+
+    rows.map(function(r){return '<tr data-s="'+esc(nrm(r.join(" ")))+'">'+r.map(function(c){return "<td>"+esc(c)+"</td>";}).join("")+"</tr>";}).join("")+"</table>";
+}
+F.L.usage=`<h4>Ce que le TAGE MAGE appelle une faute d'usage</h4>
+<p>Une phrase qui semble correcte mais qui emploie un mot de travers : barbarisme, pléonasme, mauvaise préposition, faux sens, ou <b>périphrase incohérente</b> avec le reste de la phrase.</p>
+<div class="trap"><b>Le piège des périphrases</b> : « Il parle parfaitement français ; il est à l'aise avec la langue de Goethe » est fautif, car la langue de Goethe est l'allemand. Il fallait « la langue de Molière ». Vérifie toujours que la périphrase désigne bien ce dont parle la phrase.</div>
+<table class="lt"><tr><th>À éviter</th><th>À employer</th></tr>
+<tr><td>solutionner</td><td>résoudre</td></tr><tr><td>se baser sur</td><td>se fonder sur</td></tr>
+<tr><td>pallier à quelque chose</td><td>pallier quelque chose</td></tr><tr><td>se rappeler de quelque chose</td><td>se rappeler quelque chose · se souvenir de</td></tr>
+<tr><td>malgré que</td><td>bien que · malgré + nom</td></tr><tr><td>au jour d'aujourd'hui</td><td>aujourd'hui</td></tr>
+<tr><td>voire même</td><td>voire</td></tr><tr><td>tant bien même</td><td>quand bien même</td></tr>
+<tr><td>de mal en pire · qui pire est</td><td>de mal en pis · qui pis est</td></tr><tr><td>aller au coiffeur</td><td>aller chez le coiffeur</td></tr>
+<tr><td>travailler sur Paris</td><td>travailler à Paris</td></tr><tr><td>pareil que</td><td>pareil à · identique à</td></tr>
+<tr><td>se fâcher après quelqu'un</td><td>se fâcher contre quelqu'un</td></tr><tr><td>causer à quelqu'un</td><td>causer avec quelqu'un</td></tr>
+<tr><td>ils croivent · vous disez · vous faisez</td><td>ils croient · vous dites · vous faites</td></tr><tr><td>s'avérer vrai</td><td>se révéler vrai · s'avérer</td></tr>
+<tr><td>une somme conséquente</td><td>une somme importante (conséquent = cohérent)</td></tr><tr><td>un magasin achalandé (= bien fourni)</td><td>bien approvisionné (achalandé = qui a des clients)</td></tr>
+<tr><td>un avatar (= une mésaventure)</td><td>une mésaventure (avatar = métamorphose)</td></tr><tr><td>faire long feu (= durer)</td><td>durer (faire long feu = échouer)</td></tr>
+<tr><td>les prémisses d'une crise</td><td>les prémices (prémisses = propositions d'un raisonnement)</td></tr><tr><td>agoniser quelqu'un d'injures</td><td>agonir quelqu'un d'injures</td></tr></table>
+<h4>Les périphrases des langues</h4>`+table(["Langue","Périphrases"],P.peri.filter(function(r){return /^(L'|Le |La )/.test(r[0]);}).map(function(r){return [r[0],r[1].split(";").join(" · ")];}));
+
+/* ---------- registre des thèmes ---------- */
+var TH=[
+ {id:"modes",n:"Subjonctif, conditionnel, impératif",g:"Règles",l:function(){return F.L.modes;},gen:function(){return qItem("modes");}},
+ {id:"quelque",n:"Quelque, quel que, quoique",g:"Règles",l:function(){return F.L.quelque;},gen:function(){return qItem("quelque");}},
+ {id:"pp",n:"Accord du participe passé",g:"Règles",l:function(){return F.L.pp;},gen:function(){return qItem("pp");}},
+ {id:"cense",n:"Censé, sensé et homophones",g:"Règles",l:function(){return F.L.cense;},gen:function(){return qItem("cense");}},
+ {id:"nature",n:"Coordination, préposition, adverbe",g:"Règles",l:function(){return F.L.nature;},gen:natureItem},
+ {id:"vue",n:"Au vu, en vue… et locutions",g:"Règles",l:function(){return F.L.vue;},gen:function(){return qItem("vue");}},
+ {id:"cant",n:"Convaincant ou convainquant",g:"Règles",l:function(){return F.L.cant;},gen:function(){return qItem("cant");}},
+ {id:"usage",n:"Fautes d'usage",g:"Règles",l:function(){return F.L.usage;},gen:usageItem},
+ {id:"syntaxe",n:"Fautes de syntaxe",g:"Règles",l:function(){return F.L.syntaxe;},gen:function(){return qItem("syntaxe");}},
+ {id:"ortho",n:"Orthographe",g:"Règles",l:function(){return F.L.ortho+"<h4>Les mots difficiles du livre</h4>"+table(["Orthographe correcte","Faute fréquente"],P.mots.map(function(r){return [r[0],r[1]];}));},gen:orthoItem},
+ {id:"pluriel",n:"Pluriels",g:"Règles",l:function(){return F.L.pluriel;},gen:function(){return qItem("pluriel");}},
+ {id:"genre",n:"Masculin, féminin",g:"Règles",l:function(){
+   var by=function(c){return P.genre.filter(function(r){return r[1]===c;}).map(function(r){return r[0];}).join(", ");};
+   return F.L.genre+"<h4>Masculins</h4><p>"+esc(by("M"))+"</p><h4>Féminins</h4><p>"+esc(by("F"))+"</p><h4>Des deux genres, même sens</h4><p>"+esc(by("MF"))+"</p><h4>Des deux genres, sens différent</h4>"+
+     table(["Mot","Au masculin","Au féminin"],P.genre2);},gen:genreItem},
+ {id:"proverbes",n:"Proverbes",g:"Listes",l:function(){return table(["Proverbe","Signification"],P.proverbes);},
+   gen:function(){return pairItem("proverbes",P.proverbes,function(x){return "Que signifie « "+esc(x)+" » ?";},function(x){return "Quel proverbe signifie : « "+esc(x)+" » ?";});}},
+ {id:"expressions",n:"Expressions françaises",g:"Listes",l:function(){return table(["Expression","Signification"],P.expressions);},
+   gen:function(){return pairItem("expressions",P.expressions,function(x){return "Que signifie « "+esc(x)+" » ?";},function(x){return "Quelle expression signifie : « "+esc(x)+" » ?";});}},
+ {id:"latin",n:"Locutions latines",g:"Listes",l:function(){return table(["Locution","Signification"],P.latin);},
+   gen:function(){return pairItem("latin",P.latin,function(x){return "Que signifie « "+esc(x)+" » ?";},function(x){return "Quelle locution latine signifie : « "+esc(x)+" » ?";});}},
+ {id:"peri",n:"Périphrases : pays, continents, langues",g:"Listes",l:function(){return table(["Désigne","Périphrases"],P.peri.map(function(r){return [r[0],r[1].split(";").join(" · ")];}));},gen:periItem},
+ {id:"figures",n:"Figures de style",g:"Listes",l:function(){return table(["Figure","Définition","Exemple"],P.figures);},gen:figItem},
+ {id:"paronymes",n:"Paronymes",g:"Listes",l:function(){return '<div class="trap">Ne confonds pas deux mots qui se ressemblent par la forme, l\'orthographe ou la prononciation, mais dont le sens diffère.</div>'+table(["Mot","Sens","Paronyme","Sens"],P.paronymes);},gen:parItem},
+ {id:"vocab",n:"Vocabulaire",g:"Listes",l:function(){return table(["Mot","Sens"],VOC);},
+   gen:function(){return pairItem("vocab",VOC,function(x){return "Que signifie « "+esc(x)+" » ?";},function(x){return "Quel mot signifie : « "+esc(x)+" » ?";});}}
+];
+TH.forEach(function(t){t.name=t.n;});
+window.FRX={themes:TH,count:function(){return {prov:P.proverbes.length,expr:P.expressions.length,lat:P.latin.length,peri:PERI.length,fig:P.figures.length,par:PAR.length,voc:VOC.length,mots:P.mots.length,genre:P.genre.length};},
+  _P:P,_Q:Q};
+})();
+
+(function(){
+"use strict";
+var KEY="tm-frgeo-v1",NONE="Aucune de ces réponses";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function nrm(s){return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");}
+function fix(d){d=d&&typeof d==="object"?d:{};d.miss=d.miss||{};d.st=d.st||{};d.sel=d.sel||{};d.mode=d.mode||{};
+  ["fr","geo"].forEach(function(s){d.miss[s]=d.miss[s]||{};d.st[s]=d.st[s]||{};});return d;}
+var S=(function(){try{return fix(JSON.parse(localStorage.getItem(KEY)||"null"));}catch(e){return fix(null);}})();
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+window.TMX_frgeo={key:KEY,reload:function(){try{S=fix(JSON.parse(localStorage.getItem(KEY)||"null"));}catch(e){}}};
+
+var LMAP={methode:null,cercle:["disque","arc"],triangles:["pyth","equi","angles"],quadri:["quadri","angles"],espace:["volumes","echelle"],thales:["thales"],astuces:["inscrit","angles"]};
+var SEC={
+  fr:{themes:window.FRX.themes.map(function(t){return {id:t.id,name:t.n,g:t.g,lesson:t.l,gen:t.gen};}),tabs:["Leçon","QCM","Progrès"],serie:20,letters:false,auto:700},
+  geo:{themes:window.GEO.order.map(function(id){return {id:id,name:window.GEO.names[id],g:id==="flash"?"Mémoire":"Exercices",gen:window.GEO.gens[id]};}),lessons:window.GEO.L,tabs:["Leçon","Exercices","Progrès"],serie:15,letters:true,auto:1100}
+};
+var R={};["fr","geo"].forEach(function(s){R[s]={tab:1,lesson:null,cur:null,answered:false,hist:[],hi:-1,right:0,total:0,streak:0,times:[],t0:0,to:null,iv:null,serie:null};});
+var VIEW=null;
+function theme(sec,id){var t=SEC[sec].themes;for(var i=0;i<t.length;i++)if(t[i].id===id)return t[i];return null;}
+function sel(sec){var s=S.sel[sec];if(!Array.isArray(s))s=[];s=s.filter(function(id){return !!theme(sec,id);});return s.length?s:SEC[sec].themes.map(function(t){return t.id;});}
+function mode(sec){return S.mode[sec]||"inf";}
+function stopTimers(sec){var r=R[sec];clearTimeout(r.to);clearInterval(r.iv);r.to=null;r.iv=null;}
+
+/* ---------------- rendu général ---------------- */
+function render(sec){
+  var r=R[sec],root=$(sec+"View");if(!root)return;stopTimers(sec);
+  root.innerHTML='<div class="seg" style="margin-bottom:14px">'+SEC[sec].tabs.map(function(t,i){return '<button class="sg" data-tab="'+i+'" aria-pressed="'+(r.tab===i)+'">'+t+'</button>';}).join("")+'</div><div data-body></div>';
+  Array.prototype.forEach.call(root.querySelectorAll("[data-tab]"),function(b){b.addEventListener("click",function(){r.tab=+b.dataset.tab;render(sec);});});
+  if(r.tab===0)renderLesson(sec);else if(r.tab===1)renderQuiz(sec);else renderProgress(sec);
+}
+function body(sec){return $(sec+"View").querySelector("[data-body]");}
+
+/* ---------------- leçon ---------------- */
+function renderLesson(sec){
+  var r=R[sec],b=body(sec),items,cur,html;
+  if(sec==="fr"){items=SEC.fr.themes;if(!r.lesson)r.lesson=items[0].id;cur=theme("fr",r.lesson);html=cur.lesson();}
+  else{items=SEC.geo.lessons;if(!r.lesson)r.lesson=items[0].id;cur=items.filter(function(x){return x.id===r.lesson;})[0]||items[0];html=cur.h;}
+  var groups={};items.forEach(function(t){var g=sec==="fr"?t.g:"Fiches";(groups[g]=groups[g]||[]).push(t);});
+  b.innerHTML='<div class="panel">'+Object.keys(groups).map(function(g){return '<div class="grp">'+g+'</div><div class="chips2">'+groups[g].map(function(t){
+      return '<button class="pk" data-l="'+t.id+'" aria-pressed="'+(t.id===r.lesson)+'">'+esc(t.name||t.t)+'</button>';}).join("")+'</div>';}).join("")+'</div>'+
+    '<div class="panel"><div class="ph">'+esc(cur.name||cur.t)+'</div><div class="lx">'+html+'</div></div>'+
+    '<button class="btn primary" style="width:100%" data-go>S\'entraîner sur '+(sec==="geo"&&!LMAP[cur.id]?"toute la géométrie":"ce thème")+'</button>';
+  Array.prototype.forEach.call(b.querySelectorAll("[data-l]"),function(x){x.addEventListener("click",function(){r.lesson=x.dataset.l;renderLesson(sec);window.scrollTo(0,0);});});
+  Array.prototype.forEach.call(b.querySelectorAll(".lsearch"),function(inp){inp.addEventListener("input",function(){
+    var q=nrm(inp.value.trim()),t=inp.nextElementSibling;if(!t)return;
+    Array.prototype.forEach.call(t.querySelectorAll("tr[data-s]"),function(tr){tr.style.display=!q||tr.dataset.s.indexOf(q)>-1?"":"none";});});});
+  b.querySelector("[data-go]").addEventListener("click",function(){
+    S.sel[sec]=sec==="fr"?[cur.id]:(LMAP[cur.id]||[]);if(mode(sec)==="err")S.mode[sec]="inf";save();r.tab=1;resetSession(sec);render(sec);window.scrollTo(0,0);});
+}
+
+/* ---------------- quiz ---------------- */
+function resetSession(sec){var r=R[sec];r.cur=null;r.answered=false;r.hist=[];r.hi=-1;r.right=0;r.total=0;r.streak=0;r.times=[];r.serie=mode(sec)==="serie"?{n:0,ok:0,miss:[],start:Date.now()}:null;}
+function renderQuiz(sec){
+  var r=R[sec],b=body(sec),cfg=SEC[sec],s=sel(sec),all=!Array.isArray(S.sel[sec])||!S.sel[sec].length,groups={};
+  cfg.themes.forEach(function(t){(groups[t.g]=groups[t.g]||[]).push(t);});
+  var nMiss=Object.keys(S.miss[sec]).length;
+  b.innerHTML='<details class="panel" '+(all?"":"open")+'><summary class="ph" style="cursor:pointer;margin:0">Thèmes · '+(all?"tous":s.length+" sélectionné"+(s.length>1?"s":""))+'</summary><div style="margin-top:12px">'+
+    Object.keys(groups).map(function(g){return '<div class="grp">'+g+'</div><div class="chips2">'+groups[g].map(function(t){
+      return '<button class="pk" data-t="'+t.id+'" aria-pressed="'+(!all&&s.indexOf(t.id)>-1)+'">'+esc(t.name)+'</button>';}).join("")+'</div>';}).join("")+
+    '<div class="frow" style="margin-top:12px"><button class="mini" data-all>Tous les thèmes</button></div></div></details>'+
+    '<div class="seg" style="margin-bottom:12px"><button class="sg" data-m="inf" aria-pressed="'+(mode(sec)==="inf")+'">Infini</button>'+
+    '<button class="sg" data-m="serie" aria-pressed="'+(mode(sec)==="serie")+'">Série de '+cfg.serie+(sec==="geo"?" · 20 min":"")+'</button>'+
+    '<button class="sg" data-m="err" aria-pressed="'+(mode(sec)==="err")+'">Mes erreurs ('+nMiss+')</button></div>'+
+    '<div data-q></div>';
+  Array.prototype.forEach.call(b.querySelectorAll("[data-t]"),function(x){x.addEventListener("click",function(){
+    var cur=Array.isArray(S.sel[sec])?S.sel[sec].slice():[],id=x.dataset.t,i=cur.indexOf(id);if(i>-1)cur.splice(i,1);else cur.push(id);
+    S.sel[sec]=cur;save();resetSession(sec);renderQuiz(sec);});});
+  b.querySelector("[data-all]").addEventListener("click",function(){S.sel[sec]=[];save();resetSession(sec);renderQuiz(sec);});
+  Array.prototype.forEach.call(b.querySelectorAll("[data-m]"),function(x){x.addEventListener("click",function(){S.mode[sec]=x.dataset.m;save();resetSession(sec);renderQuiz(sec);});});
+  if(!r.cur||(r.serie&&r.serie.done))nextQ(sec);else paintCurrent(sec);
+}
+function qroot(sec){return body(sec).querySelector("[data-q]");}
+function missFor(sec){var m=S.miss[sec],s=sel(sec),out=[];Object.keys(m).forEach(function(k){if(m[k]&&m[k].it&&(mode(sec)==="err"||s.indexOf(m[k].it.theme)>-1))for(var i=0;i<m[k].n;i++)out.push(k);});return out;}
+function genItem(sec){
+  var r=R[sec],prev=r.cur&&r.cur.it.key,ms=missFor(sec),it=null;
+  if(mode(sec)==="err"){if(!ms.length)return null;var k=pick(ms);if(ms.length>1&&k===prev)k=pick(ms);return JSON.parse(JSON.stringify(S.miss[sec][k].it));}
+  if(ms.length&&Math.random()<.3){var k2=pick(ms);if(k2!==prev)it=JSON.parse(JSON.stringify(S.miss[sec][k2].it));}
+  for(var i=0;!it&&i<8;i++){var t=theme(sec,pick(sel(sec)));try{var c=t.gen();c.theme=c.theme||t.id;c.tag=c.tag||t.name;if(c.key!==prev||i===7)it=c;}catch(e){}}
+  return it;
+}
+function bump(s,k){var done=false;return String(s).replace(/\d+(,\d+)?/,function(m){done=true;var v=parseFloat(m.replace(",","."))+k;return String(Math.round(v*100)/100).replace(".",",");})+(done?"":" ("+k+")");}
+function buildOpts(sec,it){
+  var pool=[],seen={};seen[it.a]=1;
+  (it.pool||[]).forEach(function(x){x=String(x);if(!seen[x]){seen[x]=1;pool.push(x);}});
+  if(!it.fixed&&!it.keepFirst)shuffle(pool);else if(it.keepFirst&&pool.length>1){var f=pool.shift();shuffle(pool);pool.unshift(f);}
+  if(sec==="geo"){
+    var k=2;while(pool.length<4){var c=bump(it.a,k++);if(!seen[c]){seen[c]=1;pool.push(c);}}
+    var useE=Math.random()<.3,eTrue=useE&&Math.random()<.5,opts;
+    if(useE){opts=eTrue?pool.slice(0,4):[it.a].concat(pool.slice(0,3));shuffle(opts);opts.push(NONE);return {opts:opts,ans:eTrue?NONE:it.a};}
+    return {opts:shuffle([it.a].concat(pool.slice(0,4))),ans:it.a};
+  }
+  var n=it.fixed?pool.length:Math.min(3,pool.length);
+  return {opts:shuffle([it.a].concat(pool.slice(0,n))),ans:it.a};
+}
+function nextQ(sec){
+  var r=R[sec];stopTimers(sec);r.hi=-1;
+  if(r.serie&&r.serie.n>=SEC[sec].serie){showSerieEnd(sec);return;}
+  var it=genItem(sec);
+  if(!it){qroot(sec).innerHTML='<div class="panel"><div class="note">'+(mode(sec)==="err"?"Aucune erreur enregistrée : tout est à jour. Passe en mode Infini pour continuer.":"Aucune question disponible pour ces thèmes.")+'</div></div>';return;}
+  var o=buildOpts(sec,it);r.cur={it:it,opts:o.opts,ans:o.ans};r.answered=false;r.t0=Date.now();
+  paintCurrent(sec);
+}
+function letter(sec,i){return SEC[sec].letters?"ABCDE".charAt(i):String(i+1);}
+function cardHTML(sec,c,review){
+  var it=c.it,r=R[sec];
+  return '<div class="qa-card'+(review?" rev":"")+'" data-card><div class="qa-top"><span class="qa-tag">'+esc(it.tag||"")+'</span>'+
+    (r.serie&&!review?'<span class="qa-time">'+(r.serie.n+(r.answered?0:1))+' / '+SEC[sec].serie+'</span>':'')+
+    (sec==="geo"&&!review?'<span class="qa-time" data-clock>0 s</span>':'')+(review?'<span class="qa-time">revue</span>':'')+'</div>'+
+    '<div class="qa-q">'+it.q+'</div>'+(it.svg||"")+
+    '<div class="opts" data-opts>'+c.opts.map(function(o,i){return '<button class="opt" type="button" data-o="'+i+'"><span class="lt">'+letter(sec,i)+'</span><span class="ot">'+esc(o)+'</span></button>';}).join("")+'</div>'+
+    '<div class="qa-v" data-v></div><div data-sol></div></div>'+
+    '<div class="navbar"><button class="nb" data-prev>←</button><div class="navlabel" data-nl></div><button class="nb" data-next>→</button></div>'+
+    '<div class="stats"><div class="stat"><div class="k">Score</div><div class="v">'+r.right+'/'+r.total+'</div></div>'+
+    '<div class="stat"><div class="k">Série</div><div class="v">'+r.streak+(r.streak>=5?" 🔥":"")+'</div></div>'+
+    '<div class="stat"><div class="k">'+(sec==="geo"?"Temps moy.":"Précision")+'</div><div class="v">'+(sec==="geo"?(r.times.length?Math.round(r.times.reduce(function(a,b){return a+b;},0)/r.times.length)+" s":"—"):(r.total?Math.round(r.right*100/r.total)+" %":"—"))+'</div></div></div>';
+}
+function solHTML(it){return (it.expl?'<div class="qa-sol">'+(it.geo?"<b>Méthode</b> — ":"")+it.expl+'</div>':'')+(it.fast?'<div class="qa-fast">⚡ <b>Astuce rapide</b> — '+esc(it.fast)+'</div>':'');}
+function markOpts(q,c,given){Array.prototype.forEach.call(q.querySelectorAll("[data-o]"),function(b){var o=c.opts[+b.dataset.o];b.disabled=true;if(o===c.ans)b.classList.add("good");else if(o===given)b.classList.add("bad");});}
+function paintCurrent(sec){
+  var r=R[sec],c=r.cur,q=qroot(sec);if(!q||!c)return;
+  q.innerHTML=cardHTML(sec,c,false);
+  Array.prototype.forEach.call(q.querySelectorAll("[data-o]"),function(b){b.addEventListener("click",function(){grade(sec,c.opts[+b.dataset.o]);});});
+  q.querySelector("[data-prev]").addEventListener("click",function(){goPrev(sec);});
+  q.querySelector("[data-next]").addEventListener("click",function(){goNext(sec);});
+  if(r.answered){var h=r.hist[r.hist.length-1];markOpts(q,c,h.given);showVerdict(sec,h);}
+  else if(sec==="geo"){var clk=q.querySelector("[data-clock]");r.iv=setInterval(function(){var s=Math.floor((Date.now()-r.t0)/1000);clk.textContent=s+" s";clk.classList.toggle("late",s>80);},1000);}
+  updNav(sec);
+}
+function showVerdict(sec,h){
+  var q=qroot(sec),v=q.querySelector("[data-v]"),card=q.querySelector("[data-card]");
+  card.classList.add(h.ok?"ok":"ko");
+  v.className="qa-v "+(h.ok?"ok":"ko");
+  v.textContent=h.ok?"Exact"+(sec==="geo"?" · "+h.t+" s":""):(h.given===null?"Non répondu":"Faux")+" — réponse : "+h.ans;
+  if(!h.ok||sec==="geo")q.querySelector("[data-sol]").innerHTML=solHTML(h.it)+(h.ok?"":'<button class="btn primary cont" data-cont>Continuer</button>');
+  var cb=q.querySelector("[data-cont]");if(cb)cb.addEventListener("click",function(){goNext(sec);});
+}
+function stat(sec,th,ok){var st=S.st[sec][th]=S.st[sec][th]||{n:0,ok:0,h:[]};st.n++;if(ok)st.ok++;st.h.push(ok?1:0);if(st.h.length>20)st.h.shift();}
+function grade(sec,given){
+  var r=R[sec],c=r.cur;if(!c||r.answered||r.hi>=0)return;
+  clearInterval(r.iv);r.iv=null;
+  var ok=given===c.ans,t=Math.round((Date.now()-r.t0)/1000),it=c.it,m=S.miss[sec];
+  r.answered=true;r.total++;if(ok){r.right++;r.streak++;}else r.streak=0;
+  if(sec==="geo")r.times.push(t);
+  stat(sec,it.theme,ok);
+  if(ok){if(m[it.key]){m[it.key].n--;if(m[it.key].n<=0)delete m[it.key];}}
+  else{m[it.key]={n:Math.min(((m[it.key]&&m[it.key].n)||0)+1,3),it:it,at:Date.now()};
+    var ks=Object.keys(m);if(ks.length>150){ks.sort(function(a,b){return m[a].at-m[b].at;});delete m[ks[0]];}}
+  var h={it:it,opts:c.opts,ans:c.ans,given:given,ok:ok,t:t};r.hist.push(h);if(r.hist.length>60)r.hist.shift();
+  if(r.serie){r.serie.n++;if(ok)r.serie.ok++;else r.serie.miss.push(h);}
+  save();
+  paintCurrent(sec);
+  if(ok){r.to=setTimeout(function(){if(VIEW===sec&&R[sec].tab===1&&R[sec].hi<0)nextQ(sec);},SEC[sec].auto);}
+}
+function updNav(sec){
+  var r=R[sec],q=qroot(sec);if(!q)return;var nl=q.querySelector("[data-nl]"),p=q.querySelector("[data-prev]");if(!nl)return;
+  p.disabled=!r.hist.length||(r.hi===0);
+  nl.innerHTML=r.hi>=0?"Correction <b>"+(r.hi+1)+"</b> / "+r.hist.length:(r.answered?(R[sec].hist[R[sec].hist.length-1].ok?"Suivante…":"<b>→</b> ou Entrée pour continuer"):"");
+}
+function goPrev(sec){
+  var r=R[sec];if(!r.hist.length)return;clearTimeout(r.to);clearInterval(r.iv);
+  if(r.hi<0)r.hi=r.answered?r.hist.length-2:r.hist.length-1;else if(r.hi>0)r.hi--;
+  if(r.hi<0){r.hi=-1;return;}
+  paintReview(sec);
+}
+function goNext(sec){
+  var r=R[sec];clearTimeout(r.to);
+  if(r.hi>=0){if(r.hi<r.hist.length-1&&!(r.answered&&r.hi===r.hist.length-2)){r.hi++;paintReview(sec);}else{r.hi=-1;if(r.answered)nextQ(sec);else paintCurrent(sec);}return;}
+  if(r.answered)nextQ(sec);
+}
+function paintReview(sec){
+  var r=R[sec],h=r.hist[r.hi],q=qroot(sec);
+  q.innerHTML=cardHTML(sec,{it:h.it,opts:h.opts,ans:h.ans},true);
+  markOpts(q,h,h.given);
+  var v=q.querySelector("[data-v]");v.className="qa-v "+(h.ok?"ok":"ko");v.textContent=h.ok?"Exact":"Ta réponse : "+(h.given===null?"—":h.given)+" · bonne réponse : "+h.ans;
+  q.querySelector("[data-sol]").innerHTML=solHTML(h.it);
+  q.querySelector("[data-prev]").addEventListener("click",function(){goPrev(sec);});
+  q.querySelector("[data-next]").addEventListener("click",function(){goNext(sec);});
+  updNav(sec);
+}
+function showSerieEnd(sec){
+  var r=R[sec],s=r.serie,N=SEC[sec].serie,el=Math.round((Date.now()-s.start)/1000);s.done=true;
+  var mm=Math.floor(el/60),ss=el%60;
+  qroot(sec).innerHTML='<div class="panel res"><div class="ph">Série terminée</div><div class="bigscore">'+s.ok+'<span style="font-size:28px;color:var(--muted)"> / '+N+'</span></div>'+
+    '<div class="note" style="margin-top:8px">'+Math.round(s.ok*100/N)+' % de réussite · '+mm+' min '+(ss<10?"0":"")+ss+' s'+(sec==="geo"?(el>1200?' · <span style="color:var(--warn)">au-delà des 20 minutes du TAGE MAGE</span>':' · dans le temps du TAGE MAGE'):"")+'</div>'+
+    '<div class="note" style="margin-top:4px">Équivalent sous-test : environ '+Math.round(s.ok*15/N)+' / 15</div></div>'+
+    '<div class="row2"><button class="btn primary" data-again>Nouvelle série</button><button class="btn" data-errs>Revoir mes erreurs</button></div>'+
+    '<div class="panel"><div class="ph">Erreurs de la série</div>'+(s.miss.length?s.miss.map(function(h){
+      return '<div class="mrow"><span class="mq">'+h.it.q.replace(/<svg[\s\S]*?<\/svg>/g,"")+(h.given?'<span class="mg">'+esc(h.given)+'</span>':'')+'</span><span class="ma">'+esc(h.ans)+'</span></div>';}).join(""):'<div class="note">Aucune erreur.</div>')+'</div>';
+  qroot(sec).querySelector("[data-again]").addEventListener("click",function(){resetSession(sec);nextQ(sec);});
+  qroot(sec).querySelector("[data-errs]").addEventListener("click",function(){S.mode[sec]="err";save();resetSession(sec);renderQuiz(sec);});
+}
+
+/* ---------------- progrès ---------------- */
+function renderProgress(sec){
+  var b=body(sec),st=S.st[sec],m=S.miss[sec],cnt={};
+  Object.keys(m).forEach(function(k){var t=m[k].it&&m[k].it.theme;if(t)cnt[t]=(cnt[t]||0)+1;});
+  var tot=0,ok=0;Object.keys(st).forEach(function(k){tot+=st[k].n;ok+=st[k].ok;});
+  b.innerHTML='<div class="kv3"><div><div class="k">Questions</div><div class="v">'+tot+'</div></div><div><div class="k">Réussite</div><div class="v">'+(tot?Math.round(ok*100/tot)+" %":"—")+'</div></div><div><div class="k">À revoir</div><div class="v" style="color:var(--ko)">'+Object.keys(m).length+'</div></div></div>'+
+    '<div class="panel"><div class="ph">Maîtrise par thème · 20 dernières réponses</div>'+SEC[sec].themes.map(function(t){
+      var s=st[t.id],h=s&&s.h.length?s.h:null,p=h?Math.round(h.reduce(function(a,b){return a+b;},0)*100/h.length):0,col=!h?"var(--line)":p>=85?"var(--ok)":p>=60?"var(--accent)":"var(--ko)";
+      return '<div class="prow"><div class="ptop"><span>'+esc(t.name)+'</span><span class="pm">'+(h?p+" %":"pas commencé")+(cnt[t.id]?" · "+cnt[t.id]+" à revoir":"")+'</span></div><div class="pbar"><div class="pfill" style="width:'+(h?Math.max(p,3):0)+'%;background:'+col+'"></div></div></div>';}).join("")+'</div>'+
+    '<div class="note" style="margin-bottom:10px">Objectif : 85 % ou plus sur chaque thème. En dessous de 60 %, relis la leçon du thème avant de refaire le QCM.</div>'+
+    '<div class="row2"><button class="btn primary" data-err>Réviser mes erreurs</button><button class="btn" data-reset>Réinitialiser</button></div>';
+  b.querySelector("[data-err]").addEventListener("click",function(){S.mode[sec]="err";save();R[sec].tab=1;resetSession(sec);render(sec);});
+  var rb=b.querySelector("[data-reset]");rb.addEventListener("click",function(){
+    if(!rb.dataset.cf){rb.dataset.cf="1";rb.textContent="Confirmer la remise à zéro";rb.classList.add("kob");return;}
+    S.st[sec]={};S.miss[sec]={};save();renderProgress(sec);});
+}
+
+/* ---------------- intégration ---------------- */
+var prevOn=window.TMX_onView;
+window.TMX_onView=function(v){
+  if(prevOn)prevOn(v);
+  ["fr","geo"].forEach(function(s){if(s!==v)stopTimers(s);});
+  VIEW=(v==="fr"||v==="geo")?v:null;
+  if(VIEW)render(VIEW);
+};
+document.addEventListener("keydown",function(e){
+  if(!VIEW||R[VIEW].tab!==1||e.metaKey||e.ctrlKey||e.altKey)return;
+  var tg=e.target;if(tg&&(tg.tagName==="INPUT"||tg.tagName==="TEXTAREA"||tg.tagName==="SELECT"))return;
+  var sec=VIEW,r=R[sec],k=e.key;
+  if(k==="ArrowLeft"){e.preventDefault();goPrev(sec);return;}
+  if(k==="ArrowRight"||k==="Enter"){e.preventDefault();goNext(sec);return;}
+  if(!r.cur||r.answered||r.hi>=0)return;
+  var i=-1,m=/^(Digit|Numpad)([1-5])$/.exec(e.code||"");
+  if(/^[1-5]$/.test(k))i=+k-1;else if(m)i=+m[2]-1;else if(SEC[sec].letters&&/^[a-eA-E]$/.test(k))i="abcde".indexOf(k.toLowerCase());
+  if(i>-1&&i<r.cur.opts.length){e.preventDefault();grade(sec,r.cur.opts[i]);}
+});
+Array.prototype.forEach.call(document.querySelectorAll('.vt[data-view="fr"],.vt[data-view="geo"]'),function(b){b.addEventListener("click",function(){if(window.TMX_setView)window.TMX_setView(b.dataset.view);});});
+window.TMX_frgeoTest={S:function(){return S;},R:R,SEC:SEC,grade:grade,nextQ:nextQ,buildOpts:buildOpts,goPrev:goPrev,goNext:goNext};
+})();
+
 </script>
 
 </body>
